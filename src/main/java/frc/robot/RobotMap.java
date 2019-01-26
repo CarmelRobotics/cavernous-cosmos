@@ -18,5 +18,6 @@ public class RobotMap {
   // --Pneumatic Control IDs--
   public static final int DROP_PCM_ID_FW = 0;
   public static final int DROP_PCM_ID_BW = 0;
+  public static final int COMPRESSOR_PCM_ID = 0;
 
 }
