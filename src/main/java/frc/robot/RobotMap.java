@@ -19,8 +19,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class RobotMap {
   
   // --Pneumatic Control IDs--
-  public static final int DROP_PCM_ID_FW = 0;
-  public static final int DROP_PCM_ID_BW = 0;
+  public static final int DROP_PCM_ID_UP = 0;
+  public static final int DROP_PCM_ID_DOWN = 0;
   public static final int COMPRESSOR_PCM_ID = 0;
 
   // --Joystick--
@@ -28,8 +28,7 @@ public class RobotMap {
   public static final Joystick JOYSTICK_A = new Joystick(JOYSTICK_A_ID);
 
   // -- Joystick Button --
-  public static final JoystickButton FWD_BUTTON = new JoystickButton(JOYSTICK_A, 1);
-  public static final JoystickButton RWD_BUTTON = new JoystickButton(JOYSTICK_A, 2);
-  public static final JoystickButton CLOSE_BUTTON = new JoystickButton(JOYSTICK_A, 3);
+  public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 1);
+  public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 2);
 
 }

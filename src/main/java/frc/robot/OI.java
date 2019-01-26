@@ -8,7 +8,7 @@
 package frc.robot;
 
 
-
+import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -20,10 +20,20 @@ public class OI {
 
   private static Joystick jst;
   
-  private static JoystickButton jst_button_o;
-  private static JoystickButton jst_button_c;
+  private static JoystickButton jst_button_u;
+  private static JoystickButton jst_button_d;
 
   public static void initialize(){
-    
+    //Joystick inits
+    jst = RobotMap.JOYSTICK_A;
+    //Button inits
+    jst_button_u = RobotMap.UP_BUTTON;
+    jst_button_d = RobotMap.DOWN_BUTTON;
+
+    //Button Commands
+    jst_button_u.whenPressed(new WheelUp());
+    jst_button_d.whenPressed(new WheelDown());
   }   
+
+  
 }

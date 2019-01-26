@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 /**
  * Used to drop the center wheel for slide drive.
  */
-public class WheelDrop extends Subsystem {
+public class WheelDropper extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   // Somebody once told me
@@ -21,7 +21,7 @@ public class WheelDrop extends Subsystem {
   private DoubleSolenoid dropper;
 
   public void initialize(){
-    dropper = new DoubleSolenoid(RobotMap.DROP_PCM_ID_FW, RobotMap.DROP_PCM_ID_BW);
+    dropper = new DoubleSolenoid(RobotMap.DROP_PCM_ID_UP, RobotMap.DROP_PCM_ID_DOWN);
   }
 
 
