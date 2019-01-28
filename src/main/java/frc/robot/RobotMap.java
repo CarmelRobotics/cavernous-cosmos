@@ -28,7 +28,7 @@ public class RobotMap {
   public static final Joystick JOYSTICK_A = new Joystick(JOYSTICK_A_ID);
 
   // -- Joystick Button --
-  public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 1);
-  public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 2);
+  public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
+  public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
 
 }
