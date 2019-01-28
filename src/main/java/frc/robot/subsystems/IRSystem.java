@@ -7,14 +7,45 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class ExampleSubsystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+public class IRSystem extends Subsystem {
+
+  public static DigitalInput leftIR;
+  public static DigitalInput middleIR;
+  public static DigitalInput rightIR;
+  
+  public IRSystem() {
+		leftIR = new DigitalInput(RobotMap.LEFT_IR);
+    middleIR = new DigitalInput(RobotMap.MIDDLE_IR);
+    rightIR = new DigitalInput(RobotMap.RIGHT_IR);
+  }
+  
+  /**
+   * @return the leftIR state
+   */
+  public static boolean getLeftIR() {
+    return leftIR.get();
+  }
+
+  /**
+   * @return the middleIR state
+   */
+  public static boolean getMiddleIR() {
+    return middleIR.get();
+  }
+
+  /**
+   * @return the rightIR state
+   */
+  public static boolean getRightIR() {
+    return rightIR.get();
+  }
 
   @Override
   public void initDefaultCommand() {
