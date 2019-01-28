@@ -1,11 +1,12 @@
 # goal-big-hole 
 `robert`
 <br>
-#### Subsystems Being Worked On:
+#### In Progress
 - Fifth Wheel (Wheel Dropper)
 - 
 
-#### Subsystems Finished:
+#### Finished
 -
-#### Subsystems to Be Worked on:
-- Guitar 
+#### TODO
+- Guitar
+- Fifth Wheel (Drive)
