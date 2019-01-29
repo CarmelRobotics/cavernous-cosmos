@@ -16,9 +16,9 @@ import frc.robot.RobotMap;
  */
 public class IRSystem extends Subsystem {
 
-  public static DigitalInput leftIR;
-  public static DigitalInput middleIR;
-  public static DigitalInput rightIR;
+  public DigitalInput leftIR;
+  public DigitalInput middleIR;
+  public DigitalInput rightIR;
   
   public IRSystem() {
 		leftIR = new DigitalInput(RobotMap.LEFT_IR);
@@ -29,21 +29,21 @@ public class IRSystem extends Subsystem {
   /**
    * @return the leftIR state
    */
-  public static boolean getLeftIR() {
+  public boolean getLeftIR() {
     return leftIR.get();
   }
 
   /**
    * @return the middleIR state
    */
-  public static boolean getMiddleIR() {
+  public boolean getMiddleIR() {
     return middleIR.get();
   }
 
   /**
    * @return the rightIR state
    */
-  public static boolean getRightIR() {
+  public boolean getRightIR() {
     return rightIR.get();
   }
 
