@@ -34,8 +34,12 @@ public class RobotMap {
   // -- Joystick Button --
   public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
   public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
-  // -- SpeedController CAN IDs --
-  public static final int CAN_ID_MIDWHEEL = 0;
+  // -- Spark CAN IDs --
+  public static final int CAN_ID_FRONT_RIGHT = 0;
+  public static final int CAN_ID_BACK_RIGHT = 0;
+  public static final int CAN_ID_FRONT_LEFT = 0;
+  public static final int CAN_ID_BACK_LEFT = 0;
+  public static final int CAN_ID_DROPWHEEL = 0;
   // TODO: Get correct CAN ID
 
 }
