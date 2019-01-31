@@ -25,12 +25,15 @@ public class DriveTrain extends Subsystem {
   private static CANSparkMax frSpark;
   private static CANSparkMax flSpark;
 
+  private static CANSparkMax midSpark;
+
   private static SpeedControllerGroup sparkGroupLeft;
   private static SpeedControllerGroup sparkGroupRight;
 
   private static DifferentialDrive drive;
 
-  private static Joystick jstick;
+  private static Joystick jStick_A;
+  private static Joystick jStick_B;
 
   public DriveTrain(){
     super("Drive Train");
@@ -39,13 +42,16 @@ public class DriveTrain extends Subsystem {
     frSpark = new CANSparkMax(RobotMap.CAN_ID_FRONT_RIGHT, MotorType.kBrushless);
     flSpark = new CANSparkMax(RobotMap.CAN_ID_BACK_LEFT, MotorType.kBrushless);
 
+    midSpark = new CANSparkMax(RobotMap.CAN_ID_DROPWHEEL, MotorType.kBrushless);
+
     sparkGroupLeft = new SpeedControllerGroup(blSpark, flSpark);
     sparkGroupRight = new SpeedControllerGroup(brSpark, frSpark);
 
     drive = new DifferentialDrive(sparkGroupLeft, sparkGroupRight);
 
+    jStick_A = RobotMap.JOYSTICK_A;
+    jStick_B = RobotMap.JOYSTICK_B;
 
-    jstick = RobotMap.JOYSTICK_A;
   }
 
   @Override
@@ -54,7 +60,18 @@ public class DriveTrain extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void robotDrive(){
-    drive.arcadeDrive(jstick.getX(), jstick.getY());
+  /**
+   * The 4-Wheel drive method of the robot
+   */
+  public void mainDrive(){
+    drive.arcadeDrive(jStick_A.getX(), jStick_B.getY());
+
+  }
+
+  /**
+   * Used to drive the mid wheel of the robot
+   */
+  public void slideDrive(){
+    midSpark.set(jStick_B.getY());
   }
 }
