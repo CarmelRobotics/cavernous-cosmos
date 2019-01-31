@@ -22,7 +22,7 @@ public class FifthWheel extends Subsystem {
   private static Joystick jstick;
   
   public FifthWheel(){
-    midWheel = new CANSparkMax(0,MotorType.kBrushless);
+    midWheel = new CANSparkMax(0, MotorType.kBrushless);
     jstick = RobotMap.JOYSTICK_B;
   }
 

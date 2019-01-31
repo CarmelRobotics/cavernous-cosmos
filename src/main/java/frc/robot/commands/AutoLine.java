@@ -17,13 +17,20 @@ import frc.robot.subsystems.IRSystem;
 public class AutoLine extends Command {
   
   private final IRSystem irSys;
-  private boolean left;
-  private boolean middle;
-  private boolean right; 
+  private double left;
+  private double middle;
+  private double right;
+
+  private double threshold; 
+
+  private boolean visionRunning;
+  private Command visionCommand;
   
   public AutoLine() {
 
     irSys = Robot.m_ir;
+
+    threshold = 0.0;
 
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_ir);
@@ -43,17 +50,24 @@ public class AutoLine extends Command {
     middle = irSys.getMiddleIR();
     right = irSys.getRightIR();
 
-    if (left && middle && right) { //if all three sensors are active
+    if (!visionRunning && (isLine(left) && isLine(middle) && isLine(right))) { 
+      //if vision command isn't running and all three sensors are active
 
     }
-    else if (left && (middle || right) || (middle && right)) { //if two of the sensors are active
+
+    else if (!visionRunning && (isLine(left) && (isLine(middle) || isLine(right)) || (isLine(middle) && isLine(right)))) { 
+      //if vision command isn't running and two of the sensors are active
 
     }
-    else if (left || middle || right) { //if one is active
+
+    else if (!visionRunning && (isLine(left) || isLine(middle) || isLine(right))) { 
+      //if vision command isn't running and one sensor is active
 
     }
-    else { //if none are active
-
+    else if (!visionRunning) { //if none are active
+      visionRunning = true;
+      visionCommand = new VisionFindGoal();
+      visionCommand.start();
     }
 
 
@@ -75,4 +89,12 @@ public class AutoLine extends Command {
   @Override
   protected void interrupted() {
   }
+
+  protected boolean isLine(double voltage) {
+    if (voltage > threshold)
+      return true;
+    return false;
+  }
+
+  
 }

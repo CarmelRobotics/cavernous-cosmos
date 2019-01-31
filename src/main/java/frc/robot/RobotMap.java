@@ -18,13 +18,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class RobotMap {
   
-<<<<<<< HEAD
-  /*DIO*/
+  /*Analog*/
 	public static final int LEFT_IR = 0;
   public static final int MIDDLE_IR = 1;
   public static final int RIGHT_IR = 2;
   
-=======
   // -- Other Public Variables --
   public static boolean WHEEL_DROPPED = false;
   // -- Pneumatic Control IDs --
@@ -45,5 +43,4 @@ public class RobotMap {
   public static final int CAN_ID_MIDWHEEL = 0;
   // TODO: Get correct CAN ID
 
->>>>>>> origin/robert
 }
