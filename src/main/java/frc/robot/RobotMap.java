@@ -41,6 +41,6 @@ public class RobotMap {
   public static final int CAN_ID_BACK_LEFT = 0;
   public static final int CAN_ID_DROPWHEEL = 0;
   // -- Talon CAN IDs -- 
-  // TODO: Get correct CAN ID
+ 
 
 }
