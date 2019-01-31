@@ -14,16 +14,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
-/**
- * Add your docs here.
- */
+@Deprecated
 public class FifthWheel extends Subsystem {
   private static CANSparkMax midWheel; 
-  private static Joystick jstick;
+  private static Joystick jStick_B;
   
   public FifthWheel(){
     midWheel = new CANSparkMax(RobotMap.CAN_ID_DROPWHEEL,MotorType.kBrushless);
-    jstick = RobotMap.JOYSTICK_B;
+    jStick_B = RobotMap.JOYSTICK_B;
   }
 
   @Override
@@ -32,6 +30,6 @@ public class FifthWheel extends Subsystem {
   }
 
   public void slideDrive(){
-    midWheel.set(jstick.getY());
+    midWheel.set(jStick_B.getY());
   }
 }
