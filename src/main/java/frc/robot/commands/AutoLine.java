@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IRSystem;
 
 /**
@@ -17,11 +18,13 @@ import frc.robot.subsystems.IRSystem;
 public class AutoLine extends Command {
   
   private final IRSystem irSys;
-  private double left;
-  private double middle;
-  private double right;
+  private final DriveTrain dTrain;
+  private boolean left;
+  private boolean middle;
+  private boolean right;
 
-  private double threshold; 
+  private double threshold;
+  private double slideVelocity;
 
   private boolean visionRunning;
   private Command visionCommand;
@@ -29,8 +32,10 @@ public class AutoLine extends Command {
   public AutoLine() {
 
     irSys = Robot.m_ir;
+    dTrain = Robot.m_dt;
 
     threshold = 0.0;
+    slideVelocity = 0.0;
 
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_ir);
@@ -46,28 +51,52 @@ public class AutoLine extends Command {
   @Override
   protected void execute() {
 
-    left = irSys.getLeftIR();
-    middle = irSys.getMiddleIR();
-    right = irSys.getRightIR();
+    left = isLine(irSys.getLeftIR());
+    middle = isLine(irSys.getMiddleIR());
+    right = isLine(irSys.getRightIR());
+    
 
-    if (!visionRunning && (isLine(left) && isLine(middle) && isLine(right))) { 
+    if (!visionRunning && left && middle && right) {
       //if vision command isn't running and all three sensors are active
-
+      dTrain.setSlide(slideVelocity);
     }
 
-    else if (!visionRunning && (isLine(left) && (isLine(middle) || isLine(right)) || (isLine(middle) && isLine(right)))) { 
+    else if (!visionRunning && (left && (middle || right) || (middle && right))) {
       //if vision command isn't running and two of the sensors are active
+      if (left && middle) {
 
+      }
+      else if (left && right) {
+
+      }
+      else if (middle && right) {
+        
+      }
     }
 
-    else if (!visionRunning && (isLine(left) || isLine(middle) || isLine(right))) { 
+    else if (!visionRunning && (left || middle || right)) {
       //if vision command isn't running and one sensor is active
+      if (left) {
 
+      }
+      else if (middle) {
+
+      }
+      else if (right) {
+
+      }
     }
-    else if (!visionRunning) { //if none are active
+
+    else if (!visionRunning) {
+      //if vision command isn't running and no sensors are active
       visionRunning = true;
       visionCommand = new VisionFindGoal();
       visionCommand.start();
+    }
+
+    else {
+      //if vision is running
+
     }
 
 
