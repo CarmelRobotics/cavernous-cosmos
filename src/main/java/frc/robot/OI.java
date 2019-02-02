@@ -36,5 +36,4 @@ public class OI {
     jst_button_d.whenPressed(new WheelDown());
   }   
 
-  
 }

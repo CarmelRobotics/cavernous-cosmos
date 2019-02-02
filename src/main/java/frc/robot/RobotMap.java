@@ -18,13 +18,20 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class RobotMap {
   
-  /*Analog*/
+  // -- Analog Input Ports --
 	public static final int LEFT_IR = 0;
   public static final int MIDDLE_IR = 1;
   public static final int RIGHT_IR = 2;
   
+  // -- Digital Input Ports --
+  public static final int ULTRASOUND_IN = 0;
+  
+  // -- Digital Output Ports --
+  public static final int ULTRASOUND_OUT = 0;
+  
   // -- Other Public Variables --
   public static boolean WHEEL_DROPPED = false;
+  
   // -- Pneumatic Control IDs --
   public static final int DROP_PCM_ID_UP = 0;
   public static final int DROP_PCM_ID_DOWN = 0;
@@ -39,8 +46,15 @@ public class RobotMap {
   // -- Joystick Button --
   public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
   public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
-  // -- SpeedController CAN IDs --
-  public static final int CAN_ID_MIDWHEEL = 0;
-  // TODO: Get correct CAN ID
+  
+  // -- Spark CAN IDs --
+  public static final int CAN_ID_FRONT_RIGHT = 0;
+  public static final int CAN_ID_BACK_RIGHT = 0;
+  public static final int CAN_ID_FRONT_LEFT = 0;
+  public static final int CAN_ID_BACK_LEFT = 0;
+  public static final int CAN_ID_DROPWHEEL = 0;
+  
+  // -- Talon CAN IDs -- 
+ 
 
 }

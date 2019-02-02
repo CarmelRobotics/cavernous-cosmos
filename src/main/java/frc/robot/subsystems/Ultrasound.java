@@ -7,44 +7,27 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 /**
- * Keep all potentiometers on the IR sensors to the very right
+ * Ultrasonic sensor to sense obstacles in front of the robot
  */
-public class IRSystem extends Subsystem {
+public class Ultrasound extends Subsystem {
 
-  private AnalogInput leftIR;
-  private AnalogInput middleIR;
-  private AnalogInput rightIR;
+  private Ultrasonic us;
   
-  public IRSystem() {
-		leftIR = new AnalogInput(RobotMap.LEFT_IR);
-    middleIR = new AnalogInput(RobotMap.MIDDLE_IR);
-    rightIR = new AnalogInput(RobotMap.RIGHT_IR);
+  public Ultrasound() {
+    us = new Ultrasonic(RobotMap.ULTRASOUND_OUT, RobotMap.ULTRASOUND_IN);
+    us.setAutomaticMode(true);
   }
   
   /**
-   * @return the leftIR state
+   * @return the distance to approaching object
    */
-  public double getLeftIR() {
-    return leftIR.getVoltage();
-  }
-
-  /**
-   * @return the middleIR state
-   */
-  public double getMiddleIR() {
-    return middleIR.getVoltage();
-  }
-
-  /**
-   * @return the rightIR state
-   */
-  public double getRightIR() {
-    return rightIR.getVoltage();
+  public double getDistance() {
+    return us.getRangeInches();
   }
 
   @Override

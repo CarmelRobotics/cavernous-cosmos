@@ -12,7 +12,8 @@ import frc.robot.Robot;
 import frc.robot.subsystems.IRSystem;
 
 /**
- * An example command.  You can replace me with your own command.
+ * Aligns robot to guideline and moves it forward until it reaches a wall.
+ * Runs vision if a guideline isn't found by the IR sensors.
  */
 public class AutoLine extends Command {
   
@@ -64,10 +65,15 @@ public class AutoLine extends Command {
       //if vision command isn't running and one sensor is active
 
     }
-    else if (!visionRunning) { //if none are active
+
+    else if (!visionRunning) { //if vision command isn't running and no sensors are active
       visionRunning = true;
       visionCommand = new VisionFindGoal();
       visionCommand.start();
+    }
+
+    else {
+        //if vision command is running
     }
 
 
