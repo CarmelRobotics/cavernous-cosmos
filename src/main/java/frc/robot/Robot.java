@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IRSystem;
+import frc.robot.subsystems.Ultrasound;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,8 +25,9 @@ import frc.robot.subsystems.IRSystem;
  */
 public class Robot extends TimedRobot {
   public static OI m_oi;
-  public static IRSystem m_ir = new IRSystem();
-  public static DriveTrain m_dt = new DriveTrain();
+  public static IRSystem m_ir;
+  public static DriveTrain m_dt;
+  public static Ultrasound m_us;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -39,6 +41,8 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_ir = new IRSystem();
     m_dt = new DriveTrain();
+    m_us = new Ultrasound();
+
     
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

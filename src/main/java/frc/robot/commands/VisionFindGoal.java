@@ -10,7 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class VisionFindGoal extends Command {
-  public VisionFindGoal() {
+
+  private AutoLine parent;
+
+  public VisionFindGoal(AutoLine p) {
+    
+    parent = p;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -28,7 +33,8 @@ public class VisionFindGoal extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    parent.setVisionRunning(false);
+    return true;
   }
 
   // Called once after isFinished returns true

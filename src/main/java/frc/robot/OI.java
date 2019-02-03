@@ -36,6 +36,6 @@ public class OI {
     //Button Commands
     jst_button_u.whenPressed(new WheelUp());
     jst_button_d.whenPressed(new WheelDown());
-  }   
+  }
 
 }

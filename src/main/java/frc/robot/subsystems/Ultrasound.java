@@ -17,12 +17,12 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 public class Ultrasound extends Subsystem {
 
   private Ultrasonic us;
-  
+
   public Ultrasound() {
     us = new Ultrasonic(RobotMap.ULTRASOUND_OUT, RobotMap.ULTRASOUND_IN);
     us.setAutomaticMode(true);
   }
-  
+
   /**
    * @return the distance to approaching object
    */
