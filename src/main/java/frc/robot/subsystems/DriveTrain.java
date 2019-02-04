@@ -64,7 +64,7 @@ public class DriveTrain extends Subsystem {
    * The 4-Wheel drive method of the robot
    */
   public void mainDrive(){
-    drive.arcadeDrive(jStick_A.getX(), jStick_B.getY());
+    drive.arcadeDrive(jStick_A.getX(), jStick_A.getY());
 
   }
 
@@ -72,6 +72,7 @@ public class DriveTrain extends Subsystem {
    * Used to drive the mid wheel of the robot
    */
   public void slideDrive(){
+    drive.arcadeDrive(jStick_A.getX(), jStick_A.getY());
     midSpark.set(jStick_B.getY());
   }
 }
