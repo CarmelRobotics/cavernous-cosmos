@@ -31,18 +31,18 @@ public class WheelDropper extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
   
-  public void down(){ //frick
+  public void down(){ 
     dropper.set(DoubleSolenoid.Value.kForward);
     RobotMap.WHEEL_DROPPED = true;
   }
 
-  public void up(){ // up and away
+  public void up(){ 
     
     dropper.set(DoubleSolenoid.Value.kForward);
     RobotMap.WHEEL_DROPPED = false;
   }
 
-  public void stop(){ // hammer time
+  public void stop(){ 
     dropper.set(DoubleSolenoid.Value.kOff);
   }
 }
