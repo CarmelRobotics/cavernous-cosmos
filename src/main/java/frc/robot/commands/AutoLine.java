@@ -26,9 +26,6 @@ public class AutoLine extends Command {
   private final DriveTrain dTrain;
   private final Ultrasound us;
 
-  private static Joystick jStick_A;
-  private static Joystick jStick_B;
-
   private boolean left;
   private boolean middle;
   private boolean right;
@@ -44,24 +41,11 @@ public class AutoLine extends Command {
   private double forwardVelocityFast;
   private double forwardVelocitySlow;
 
-  //Velocity used for rotation-based adjustments
-  private double rotationVelocity; //slower than slow
-  
-  //counts how many times the robot has aligned itself
-  private int adjustmentCounter;
-
-  //number that adjustmentCounter needs to surpass before running perpendicularHeading()
-  private int timesAdjustedBeforeUltrasound;
-
   private double stoppingDistanceToGoal;
-
-  private double secondsWaitedBeforeBotRotates; //might be used in future if timer is used for the check before running perpendicularHeading()
-  private boolean previouslyTurned;
 
   private boolean visionRunning;
   private Command visionCommand;
 
-  private boolean userInput;
   private boolean stopCommand;
 
   public AutoLine() {
@@ -69,9 +53,6 @@ public class AutoLine extends Command {
     irSys = Robot.m_ir;
     dTrain = Robot.m_dt;
     us = Robot.m_us;
-
-    jStick_A = RobotMap.JOYSTICK_A;
-    jStick_B = RobotMap.JOYSTICK_B;
 
     threshold = 0.0;
 
@@ -81,17 +62,8 @@ public class AutoLine extends Command {
     forwardVelocityFast = 0.0;
     forwardVelocitySlow = 0.0;
 
-    rotationVelocity = 0.0;
+    stoppingDistanceToGoal = 0.5; //inches
 
-    adjustmentCounter = 0;
-    timesAdjustedBeforeUltrasound = 2;
-
-    stoppingDistanceToGoal = 0.5;
-
-    secondsWaitedBeforeBotRotates = 3.0;
-    previouslyTurned = false;
-
-    userInput = false;
     stopCommand = false;
 
     // Use requires() here to declare subsystem dependencies
@@ -113,77 +85,39 @@ public class AutoLine extends Command {
     middle = isLine(irSys.getMiddleIR());
     right = isLine(irSys.getRightIR());
 
-    userInput = jStick_A.getX() != 0 || jStick_A.getY() != 0 || jStick_B.getX() != 0 || jStick_B.getY() != 0;
-    
-    //if user inputs a direction into the joystick, stop the command
-    if (userInput) {
-      stopCommand = true;
-    }
-
-    else if (!visionRunning && left && middle && right) {
-      //if vision command isn't running and all three sensors are active
-      dTrain.set4Wheel(forwardVelocitySlow, 0.0);
-
-      if (previouslyTurned) {
-        adjustmentCounter++;
-        previouslyTurned = false;
+    if (!visionRunning) {
+      if (middle) {
+        //if vision command isn't running and two of the sensors are active
+        if (left) { //slide left slowly
+          dTrain.set4Wheel(0.0, 0.0);
+          dTrain.setSlide(slideVelocitySlow);
+        }
+        else if (right) { //slide right slowly
+          dTrain.set4Wheel(0.0, 0.0);
+          dTrain.setSlide(slideVelocitySlow);
+        }
+        else {
+          dTrain.setSlide(0.0);
+          dTrain.set4Wheel(forwardVelocitySlow, 0.0);
+        }
       }
-
-      if(adjustmentCounter > timesAdjustedBeforeUltrasound) { //if the robot has adjusted too many times with sliding, use rotation to straighten heading of robot
-        perpendicularHeading();
-        adjustmentCounter = 0;
-      }
-
-    }
-
-    else if (!visionRunning && (left && (middle || right) || (middle && right))) {
-      //if vision command isn't running and two of the sensors are active
-      if (left && middle) { //slide left slowly
-        dTrain.setSlide(slideVelocitySlow);
-        previouslyTurned = true;
-      }
-      else if (left && right) {
-        //this shouldn't happen
-      }
-      else if (middle && right) { //slide right slowly
-        dTrain.setSlide(slideVelocitySlow);
-        previouslyTurned = true;
-      }
-    }
-
-    else if (!visionRunning && (left || middle || right)) {
-      //if vision command isn't running and one sensor is active
-      if (left) { //slide left quickly
+      else if (left) { //slide left quickly
+        dTrain.set4Wheel(0.0, 0.0);
         dTrain.setSlide(slideVelocityFast);
-        previouslyTurned = true;
-      }
-      else if (middle) {
-        if (previouslyTurned) {
-          adjustmentCounter++;
-          previouslyTurned = false;
-        }
-
-        if(adjustmentCounter > timesAdjustedBeforeUltrasound) { //if the robot has adjusted too many times with sliding, use rotation to straighten heading of robot
-          perpendicularHeading();
-          adjustmentCounter = 0;
-        }
       }
       else if (right) { //slide right quickly
+        dTrain.set4Wheel(0.0, 0.0);
         dTrain.setSlide(slideVelocityFast);
-        previouslyTurned = true;
+      }
+      else { //if vision command isn't running and no sensors are active, run vision
+        visionRunning = true;
+        visionCommand = new VisionFindGoal(this);
+        visionCommand.start();
       }
     }
-
-    else if (!visionRunning) { //if vision command isn't running and no sensors are active, run vision
-      visionRunning = true;
-      visionCommand = new VisionFindGoal(this);
-      visionCommand.start();
-    }
-
     else {
       //if vision command is running
     }
-
 
   }
 
@@ -213,49 +147,6 @@ public class AutoLine extends Command {
     if (voltage > threshold)
       return true;
     return false;
-  }
-
-  /**
-  * Uses ultrasonic sensor and robot rotations to determine whether the robot is facing
-  * perpendicular to the wall in front of it and rotates itself so that the robot is facing
-  * that wall if it initially isn't.
-  */
-  protected boolean perpendicularHeading() {
-    Timer rotateTime = new Timer();
-    double initialDistance = us.getDistance();
-    double directionMultiplier;
-    double previousDistance;
-    boolean lineStillVisible;
-
-    rotateTime.start();
-    while (rotateTime.get() < 0.1)
-      dTrain.set4Wheel(0.0, rotationVelocity);
-    
-    if (initialDistance < us.getDistance()) {
-      directionMultiplier = -1.0;
-    }
-    else {
-      directionMultiplier = 1.0;
-    }
-
-    do {
-      userInput = jStick_A.getX() != 0 || jStick_A.getY() != 0 || jStick_B.getX() != 0 || jStick_B.getY() != 0;
-      if (userInput) {
-        stopCommand = true;
-        return false;
-      }
-
-      previousDistance = us.getDistance();
-      dTrain.set4Wheel(0.0, directionMultiplier * rotationVelocity);
-      lineStillVisible = left || middle || right;
-    } while (previousDistance > us.getDistance() || !lineStillVisible);
-    /*
-    rotateTime.reset();
-    rotateTime.start();
-    while (rotateTime.get() < 0.01)
-      dTrain.set4Wheel(0.0, (directionMultiplier / -1.0) * rotationVelocity);
-    */
-    return true;
   }
 
   public void setVisionRunning (boolean v) {
