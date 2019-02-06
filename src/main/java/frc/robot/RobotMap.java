@@ -63,13 +63,32 @@ public class RobotMap {
    * These numbers represent how many rotations the elevator's motor would have to
    * complete in order to reach the stated height, given that the elevator starts at its
    * lowest possible height.
+   *
+   * desiredPos ints:
+   * 0 = lowest possible height of the elevator
+   * 1 = lowest hatch panel dropoff
+   * 2 = lowest fuel dropoff
+   * 3 = middle hatch panel dropoff
+   * 4 = middle fuel dropoff
+   * 5 = highest hatch panel dropoff
+   * 6 = highest fuel dropoff
    */
-  public static final double ELEV_BOTTOM = 0; //this is always set to zero
-  public static final double ELEV_LO_PANEL = 100;
-  public static final double ELEV_LO_FUEL = 200;
-  public static final double ELEV_MI_PANEL = 300;
-  public static final double ELEV_MI_FUEL = 400;
-  public static final double ELEV_HI_PANEL = 500;
-  public static final double ELEV_HI_FUEL = 600;
-
+   
+  public static final double[] ELEV_ROTATIONS = [
+  0.0,
+  100.0,
+  200.0,
+  300.0,
+  400.0,
+  500.0,
+  600.0
+  ]
+   
+  public static final double ELEV_BOTTOM = 0;
+  public static final double ELEV_LO_PANEL = 1;
+  public static final double ELEV_LO_FUEL = 2;
+  public static final double ELEV_MI_PANEL = 3;
+  public static final double ELEV_MI_FUEL = 4;
+  public static final double ELEV_HI_PANEL = 5;
+  public static final double ELEV_HI_FUEL = 6;
 }

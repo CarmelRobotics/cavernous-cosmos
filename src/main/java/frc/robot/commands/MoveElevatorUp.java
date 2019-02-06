@@ -9,22 +9,9 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class MoveElevator extends Command {
+public class MoveElevatorUp extends Command {
 
-  private AutoLine parent;
-
-  /**
-   * desiredPos ints:
-   * 0 = lowest possible height of the elevator
-   * 1 = lowest hatch panel dropoff
-   * 2 = lowest fuel dropoff
-   * 3 = middle hatch panel dropoff
-   * 4 = middle fuel dropoff
-   * 5 = highest hatch panel dropoff
-   * 6 = highest fuel dropoff
-   */
-
-  public MoveElevator(int desiredPos) {
+  public MoveElevatorUp() {
     
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
