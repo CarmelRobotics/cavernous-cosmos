@@ -46,6 +46,14 @@ public class RobotMap {
   // -- Joystick Button --
   public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
   public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
+
+  public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_B, 2);
+  public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(JOYSTICK_B, 3);
+  public static final JoystickButton ELEV_LOW_BUTTON = new JoystickButton(JOYSTICK_B, 4);
+  public static final JoystickButton ELEV_MID_BUTTON = new JoystickButton(JOYSTICK_B, 5);
+  public static final JoystickButton ELEV_HIGH_BUTTON = new JoystickButton(JOYSTICK_B, 6);
+  public static final JoystickButton ELEV_HATCH_BUTTON = new JoystickButton(JOYSTICK_B, 7);
+  public static final JoystickButton ELEV_FUEL_BUTTON = new JoystickButton(JOYSTICK_B, 8);
   
   // -- Spark CAN IDs --
   public static final int CAN_ID_FRONT_RIGHT = 0;

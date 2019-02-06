@@ -33,6 +33,14 @@ public class OI {
     jst_button_u = RobotMap.UP_BUTTON;
     jst_button_d = RobotMap.DOWN_BUTTON;
 
+    jst_button_u = RobotMap.ELEV_UP_BUTTON;
+    jst_button_d = RobotMap.ELEV_DOWN_BUTTON;
+    jst_button_u = RobotMap.DOWN_BUTTON;
+    jst_button_d = RobotMap.DOWN_BUTTON;
+    jst_button_u = RobotMap.UP_BUTTON;
+    jst_button_d = RobotMap.DOWN_BUTTON;
+    jst_button_u = RobotMap.UP_BUTTON;
+
     //Button Commands
     jst_button_u.whenPressed(new WheelUp());
     jst_button_d.whenPressed(new WheelDown());

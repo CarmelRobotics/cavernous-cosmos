@@ -8,20 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.subsystems.Elevator;
 
-public class ResetElevator extends Command {
+public class MoveElevatorHatchOrFuel extends Command {
 
-  private Elevator el;
-
-  public ResetElevator() {
+  public MoveElevatorHatchOrFuel(int whichButtonPressed) {
     
-    el = Robot.m_el;
-
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(el);
   }
 
   // Called just before this Command runs the first time
@@ -32,21 +25,17 @@ public class ResetElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    el.setElevatorVelocity(-120.0); //RPM
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(el.getElevatorLimitSwitch())
-      return false;
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    el.setElevatorVelocity(0.0);
   }
 
   // Called when another command which requires one or more of the same
