@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.IRSystem;
 import frc.robot.subsystems.Ultrasound;
 
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
   public static IRSystem m_ir;
   public static DriveTrain m_dt;
   public static Ultrasound m_us;
+  public static Elevator m_el;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -42,6 +44,7 @@ public class Robot extends TimedRobot {
     m_ir = new IRSystem();
     m_dt = new DriveTrain();
     m_us = new Ultrasound();
+    m_el = new Elevator();
 
     
     // chooser.addOption("My Auto", new MyAutoCommand());

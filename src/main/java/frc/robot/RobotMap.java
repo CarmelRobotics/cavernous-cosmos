@@ -58,4 +58,34 @@ public class RobotMap {
   // -- Talon CAN IDs -- 
  
 
+  // -- Relative Distances in Inches to Set Elevator Heights --
+  /**
+   * These numbers represent how many inches the elevator would have to
+   * travel in order to reach the stated height, given that the elevator starts at its
+   * lowest possible height. These will be converted to rotations in the command classes.
+   *
+   * desiredPos doubles:
+   * 0 = lowest hatch panel dropoff
+   * 1 = lowest fuel dropoff
+   * 2 = middle hatch panel dropoff
+   * 3 = middle fuel dropoff
+   * 4 = highest hatch panel dropoff
+   * 5 = highest fuel dropoff
+   */
+   
+  public static final double[] ELEV_INCHES = {
+  0.0, //always set to zero - other measurements are relative to this height
+  8.5,
+  26.0,
+  34.5,
+  52.0,
+  60.5
+  };
+   
+  public static final double ELEV_LO_PANEL = 0;
+  public static final double ELEV_LO_FUEL = 1;
+  public static final double ELEV_MI_PANEL = 2;
+  public static final double ELEV_MI_FUEL = 3;
+  public static final double ELEV_HI_PANEL = 4;
+  public static final double ELEV_HI_FUEL = 5;
 }
