@@ -8,11 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.Elevator;
 
 public class MoveElevatorDown extends Command {
 
+  private Elevator el;
+
   public MoveElevatorDown() {
     
+    el = Robot.m_el;
+
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -20,6 +27,7 @@ public class MoveElevatorDown extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    el.addToTimesMoved();
   }
 
   // Called repeatedly when this Command is scheduled to run

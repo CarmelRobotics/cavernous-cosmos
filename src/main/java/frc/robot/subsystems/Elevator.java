@@ -38,12 +38,16 @@ public class Elevator extends Subsystem {
     private CANDigitalInput extendLimit;
     private double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
     private int currentPos; //the elevator's current position
+    private int desiredLevel;
+    private int timesMoved;
 
     public Elevator() {
         extend = new CANSparkMax(RobotMap.CAN_ID_ELEVATOR, MotorType.kBrushless);
         extendPID = extend.getPIDController();
         extendEnc = extend.getEncoder();
         extendLimit = new CANDigitalInput(extend, LimitSwitch.kForward, LimitSwitchPolarity.kNormallyClosed);
+        desiredLevel = 0;
+        timesMoved = 0;
 
         // PID coefficients
         kP = 0.1;
@@ -84,6 +88,26 @@ public class Elevator extends Subsystem {
     public boolean getElevatorLimitSwitch() {
         //normally closed: true means limit switch isn't active, false means it is
         return extendLimit.get();
+    }
+
+    public int getDesiredLevel() {
+        //normally closed: true means limit switch isn't active, false means it is
+        return desiredLevel;
+    }
+
+    public void setDesiredLevel(int dL) {
+        //normally closed: true means limit switch isn't active, false means it is
+        this.desiredLevel = dL;
+    }
+
+    public int getTimesMoved() {
+        //normally closed: true means limit switch isn't active, false means it is
+        return timesMoved;
+    }
+
+    public void addToTimesMoved() {
+        //normally closed: true means limit switch isn't active, false means it is
+        this.timesMoved++;
     }
 
     @Override

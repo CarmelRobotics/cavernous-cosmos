@@ -8,11 +8,25 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.Elevator;
 
-public class MoveElevatorHatchOrFuel extends Command {
+public class MoveElevatorChangeLevelVariable extends Command {
 
-  public MoveElevatorHatchOrFuel(int whichButtonPressed) {
+  private int level;
+  private Elevator el;
+
+ /**
+ * levels
+ * 0: low elevator button pressed
+ * 1: middle elevator button pressed
+ * 2: high elevator button pressed
+ */
+  public MoveElevatorChangeLevelVariable(int desiredLevel) {
     
+    level = desiredLevel;
+
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -20,17 +34,21 @@ public class MoveElevatorHatchOrFuel extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    el = Robot.m_el;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    el.setDesiredLevel(level);;
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

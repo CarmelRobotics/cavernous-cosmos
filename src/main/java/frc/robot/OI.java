@@ -51,6 +51,11 @@ public class OI {
     //Button Commands
     jst_button_u.whenPressed(new WheelUp());
     jst_button_d.whenPressed(new WheelDown());
+    jst_button_elevhatch.whenPressed(new MoveElevatorPending(0));
+    jst_button_elevfuel.whenPressed(new MoveElevatorPending(1));
+    jst_button_elevlow.whenPressed(new MoveElevatorPending(0));
+    jst_button_elevmid.whenPressed(new MoveElevatorPending(1));
+    jst_button_elevhigh.whenPressed(new MoveElevatorPending(2));
   }
 
 }
