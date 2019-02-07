@@ -90,10 +90,10 @@ public class RobotMap {
   60.5
   };
    
-  public static final double ELEV_LO_PANEL = 0;
-  public static final double ELEV_LO_FUEL = 1;
-  public static final double ELEV_MI_PANEL = 2;
-  public static final double ELEV_MI_FUEL = 3;
-  public static final double ELEV_HI_PANEL = 4;
-  public static final double ELEV_HI_FUEL = 5;
+  public static final int ELEV_LO_PANEL = 0;
+  public static final int ELEV_LO_FUEL = 1;
+  public static final int ELEV_MI_PANEL = 2;
+  public static final int ELEV_MI_FUEL = 3;
+  public static final int ELEV_HI_PANEL = 4;
+  public static final int ELEV_HI_FUEL = 5;
 }

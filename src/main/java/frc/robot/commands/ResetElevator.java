@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.Elevator;
 
 public class ResetElevator extends Command {
@@ -47,6 +48,7 @@ public class ResetElevator extends Command {
   @Override
   protected void end() {
     el.setElevatorVelocity(0.0);
+    el.setElevatorRelativePos(RobotMap.ELEV_LO_PANEL);
   }
 
   // Called when another command which requires one or more of the same

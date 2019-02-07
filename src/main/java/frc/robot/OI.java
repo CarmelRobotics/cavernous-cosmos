@@ -24,6 +24,13 @@ public class OI {
   
   private static JoystickButton jst_button_u;
   private static JoystickButton jst_button_d;
+  private static JoystickButton jst_button_elevup;
+  private static JoystickButton jst_button_elevdown;
+  private static JoystickButton jst_button_elevlow;
+  private static JoystickButton jst_button_elevmid;
+  private static JoystickButton jst_button_elevhigh;
+  private static JoystickButton jst_button_elevhatch;
+  private static JoystickButton jst_button_elevfuel;
 
   public static void initialize(){
     //Joystick inits
@@ -33,13 +40,13 @@ public class OI {
     jst_button_u = RobotMap.UP_BUTTON;
     jst_button_d = RobotMap.DOWN_BUTTON;
 
-    jst_button_u = RobotMap.ELEV_UP_BUTTON;
-    jst_button_d = RobotMap.ELEV_DOWN_BUTTON;
-    jst_button_u = RobotMap.DOWN_BUTTON;
-    jst_button_d = RobotMap.DOWN_BUTTON;
-    jst_button_u = RobotMap.UP_BUTTON;
-    jst_button_d = RobotMap.DOWN_BUTTON;
-    jst_button_u = RobotMap.UP_BUTTON;
+    jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
+    jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
+    jst_button_elevlow = RobotMap.ELEV_LOW_BUTTON;
+    jst_button_elevmid = RobotMap.ELEV_MID_BUTTON;
+    jst_button_elevhigh = RobotMap.ELEV_HIGH_BUTTON;
+    jst_button_elevhatch = RobotMap.ELEV_HATCH_BUTTON;
+    jst_button_elevfuel = RobotMap.ELEV_FUEL_BUTTON;
 
     //Button Commands
     jst_button_u.whenPressed(new WheelUp());
