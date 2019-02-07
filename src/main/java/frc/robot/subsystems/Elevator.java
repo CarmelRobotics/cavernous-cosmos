@@ -40,6 +40,7 @@ public class Elevator extends Subsystem {
     private int currentPos; //the elevator's current position
     private int desiredLevel;
     private int timesMoved;
+    private double relativeZero;
 
     public Elevator() {
         extend = new CANSparkMax(RobotMap.CAN_ID_ELEVATOR, MotorType.kBrushless);
@@ -48,6 +49,7 @@ public class Elevator extends Subsystem {
         extendLimit = new CANDigitalInput(extend, LimitSwitch.kForward, LimitSwitchPolarity.kNormallyClosed);
         desiredLevel = 0;
         timesMoved = 0;
+        relativeZero = 0;
 
         // PID coefficients
         kP = 0.1;
@@ -69,11 +71,19 @@ public class Elevator extends Subsystem {
 
     }
 
-    public double getElevatorEncoderPos() {
+    public double getElevatorActualEncoderPos() {
         return extendEnc.getPosition();
     }
 
-    public void setElevatorRawPos(double rotations) {
+    public double getRelativeZero() {
+        return relativeZero;
+    }
+
+    public void setRelativeZero(double zero) {
+        relativeZero = zero;
+    }
+
+    public void setElevatorMovement(double rotations) {
         extendPID.setReference(rotations, ControlType.kPosition);
     }
 

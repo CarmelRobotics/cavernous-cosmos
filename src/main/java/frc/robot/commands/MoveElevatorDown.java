@@ -15,9 +15,12 @@ import frc.robot.subsystems.Elevator;
 public class MoveElevatorDown extends Command {
 
   private Elevator el;
+  
+  private double heightOfTarget;
+  private double currentRelativePos;
 
   public MoveElevatorDown() {
-    
+
     el = Robot.m_el;
 
     // Use requires() here to declare subsystem dependencies
@@ -27,18 +30,23 @@ public class MoveElevatorDown extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    el.addToTimesMoved();
+    currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
+    double nearestLowerLevel = 0;
+    for (int i = 0; convertInToRot(RobotMap.ELEV_INCHES[i]) < currentRelativePos; i++)
+      nearestLowerLevel = convertInToRot(RobotMap.ELEV_INCHES[i]);
+    heightOfTarget = nearestLowerLevel;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    el.setElevatorMovement(heightOfTarget - currentRelativePos);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
@@ -50,5 +58,9 @@ public class MoveElevatorDown extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+  }
+
+  private double convertInToRot(double inches) {
+    return inches*1; //insert conversion math here
   }
 }

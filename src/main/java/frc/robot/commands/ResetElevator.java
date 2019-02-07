@@ -49,6 +49,7 @@ public class ResetElevator extends Command {
   protected void end() {
     el.setElevatorVelocity(0.0);
     el.setElevatorRelativePos(RobotMap.ELEV_LO_PANEL);
+    el.setRelativeZero(el.getElevatorActualEncoderPos());
   }
 
   // Called when another command which requires one or more of the same
