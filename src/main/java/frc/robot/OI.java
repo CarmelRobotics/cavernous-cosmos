@@ -10,7 +10,10 @@ package frc.robot;
 
 import frc.robot.commands.*;
 
+
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -22,20 +25,27 @@ public class OI {
   private static Joystick jStick_A;
   private static Joystick jStick_B;
   
-  private static JoystickButton jst_button_u;
-  private static JoystickButton jst_button_d;
+  private static Button wheelUp;
+  private static Button wheelDown;
+  private static Button succOn;
+  private static Button succOff;
 
   public static void initialize(){
     //Joystick inits
     jStick_A = RobotMap.JOYSTICK_A;
     jStick_B = RobotMap.JOYSTICK_B;
     //Button inits
-    jst_button_u = RobotMap.UP_BUTTON;
-    jst_button_d = RobotMap.DOWN_BUTTON;
+    wheelUp = RobotMap.WHEEL_UP;
+    wheelDown = RobotMap.WHEEL_DOWN;
+    succOn = RobotMap.SUCC_ON;
+    succOn = RobotMap.SUCC_OFF;
 
     //Button Commands
-    jst_button_u.whenPressed(new WheelUp());
-    jst_button_d.whenPressed(new WheelDown());
+    wheelUp.whenPressed(new WheelUp());
+    wheelDown.whenPressed(new WheelDown());
+    succOn.whenPressed(new SuccOn());
+    succOff.whenPressed(new SuccOff());
+    System.out.println("init complete!");
   }   
 
   

@@ -32,8 +32,10 @@ public class RobotMap {
   public static final Joystick JOYSTICK_B = new Joystick(JOYSTICK_B_ID);
 
   // -- Joystick Button --
-  public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
-  public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
+  public static final JoystickButton WHEEL_UP = new JoystickButton(JOYSTICK_A, 2);
+  public static final JoystickButton WHEEL_DOWN = new JoystickButton(JOYSTICK_A, 3);
+  public static final JoystickButton SUCC_ON = new JoystickButton(JOYSTICK_A, 4);
+  public static final JoystickButton SUCC_OFF = new JoystickButton(JOYSTICK_A, 5);
   // -- Spark CAN IDs --
   public static final int CAN_ID_FRONT_RIGHT = 0;
   public static final int CAN_ID_BACK_RIGHT = 0;

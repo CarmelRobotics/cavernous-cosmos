@@ -18,6 +18,10 @@ import frc.robot.subsystems.*;
 
 public class Robot extends TimedRobot {
   public static OI oi;
+  public static Vacuum vac;
+  public static FifthWheel wheel;
+  public static WheelDropper dropper;
+  public static CompressorA compressor;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -32,6 +36,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
   
     drive = new DriveTrain();
+    vac = new Vacuum();
+    wheel = new FifthWheel();
+    dropper = new WheelDropper();
+    compressor = new CompressorA();
+    OI.initialize();
+
   }
 
   @Override
