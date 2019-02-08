@@ -44,24 +44,30 @@ public class RobotMap {
   public static final Joystick JOYSTICK_B = new Joystick(JOYSTICK_B_ID);
 
   // -- Joystick Button --
-  public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
-  public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
+  public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 7);
+  public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 8);
 
-  public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_B, 2);
-  public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(JOYSTICK_B, 3);
+  public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
+  public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
+
   public static final JoystickButton ELEV_LOW_BUTTON = new JoystickButton(JOYSTICK_B, 4);
   public static final JoystickButton ELEV_MID_BUTTON = new JoystickButton(JOYSTICK_B, 5);
   public static final JoystickButton ELEV_HIGH_BUTTON = new JoystickButton(JOYSTICK_B, 6);
   public static final JoystickButton ELEV_HATCH_BUTTON = new JoystickButton(JOYSTICK_B, 7);
   public static final JoystickButton ELEV_FUEL_BUTTON = new JoystickButton(JOYSTICK_B, 8);
   
+  public static final JoystickButton WHEEL_UP = new JoystickButton(JOYSTICK_A, 10);
+  public static final JoystickButton WHEEL_DOWN = new JoystickButton(JOYSTICK_A, 9);
+  public static final JoystickButton SUCC_ON = new JoystickButton(JOYSTICK_A, 4);
+  public static final JoystickButton SUCC_OFF = new JoystickButton(JOYSTICK_A, 5);
+ 
   // -- Spark CAN IDs --
   public static final int CAN_ID_FRONT_RIGHT = 0;
   public static final int CAN_ID_BACK_RIGHT = 0;
   public static final int CAN_ID_FRONT_LEFT = 0;
   public static final int CAN_ID_BACK_LEFT = 0;
   public static final int CAN_ID_DROPWHEEL = 0;
-  public static final int CAN_ID_ELEVATOR = 0;
+  public static final int CAN_ID_ELEVATOR = 3;
   
   // -- Talon CAN IDs -- 
  
