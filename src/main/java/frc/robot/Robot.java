@@ -50,7 +50,6 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static DriveTrain driver;
   public static IRSystem m_ir;
-  public static DriveTrain m_dt;
   public static Ultrasound m_us;
   public static Elevator m_el;
   //public static Vacuum vac;
@@ -60,7 +59,8 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  private static DriveTrain drive; 
+  private static DriveTrain drive;
+public static DriveTrain m_dt; 
 
 
   @Override
