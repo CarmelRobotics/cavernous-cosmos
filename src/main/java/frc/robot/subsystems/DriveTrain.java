@@ -9,7 +9,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Joystick;
-
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedController;
 
 import edu.wpi.first.wpilibj.VictorSP;
@@ -55,7 +55,8 @@ public class DriveTrain extends Subsystem {
 	private SpeedController motorMiddle;
 
 
-
+	private PIDController pid;
+	
 
 
 	private CANSparkMax motorTest;
@@ -67,6 +68,7 @@ public class DriveTrain extends Subsystem {
 
     	super("Drive Train");
 
+		
     	stick = new Joystick(0);
 		stick2 = new Joystick(1);
 		motorFLeft = new CANSparkMax (0,MotorType.kBrushless);

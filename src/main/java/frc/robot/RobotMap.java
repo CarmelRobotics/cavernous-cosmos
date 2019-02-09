@@ -29,4 +29,169 @@ public static final Joystick JOY = new Joystick(0);
 
 public static final JoystickButton MOVE_FORWARD = new JoystickButton(JOY, 8);
 public static final JoystickButton MOVE_BACKWARDS = new JoystickButton(JOY, 9);
+
+
+
+
+  // -- Other Public Variables --
+
+  public static boolean WHEEL_DROPPED = false;
+
+  // -- Pneumatic Control IDs --
+
+  public static final int DROP_PCM_ID_UP = 0;
+
+  public static final int DROP_PCM_ID_DOWN = 0;
+
+  public static final int COMPRESSOR_PCM_ID = 0;
+
+
+
+  // -- Joystick --
+
+  public static final int JOYSTICK_A_ID = 0;
+
+  public static final Joystick JOYSTICK_A = new Joystick(JOYSTICK_A_ID);
+
+  public static final int JOYSTICK_B_ID = 1;
+
+  public static final Joystick JOYSTICK_B = new Joystick(JOYSTICK_B_ID);
+
+
+
+  // -- Joystick Button --
+
+  public static final JoystickButton WHEEL_UP = new JoystickButton(JOYSTICK_A, 2);
+
+  public static final JoystickButton WHEEL_DOWN = new JoystickButton(JOYSTICK_A, 3);
+
+  public static final JoystickButton SUCC_ON = new JoystickButton(JOYSTICK_A, 4);
+
+  public static final JoystickButton SUCC_OFF = new JoystickButton(JOYSTICK_A, 5);
+
+  // -- Spark CAN IDs --
+
+  public static final int CAN_ID_FRONT_RIGHT = 0;
+
+  public static final int CAN_ID_BACK_RIGHT = 0;
+
+  public static final int CAN_ID_FRONT_LEFT = 0;
+
+  public static final int CAN_ID_BACK_LEFT = 0;
+
+  public static final int CAN_ID_DROPWHEEL = 0;
+
+  // -- Talon CAN IDs -- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
