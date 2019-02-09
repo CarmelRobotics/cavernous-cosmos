@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.Talon;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -32,71 +33,63 @@ import edu.wpi.first.wpilibj.Spark;
 
 public class DriveTrain extends Subsystem {
 
+	//Declaring Joysticks
+	private static Joystick jStick_A;
+	private static Joystick jStick_B;
 
-
-	private static Joystick stick;
-	private static Joystick stick2;
-
+	//Declaring Speed Controllers (Sparks)
     private SpeedController motorFLeft;
-
     private SpeedController motorBLeft;
-
     private SpeedController motorFRight;
-
-    private SpeedController motorBRight;
-
+	private SpeedController motorBRight;
+	private SpeedController motorMiddle;
+	
+	//Declaring Speed Controller Groups
     private SpeedControllerGroup motorLeft;
-
     private SpeedControllerGroup motorRight;
 
-    private DifferentialDrive drive;
-	private DifferentialDrive drive2;
-        
-	private SpeedController motorMiddle;
+	//Declaring Drive
+	private DifferentialDrive drive;
 
-
-	private PIDController pid;
+	//Old. Only use if new doesn't work
+	//private DifferentialDrive drive2;
 	
-
-
-	private CANSparkMax motorTest;
-	private CANEncoder encoder;
-
+	//How to declare encoder
+	//private CANEncoder encoder;
 
 
     public DriveTrain() {
 
     	super("Drive Train");
-
 		
-    	stick = new Joystick(0);
-		stick2 = new Joystick(1);
-		motorFLeft = new CANSparkMax (0,MotorType.kBrushless);
-		motorFRight = new CANSparkMax (3,MotorType.kBrushless);
+
+		//Contructing Joysticks
+    	jStick_A = new Joystick(RobotMap.JOYSTICK_A_ID);
+		jStick_B = new Joystick(RobotMap.JOYSTICK_B_ID);
+
+		//Contructing Spark Motors
+		motorFLeft = new CANSparkMax (RobotMap.CAN_ID_FRONT_LEFT,MotorType.kBrushless);
+		motorFRight = new CANSparkMax (RobotMap.CAN_ID_FRONT_RIGHT,MotorType.kBrushless);
+		motorBLeft = new CANSparkMax (RobotMap.CAN_ID_BACK_LEFT,MotorType.kBrushless);
+		motorBRight = new CANSparkMax (RobotMap.CAN_ID_BACK_RIGHT,MotorType.kBrushless);
+		motorMiddle = new CANSparkMax(RobotMap.CAN_ID_DROPWHEEL,MotorType.kBrushless);
 	
-		motorBLeft = new CANSparkMax (2,MotorType.kBrushless);
-		motorBRight = new CANSparkMax (1,MotorType.kBrushless);
-		motorMiddle = new CANSparkMax(4,MotorType.kBrushless);
-	//motorBLeft = new PWMTalonSRX(1);
-    	//motorBLeft = new PWMVictorSPX(1);
-
-    	
-
-    
+		//Contructing Spark Motor Groups
     	motorLeft = new SpeedControllerGroup(motorFLeft, motorBLeft);
-
     	motorRight = new SpeedControllerGroup(motorFRight, motorBRight);
 
-    	
-		//Two different drives, a separate drive for the left motors and the right motors
-    	drive = new DifferentialDrive(motorLeft, motorLeft);
-		drive2 = new DifferentialDrive(motorRight, motorRight);
-		
-		
-		motorTest = new CANSparkMax (5,MotorType.kBrushless);
-		encoder = motorTest.getEncoder();
 
+		//Constructing the DriveTrain out of Spark Motor Groups
+		drive = new DifferentialDrive(motorLeft, motorRight);
+		
 
+		//Use to get encoder
+		//encoder = motorTest.getEncoder();
+
+		//Old. Only use if other drive system does't work
+    	//drive = new DifferentialDrive(motorLeft, motorLeft);
+		//drive2 = new DifferentialDrive(motorRight, motorRight);
+	
     }
 
 
@@ -112,51 +105,37 @@ public class DriveTrain extends Subsystem {
 	}
  
 	public void arcadeDrive() {
+
+
+		drive.arcadeDrive(jStick_A.getY(), jStick_A.getX(), true);
+
+
+		//Old. Only use if new doesn't work
 		//Left Side
 		//The negatives on this side make sure that the motors are spinning the opposite direction of the right side.
-		drive.arcadeDrive(-stick.getX(), -stick.getY(), true);
+		//drive.arcadeDrive(-stick.getX(), -stick.getY(), true);
 		//right side
 		//The negative stick x makes sure the robot turns in the right direction
-		drive2.arcadeDrive(-stick.getX(), stick.getY(), true);
-
-		motorTest.set(stick.getX());
-		//SmartDashboard.putNumber("Encoder Position", encoder.getPosition());
+		//drive2.arcadeDrive(-stick.getX(), stick.getY(), true);
 
 	
-		//SmartDashboard.putNumber("Encoder Velocity", encoder.getVelocity());
-
+		//Printing Encoder values
 		//System.out.println("Encoder Position" + encoder.getPosition());
-		System.out.println("Encoder Velocity" + encoder.getVelocity());
+		//System.out.println("Encoder Velocity" + encoder.getVelocity());
 
-	//	motorFLeft.set(1);
-	//motorFLeft.set(.2);
 	}
 
 
 
+	public void slideDrive(){
 
-
-
-	public void motorForward() {
-
-		//drive.arcadeDrive(stick.getY(), stick.getX(), true);
-		motorFLeft.set(.2);
-	//	System.out.println("Sub Forward");
-	}
-
-
-	public void motorStop() {
-
-		//drive.arcadeDrive(stick.getY(), stick.getX(), true);
-		motorFLeft.stopMotor();
-	}
-
-
-	public void motorBackwards() {
-
-		//drive.arcadeDrive(stick.getY(), stick.getX(), true);
-		motorFLeft.set(-.2);
-	}
+		//First param is ALWAYS getY. Wheels will seem to spin opposite directions if X is first
+		drive.arcadeDrive(jStick_A.getY(), jStick_A.getX());
+	
+		//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
+		motorMiddle.set(jStick_B.getX());
+	
+	  }
 
     
 

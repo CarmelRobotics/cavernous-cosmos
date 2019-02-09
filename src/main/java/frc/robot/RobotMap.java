@@ -25,12 +25,6 @@ public static final int channel2 = 2;
 public static final int SparkMAX1 = 1;
 
 
-public static final Joystick JOY = new Joystick(0);
-
-public static final JoystickButton MOVE_FORWARD = new JoystickButton(JOY, 8);
-public static final JoystickButton MOVE_BACKWARDS = new JoystickButton(JOY, 9);
-
-
 
 
   // -- Other Public Variables --
@@ -69,15 +63,20 @@ public static final JoystickButton MOVE_BACKWARDS = new JoystickButton(JOY, 9);
 
   public static final JoystickButton SUCC_OFF = new JoystickButton(JOYSTICK_A, 5);
 
+  public static final JoystickButton MOVE_FORWARD = new JoystickButton(JOYSTICK_A, 6);
+
+public static final JoystickButton MOVE_BACKWARDS = new JoystickButton(JOYSTICK_A, 7);
+
+
   // -- Spark CAN IDs --
 
-  public static final int CAN_ID_FRONT_RIGHT = 0;
+  public static final int CAN_ID_FRONT_RIGHT = 3;
 
-  public static final int CAN_ID_BACK_RIGHT = 0;
+  public static final int CAN_ID_BACK_RIGHT = 1;
 
   public static final int CAN_ID_FRONT_LEFT = 0;
 
-  public static final int CAN_ID_BACK_LEFT = 0;
+  public static final int CAN_ID_BACK_LEFT = 2;
 
   public static final int CAN_ID_DROPWHEEL = 0;
 

@@ -202,7 +202,7 @@ public class Robot extends TimedRobot {
 
 		Scheduler.getInstance().run();//This line is what causes teleop to loop through multiple times
 
-	driver.arcadeDrive();
+	driver.slideDrive();
 	//System.out.println("Value is " + IR0.get());
 //	System.out.println("Value is " + IR0.getValue());
 	//System.out.println("Voltage is " + IR0.getVoltage());
