@@ -43,10 +43,10 @@ public class OI {
     jStick_A = RobotMap.JOYSTICK_A;
     jStick_B = RobotMap.JOYSTICK_B;
     //Button inits
-    wheelUp = RobotMap.WHEEL_UP;
-    wheelDown = RobotMap.WHEEL_DOWN;
-    succOn = RobotMap.SUCC_ON;
-    succOn = RobotMap.SUCC_OFF;
+    //wheelUp = RobotMap.WHEEL_UP;
+    //wheelDown = RobotMap.WHEEL_DOWN;
+    //succOn = RobotMap.SUCC_ON;
+    //succOn = RobotMap.SUCC_OFF;
 
     jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
     jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
@@ -57,8 +57,8 @@ public class OI {
     jst_button_elevfuel = RobotMap.ELEV_FUEL_BUTTON;
 
     //Button Commands
-    jst_button_u.whenPressed(new WheelUp());
-    jst_button_d.whenPressed(new WheelDown());
+    //jst_button_u.whenPressed(new WheelUp());
+    //jst_button_d.whenPressed(new WheelDown());
     jst_button_elevhatch.whenPressed(new MoveElevatorPending(0));
     jst_button_elevfuel.whenPressed(new MoveElevatorPending(1));
     jst_button_elevlow.whenPressed(new MoveElevatorPending(0));
@@ -66,8 +66,8 @@ public class OI {
     jst_button_elevhigh.whenPressed(new MoveElevatorPending(2));
     jst_button_elevup.whenPressed(new MoveElevatorUp());
     jst_button_elevdown.whenPressed(new MoveElevatorDown());
-    wheelUp.whenPressed(new WheelUp());
-    wheelDown.whenPressed(new WheelDown());
+    //wheelUp.whenPressed(new WheelUp());
+    //wheelDown.whenPressed(new WheelDown());
     //succOn.whenPressed(new SuccOn());
     //succOff.whenPressed(new SuccOff());
     System.out.println("init complete!");

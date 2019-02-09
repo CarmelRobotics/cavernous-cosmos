@@ -24,7 +24,7 @@ public class RobotMap {
   public static final int RIGHT_IR = 2;
   
   // -- Digital Input Ports --
-  public static final int ULTRASOUND_IN = 0;
+  public static final int ULTRASOUND_IN = 1;
   
   // -- Digital Output Ports --
   public static final int ULTRASOUND_OUT = 0;
@@ -34,8 +34,8 @@ public class RobotMap {
   
   // -- Pneumatic Control IDs --
   public static final int DROP_PCM_ID_UP = 0;
-  public static final int DROP_PCM_ID_DOWN = 0;
-  public static final int COMPRESSOR_PCM_ID = 0;
+  public static final int DROP_PCM_ID_DOWN = 1;
+  public static final int COMPRESSOR_PCM_ID = 2;
 
   // -- Joystick --
   public static final int JOYSTICK_A_ID = 0;
@@ -56,10 +56,10 @@ public class RobotMap {
   public static final JoystickButton ELEV_HATCH_BUTTON = new JoystickButton(JOYSTICK_B, 7);
   public static final JoystickButton ELEV_FUEL_BUTTON = new JoystickButton(JOYSTICK_B, 8);
   
-  public static final JoystickButton WHEEL_UP = new JoystickButton(JOYSTICK_A, 10);
-  public static final JoystickButton WHEEL_DOWN = new JoystickButton(JOYSTICK_A, 9);
-  public static final JoystickButton SUCC_ON = new JoystickButton(JOYSTICK_A, 4);
-  public static final JoystickButton SUCC_OFF = new JoystickButton(JOYSTICK_A, 5);
+  public static final JoystickButton WHEEL_UP = new JoystickButton(JOYSTICK_A, 5);
+  //public static final JoystickButton WHEEL_DOWN = new JoystickButton(JOYSTICK_A, 6);
+  //public static final JoystickButton SUCC_ON = new JoystickButton(JOYSTICK_A, 4);
+  //public static final JoystickButton SUCC_OFF = new JoystickButton(JOYSTICK_A, 5);
  
   // -- Spark CAN IDs --
   public static final int CAN_ID_FRONT_RIGHT = 0;

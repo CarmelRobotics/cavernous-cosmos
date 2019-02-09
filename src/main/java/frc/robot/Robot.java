@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.ResetElevator;
 import frc.robot.subsystems.*;
 
 
@@ -85,6 +86,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    Command reset = new ResetElevator();
+    reset.start();
+    //m_el.setElevatorMovement(10);
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
@@ -94,9 +98,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    System.out.println(m_ir.getLeftIR());
+    //System.out.println(m_ir.getLeftIR());
     Scheduler.getInstance().run();
-    drive.slideDrive();
+    //m_el.testMotor(0.1);
+    System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());
+    //drive.slideDrive();
 
   }
 

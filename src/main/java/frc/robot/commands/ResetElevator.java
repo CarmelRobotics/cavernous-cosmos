@@ -33,15 +33,16 @@ public class ResetElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    el.setElevatorVelocity(-120.0); //RPM
+    el.setElevatorMovement(200);//el.setElevatorVelocity(12); //RPM
+    System.out.println("hello");
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(el.getElevatorLimitSwitch())
+    //if(el.getElevatorLimitSwitch())
       return false;
-    return true;
+    //return true;
   }
 
   // Called once after isFinished returns true

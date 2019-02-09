@@ -46,19 +46,19 @@ public class Elevator extends Subsystem {
         extend = new CANSparkMax(RobotMap.CAN_ID_ELEVATOR, MotorType.kBrushless);
         extendPID = extend.getPIDController();
         extendEnc = extend.getEncoder();
-        extendLimit = new CANDigitalInput(extend, LimitSwitch.kForward, LimitSwitchPolarity.kNormallyClosed);
+        //extendLimit = new CANDigitalInput(extend, LimitSwitch.kReverse, LimitSwitchPolarity.kNormallyClosed);
         desiredLevel = 0;
         timesMoved = 0;
         relativeZero = 0;
 
         // PID coefficients
-        kP = 0.1;
-        kI = 1e-4;
-        kD = 1;
-        kIz = 0;
-        kFF = 0;
-        kMaxOutput = 1;
-        kMinOutput = -1;
+        kP = 0.1;  //originally 0.1
+        kI = 1e-4; //originally 1e-4
+        kD = 0.5; //originally 1
+        kIz = 0.5; //originally 0
+        kFF = 0.5; //originally 0
+        kMaxOutput = 0.1; //originally -1
+        kMinOutput = -0.1; //originally 1
 
         // set PID controller values
         extendPID.setP(kP);
@@ -85,6 +85,11 @@ public class Elevator extends Subsystem {
 
     public void setElevatorMovement(double rotations) {
         extendPID.setReference(rotations, ControlType.kPosition);
+        System.out.println("setElevatorMovement Run");
+    }
+
+    public void testMotor(double speed) {
+        extend.set(speed);
     }
 
     public void setElevatorRelativePos(int pos) {
@@ -97,7 +102,7 @@ public class Elevator extends Subsystem {
 
     public boolean getElevatorLimitSwitch() {
         //normally closed: true means limit switch isn't active, false means it is
-        return extendLimit.get();
+        return false;//extendLimit.get();
     }
 
     public int getDesiredLevel() {

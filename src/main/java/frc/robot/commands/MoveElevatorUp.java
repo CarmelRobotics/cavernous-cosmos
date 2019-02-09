@@ -31,8 +31,9 @@ public class MoveElevatorUp extends Command {
   @Override
   protected void initialize() {
     currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
+    System.out.println(currentRelativePos);
     double nearestHigherLevel = 0;
-    for (int i = RobotMap.ELEV_INCHES.length - 1; convertInToRot(RobotMap.ELEV_INCHES[i]) > currentRelativePos; i++)
+    for (int i = RobotMap.ELEV_INCHES.length - 1; convertInToRot(RobotMap.ELEV_INCHES[i]) > currentRelativePos; i--)
       nearestHigherLevel = convertInToRot(RobotMap.ELEV_INCHES[i]);
     heightOfTarget = nearestHigherLevel;
   }
