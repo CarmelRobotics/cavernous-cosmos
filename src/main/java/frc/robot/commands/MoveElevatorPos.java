@@ -9,55 +9,56 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.SolenoidTest;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.Elevator;
 
+public class MoveElevatorPos extends Command {
 
+  private Elevator el;
+  
+  private int goal;
+  private double heightOfTarget;
 
+  public MoveElevatorPos(int desiredPos) {
 
-public class SolenoidForward extends Command {
+    el = Robot.m_el;
+    goal = desiredPos;
 
-public SolenoidTest sol;
-
-  public SolenoidForward() {
-    
-    super("SolenoidForward");
-
-		sol = Robot.getSolenoidTest();
-
-
-		requires(sol);
-
-
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    heightOfTarget = convertInToRot(RobotMap.ELEV_INCHES[goal]);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    sol.SolenoidForward();
+    double currentRelativepos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
+    el.setElevatorMovement(heightOfTarget - currentRelativepos);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-
-    sol.SolenoidOff();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+  }
+
+  private double convertInToRot(double inches) {
+    return inches*1; //insert conversion math here
   }
 }

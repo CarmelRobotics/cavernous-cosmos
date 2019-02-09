@@ -9,43 +9,50 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.SolenoidTest;
+import frc.robot.subsystems.Elevator;
 
-public class SolenoidBackwards extends Command {
-  
-  public SolenoidTest sol;
-  public SolenoidBackwards() {
-    super("SolenoidBackwards");
+public class MoveElevatorChangeLevelVariable extends Command {
 
-		sol = Robot.getSolenoidTest();
+  private int level;
+  private Elevator el;
 
+ /**
+ * levels
+ * 0: low elevator button pressed
+ * 1: middle elevator button pressed
+ * 2: high elevator button pressed
+ */
+  public MoveElevatorChangeLevelVariable(int desiredLevel) {
+    
+    level = desiredLevel;
 
-		requires(sol);
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    el = Robot.m_el;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    sol.SolenoidBackwards();
+    el.setDesiredLevel(level);;
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-
-    sol.SolenoidOff();
   }
 
   // Called when another command which requires one or more of the same

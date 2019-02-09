@@ -21,10 +21,14 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import frc.robot.commands.ResetElevator;
+import frc.robot.subsystems.CompressorA;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.PressureTest;
-import frc.robot.subsystems.SolenoidTest;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.IRSystem;
+
+import frc.robot.subsystems.Ultrasound;
+import frc.robot.subsystems.WheelDropper;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -39,174 +43,96 @@ import edu.wpi.first.wpilibj.DriverStation;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 
-/**
 
- * The VM is configured to automatically run this class, and to call the
 
- * functions corresponding to each mode, as described in the TimedRobot
-
- * documentation. If you change the name of this class or the package after
-
- * creating this project, you must also update the build.properties file in the
-
- * project.
-
- */
 
 public class Robot extends TimedRobot {
+  public static OI oi;
+  public static DriveTrain driver;
+  public static IRSystem m_ir;
+  public static DriveTrain m_dt;
+  public static Ultrasound m_us;
+  public static Elevator m_el;
+  //public static Vacuum vac;
+  public static WheelDropper dropper;
+  public static CompressorA compressor;
 
-	//Subsystems
+  Command m_autonomousCommand;
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	public static DriveTrain driver;
-	public static PressureTest compressor;
-	public static SolenoidTest sol;
+  private static DriveTrain drive; 
 
-	public static OI oi;
 
-	public static DigitalInput oneSwitch;
+  @Override
+  public void robotInit() {
+  
+    m_ir = new IRSystem();
+	driver = new DriveTrain();
+    m_us = new Ultrasound();
+    m_el = new Elevator();
+	oi = new OI();
+    
+    SmartDashboard.putData("Auto mode", m_chooser);
+    drive = new DriveTrain();
+    //vac = new Vacuum();
+    dropper = new WheelDropper();
+    compressor = new CompressorA();
+    OI.initialize();
 
-	public static DigitalInput twoSwitch;
+  }
 
-	public static int prevCheck;
+  @Override
+  public void robotPeriodic() {
+  }
 
-	public static AnalogInput IR0;
-	//public static AnalogInput IR0;
 
-	/**
+  @Override
+  public void disabledInit() {
+  }
 
-	 * This function is run when the robot is first started up and should be
 
-	 * used for any initialization code.
 
-	 */
+ 
+  @Override
+  public void autonomousInit() {
+    m_autonomousCommand = m_chooser.getSelected();
 
-	@Override
 
-	public void robotInit() {
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.start();
+    }
+  }
 
-		oi = new OI();
-		//IR0 = new DigitalInput(0);
-	IR0 = new AnalogInput(0);
 
-		driver = new DriveTrain();
+  @Override
+  public void autonomousPeriodic() {
+    Scheduler.getInstance().run();
+  }
 
-		//oneSwitch = new DigitalInput(RobotMap.ONE_SWITCH);
+  @Override
+  public void teleopInit() {
+    Command reset = new ResetElevator();
+    reset.start();
 
-		//twoSwitch = new DigitalInput(RobotMap.TWO_SWITCH);
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
+  }
 
-		//prevCheck = -1;
-		OI.initialize();
-	}
 
+  @Override
+  public void teleopPeriodic() {
+    //System.out.println(m_ir.getLeftIR());
+    Scheduler.getInstance().run();
+    //m_el.testMotor(0.1);
+    System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());
+    drive.slideDrive();
 
+  }
 
-	/**
 
-	 * This function is called once each time the robot enters Disabled mode.
-
-	 * You can use it to reset any subsystem information you want to clear when
-
-	 * the robot is disabled.
-
-	 */
-
-	@Override
-
-	public void disabledInit() {
-
-
-
-	}
-
-
-
-	@Override
-
-	public void disabledPeriodic() {
-
-
-
-	}
-
-
-
-	
-
-	@Override
-
-	public void autonomousInit() {
-
-
-
-
-
-		/*
-
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-
-		 * autonomousCommand = new ExampleCommand(); break; }
-
-		 */
-
-
-
-		// schedule the autonomous command (example)
-
-	}
-
-
-
-	/**
-
-	 * This function is called periodically during autonomous.
-
-	 */
-
-	@Override
-
-	public void autonomousPeriodic() { //this is the repeated code during autonomous
-
-	}  
-
-
-
-	@Override
-
-	public void teleopInit() { 
-
-		// This makes sure that the autonomous stops running when
-
-		// teleop starts running. If you want the autonomous to
-
-		// continue until interrupted by another command, remove
-
-		// this line or comment it out.
-
-	}
-
-
-
-	/**
-
-	 * This function is called periodically during operator control.
-
-	 */
-
-	@Override 
-
-	public void teleopPeriodic() {
-
-		Scheduler.getInstance().run();//This line is what causes teleop to loop through multiple times
-
-	driver.slideDrive();
-	//System.out.println("Value is " + IR0.get());
-//	System.out.println("Value is " + IR0.getValue());
-	//System.out.println("Voltage is " + IR0.getVoltage());
-	
+  @Override
+  public void testPeriodic() {
   }
 
 	/**
@@ -215,11 +141,6 @@ public class Robot extends TimedRobot {
 
 	 */
 
-	@Override
-
-	public void testPeriodic() {
-
-	}
 
 	public static DriveTrain getDriveTrain() { //method to return the drive train as a drive train.
 
@@ -228,17 +149,5 @@ public class Robot extends TimedRobot {
 	}
 
 
-	public static PressureTest getCompresser() { //method to return the drive train as a drive train.
-
-		return compressor;
-
-	}
-
-
-	public static SolenoidTest getSolenoidTest() { //method to return the drive train as a drive train.
-
-		return sol;
-
-	}
 
 }
