@@ -40,7 +40,7 @@ public class DriveTrain extends Subsystem {
     brSpark = new CANSparkMax(RobotMap.CAN_ID_BACK_RIGHT, MotorType.kBrushless);
     blSpark = new CANSparkMax(RobotMap.CAN_ID_BACK_LEFT, MotorType.kBrushless);
     frSpark = new CANSparkMax(RobotMap.CAN_ID_FRONT_RIGHT, MotorType.kBrushless);
-    flSpark = new CANSparkMax(RobotMap.CAN_ID_BACK_LEFT, MotorType.kBrushless);
+    flSpark = new CANSparkMax(RobotMap.CAN_ID_FRONT_LEFT, MotorType.kBrushless);
 
     midSpark = new CANSparkMax(RobotMap.CAN_ID_DROPWHEEL, MotorType.kBrushless);
 
@@ -63,8 +63,8 @@ public class DriveTrain extends Subsystem {
   /**
    * The 4-Wheel drive method of the robot
    */
-  public void mainDrive(){
-    drive.arcadeDrive(jStick_A.getX(), jStick_A.getY());
+  public void robotDrive(){
+    drive.arcadeDrive(jStick_A.getY(), jStick_A.getX());
 
   }
 
@@ -72,7 +72,7 @@ public class DriveTrain extends Subsystem {
    * Used to drive the mid wheel of the robot
    */
   public void slideDrive(){
-    drive.arcadeDrive(jStick_A.getX(), jStick_A.getY());
-    midSpark.set(jStick_B.getY());
+    drive.arcadeDrive(jStick_A.getY(), jStick_A.getX());
+    midSpark.set(jStick_B.getX());
   }
 }
