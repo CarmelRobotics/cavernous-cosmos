@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   private static DriveTrain drive; 
-
+  private static CompressorA compress;
 
   @Override
   public void robotInit() {
@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
   
     drive = new DriveTrain();
+    compress = new CompressorA();
   }
 
   @Override
@@ -71,6 +72,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    //compress.start();
   }
 
 

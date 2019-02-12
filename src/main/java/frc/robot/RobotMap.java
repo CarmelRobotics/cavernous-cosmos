@@ -23,7 +23,6 @@ public class RobotMap {
   // -- Pneumatic Control IDs --
   public static final int DROP_PCM_ID_UP = 0;
   public static final int DROP_PCM_ID_DOWN = 0;
-  public static final int COMPRESSOR_PCM_ID = 0;
 
   // -- Joystick --
   public static final int JOYSTICK_A_ID = 0;
@@ -35,11 +34,12 @@ public class RobotMap {
   public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
   public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
   // -- Spark CAN IDs --
-  public static final int CAN_ID_FRONT_RIGHT = 0;
-  public static final int CAN_ID_BACK_RIGHT = 0;
-  public static final int CAN_ID_FRONT_LEFT = 0;
-  public static final int CAN_ID_BACK_LEFT = 0;
-  public static final int CAN_ID_DROPWHEEL = 0;
+  public static final int CAN_ID_FRONT_RIGHT = 3;
+  public static final int CAN_ID_BACK_RIGHT = 1;
+  public static final int CAN_ID_FRONT_LEFT = 4;
+  public static final int CAN_ID_BACK_LEFT = 2;
+  public static final int CAN_ID_DROPWHEEL = 5;
+  public static final int CAN_ID_ELEVATOR = 6;
   // -- Talon CAN IDs -- 
  
 
