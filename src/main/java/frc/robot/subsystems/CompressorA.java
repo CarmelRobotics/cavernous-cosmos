@@ -24,7 +24,7 @@ public class CompressorA extends Subsystem {
 	 */
 	public CompressorA() {
 		super("Compressor");
-		compress = new Compressor(RobotMap.COMPRESSOR_PCM_ID);
+		compress = new Compressor();
 	}
 	
 	/**
