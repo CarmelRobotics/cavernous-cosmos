@@ -49,9 +49,6 @@ public class DriveTrain extends Subsystem {
 
     drive = new DifferentialDrive(sparkGroupLeft, sparkGroupRight);
 
-    jStick_A = RobotMap.JOYSTICK_A;
-    jStick_B = RobotMap.JOYSTICK_B;
-
   }
 
   @Override
@@ -63,16 +60,16 @@ public class DriveTrain extends Subsystem {
   /**
    * The 4-Wheel drive method of the robot
    */
-  public void robotDrive(){
-    drive.arcadeDrive(jStick_A.getY(), jStick_A.getX());
+  public void robotDrive(double X, double Y){
+    drive.arcadeDrive(Y, X);
 
   }
 
   /**
    * Used to drive the mid wheel of the robot
    */
-  public void slideDrive(){
-    drive.arcadeDrive(jStick_A.getY(), jStick_A.getX());
-    midSpark.set(jStick_B.getX());
+  public void robotDrive(double X, double Y, double Z){
+    drive.arcadeDrive(Y, Z);
+    midSpark.set(X);
   }
 }

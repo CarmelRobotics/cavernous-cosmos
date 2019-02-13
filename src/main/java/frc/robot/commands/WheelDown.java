@@ -12,14 +12,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class WheelDown extends Command {
   private static WheelDropper wDrop;
-  public WheelDown() {
-    wDrop = new WheelDropper();
-  }
-
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    wDrop = new WheelDropper();
   }
+
 
   // Called repeatedly when this Command is scheduled to run
   @Override

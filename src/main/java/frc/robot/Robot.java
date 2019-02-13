@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -22,8 +23,13 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+  //Subsystems
   private static DriveTrain drive; 
   private static CompressorA compress;
+
+  //Controllers & Joysticks
+  private static Joystick logiStickXtreme;
+
 
   @Override
   public void robotInit() {
@@ -33,6 +39,8 @@ public class Robot extends TimedRobot {
   
     drive = new DriveTrain();
     compress = new CompressorA();
+
+    logiStickXtreme = new Joystick(RobotMap.JOYSTICK_A_ID);
   }
 
   @Override
@@ -80,7 +88,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    drive.slideDrive();
+    drive.robotDrive(logiStickXtreme.getX(), logiStickXtreme.getY(), logiStickXtreme.getZ());
 
   }
 

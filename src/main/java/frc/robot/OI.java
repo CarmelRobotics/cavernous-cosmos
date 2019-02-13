@@ -24,6 +24,7 @@ public class OI {
   
   private static JoystickButton jst_button_u;
   private static JoystickButton jst_button_d;
+  private static JoystickButton jst_button_s;
 
   public static void initialize(){
     //Joystick inits
@@ -32,10 +33,12 @@ public class OI {
     //Button inits
     jst_button_u = RobotMap.UP_BUTTON;
     jst_button_d = RobotMap.DOWN_BUTTON;
+    jst_button_s = RobotMap.STOP_BUTTON;
 
     //Button Commands
     jst_button_u.whenPressed(new WheelUp());
     jst_button_d.whenPressed(new WheelDown());
+    jst_button_s.whenPressed(new WheelStop());
   }   
 
   
