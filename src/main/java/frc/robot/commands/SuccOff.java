@@ -2,14 +2,20 @@
 package frc.robot.commands;
 
 import frc.robot.OI;
+import frc.robot.Robot;
 import frc.robot.subsystems.Vacuum;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SuccOff extends Command {
   private static Vacuum vac;
   public static OI oi;
+
+
   public SuccOff() {
     vac = new Vacuum();
+
+
+    requires(vac);
   }
 
   // Called just before this Command runs the first time

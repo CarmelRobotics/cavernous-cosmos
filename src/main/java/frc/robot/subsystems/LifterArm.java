@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
  */
 
-public class WheelDropper extends Subsystem {
+public class LifterArm extends Subsystem {
 
   // Put methods for controlling this subsystem
 
@@ -39,15 +39,16 @@ public class WheelDropper extends Subsystem {
 
   
   //Declaring Solenoid
-  private DoubleSolenoid dropper;
+  private DoubleSolenoid theFortyFiver;
+  private DoubleSolenoid theGrounder;
 
 
 
-  public WheelDropper() {
+  public LifterArm() {
 
     //Constructing Solenoid
-    dropper = new DoubleSolenoid(RobotMap.DROP_PCM_ID_UP, RobotMap.DROP_PCM_ID_DOWN);
-  //  dropper = new DoubleSolenoid(RobotMap.DROP_PCM_ID_DOWN, RobotMap.DROP_PCM_ID_UP);
+    theFortyFiver = new DoubleSolenoid(RobotMap.DROP_PCM_ID_UP, RobotMap.DROP_PCM_ID_DOWN);
+    theGrounder = new DoubleSolenoid(RobotMap.DROP_PCM_ID_UP, RobotMap.DROP_PCM_ID_DOWN);
   }
 
 
@@ -64,20 +65,18 @@ public class WheelDropper extends Subsystem {
 
   
 //Wheel is initally up so forward puts it down in place
-  public void down(){ 
+  public void forward(DoubleSolenoid sol){ 
 
-    dropper.set(DoubleSolenoid.Value.kForward);
-
-    RobotMap.WHEEL_DROPPED = true;
+    sol.set(DoubleSolenoid.Value.kForward);
 
   }
 
 //Wheel is initally up so reverse puts it back in place
 
-  public void up(){ 
+  public void reverse(DoubleSolenoid sol){ 
 
 
-    dropper.set(DoubleSolenoid.Value.kReverse);
+    sol.set(DoubleSolenoid.Value.kReverse);
 
     RobotMap.WHEEL_DROPPED = false;
 
@@ -85,14 +84,20 @@ public class WheelDropper extends Subsystem {
 
 
 
-  public void stop(){ 
+  public void stop(DoubleSolenoid sol){ 
 
-    dropper.set(DoubleSolenoid.Value.kOff);
+    sol.set(DoubleSolenoid.Value.kOff);
   
   }
 
+  public DoubleSolenoid getTheFortyFiver() {
 
+  return theFortyFiver;
+ }
   
- 
+public DoubleSolenoid getTheGrounder() {
+
+  return theGrounder;
+}
 
 }

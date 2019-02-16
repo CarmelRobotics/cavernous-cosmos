@@ -48,6 +48,7 @@ public class DriveTrain extends Subsystem {
     private SpeedController motorFRight;
 	private SpeedController motorBRight;
 	private SpeedController motorMiddle;
+	private SpeedController motorElevator;
 	
 	//Declaring Speed Controller Groups
     private SpeedControllerGroup motorLeft;
@@ -78,7 +79,9 @@ public class DriveTrain extends Subsystem {
 		motorBLeft = new CANSparkMax (RobotMap.CAN_ID_BACK_LEFT,MotorType.kBrushless);
 		motorBRight = new CANSparkMax (RobotMap.CAN_ID_BACK_RIGHT,MotorType.kBrushless);
 		motorMiddle = new CANSparkMax(RobotMap.CAN_ID_DROPWHEEL,MotorType.kBrushless);
-	
+		motorElevator = new CANSparkMax(RobotMap.CAN_ID_ELEVATOR,MotorType.kBrushless);
+		
+
 		//Contructing Spark Motor Groups
     	motorLeft = new SpeedControllerGroup(motorFLeft, motorBLeft);
     	motorRight = new SpeedControllerGroup(motorFRight, motorBRight);
@@ -138,9 +141,18 @@ public class DriveTrain extends Subsystem {
 		drive.arcadeDrive(jStick_A.getY(), jStick_A.getX());
 	
 		//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
-		motorMiddle.set(jStick_B.getX());
+		motorMiddle.set(jStick_A.getZ());
 	
 	  }
+
+
+	  
+	public void motorTest(){
+
+		//motorElevator.set(-1);
+	
+	  }
+
 
     
 

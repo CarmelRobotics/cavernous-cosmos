@@ -27,6 +27,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.IRSystem;
 
+import frc.robot.subsystems.Vacuum;
 import frc.robot.subsystems.Ultrasound;
 import frc.robot.subsystems.WheelDropper;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -38,7 +39,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
-
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -52,9 +53,9 @@ public class Robot extends TimedRobot {
   public static IRSystem m_ir;
   public static Ultrasound m_us;
   public static Elevator m_el;
-  //public static Vacuum vac;
+  public static Vacuum vac;
   public static WheelDropper dropper;
-  public static CompressorA compressor;
+  public static Compressor compressor;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -66,17 +67,17 @@ public static DriveTrain m_dt;
   @Override
   public void robotInit() {
   
-    m_ir = new IRSystem();
+   // m_ir = new IRSystem();
 	driver = new DriveTrain();
-    m_us = new Ultrasound();
-    m_el = new Elevator();
+  //  m_us = new Ultrasound();
+   // m_el = new Elevator();
 	oi = new OI();
     
     SmartDashboard.putData("Auto mode", m_chooser);
     drive = new DriveTrain();
-    //vac = new Vacuum();
+  //  vac = new Vacuum();
     dropper = new WheelDropper();
-    compressor = new CompressorA();
+    compressor = new Compressor(0); 
     OI.initialize();
 
   }
@@ -111,8 +112,9 @@ public static DriveTrain m_dt;
 
   @Override
   public void teleopInit() {
-    Command reset = new ResetElevator();
-    reset.start();
+   // Command reset = new ResetElevator();
+	//reset.start();
+	compressor.start();
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
@@ -125,8 +127,9 @@ public static DriveTrain m_dt;
     //System.out.println(m_ir.getLeftIR());
     Scheduler.getInstance().run();
     //m_el.testMotor(0.1);
-    System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());
+  //  System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());
     drive.slideDrive();
+    drive.motorTest();
 
   }
 
@@ -148,6 +151,8 @@ public static DriveTrain m_dt;
 
 	}
 
+	
+	
 
 
 }

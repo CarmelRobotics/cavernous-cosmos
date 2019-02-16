@@ -33,9 +33,9 @@ public static final int SparkMAX1 = 1;
 
   // -- Pneumatic Control IDs --
 
-  public static final int DROP_PCM_ID_UP = 0;
+  public static final int DROP_PCM_ID_UP = 2;
 
-  public static final int DROP_PCM_ID_DOWN = 0;
+  public static final int DROP_PCM_ID_DOWN = 3;
 
   public static final int COMPRESSOR_PCM_ID = 0;
 
@@ -64,30 +64,29 @@ public static final int SparkMAX1 = 1;
   public static final JoystickButton SUCC_OFF = new JoystickButton(JOYSTICK_A, 5);
 
   //Not So Sure Buttons
-  public static final JoystickButton MOVE_FORWARD = new JoystickButton(JOYSTICK_A, 6);
-  public static final JoystickButton MOVE_BACKWARDS = new JoystickButton(JOYSTICK_A, 7);
-  public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 7);
-  public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 8);
+  //public static final JoystickButton MOVE_FORWARD = new JoystickButton(JOYSTICK_A, 6);
+  //public static final JoystickButton MOVE_BACKWARDS = new JoystickButton(JOYSTICK_A, 7);
+  //public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 7);
+  //public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 8);
 
   //Elevator Buttons
-  public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
-  public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
-  public static final JoystickButton ELEV_LOW_BUTTON = new JoystickButton(JOYSTICK_B, 4);
-  public static final JoystickButton ELEV_MID_BUTTON = new JoystickButton(JOYSTICK_B, 5);
-  public static final JoystickButton ELEV_HIGH_BUTTON = new JoystickButton(JOYSTICK_B, 6);
-  public static final JoystickButton ELEV_HATCH_BUTTON = new JoystickButton(JOYSTICK_B, 7);
-  public static final JoystickButton ELEV_FUEL_BUTTON = new JoystickButton(JOYSTICK_B, 8);
+ // public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
+ // public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 2);
+ // public static final JoystickButton ELEV_LOW_BUTTON = new JoystickButton(JOYSTICK_B, 4);
+ // public static final JoystickButton ELEV_MID_BUTTON = new JoystickButton(JOYSTICK_B, 5);
+  //public static final JoystickButton ELEV_HIGH_BUTTON = new JoystickButton(JOYSTICK_B, 6);
+ // public static final JoystickButton ELEV_HATCH_BUTTON = new JoystickButton(JOYSTICK_B, 7);
+  //public static final JoystickButton ELEV_FUEL_BUTTON = new JoystickButton(JOYSTICK_B, 8);
 
 
   // -- Spark CAN IDs --
 
   public static final int CAN_ID_FRONT_RIGHT = 3;
   public static final int CAN_ID_BACK_RIGHT = 1;
-  public static final int CAN_ID_FRONT_LEFT = 0;
+  public static final int CAN_ID_FRONT_LEFT = 4;
   public static final int CAN_ID_BACK_LEFT = 2;
-  public static final int CAN_ID_DROPWHEEL = 0;
-  public static final int CAN_ID_ELEVATOR = 3;
-
+  public static final int CAN_ID_DROPWHEEL = 5;
+  public static final int CAN_ID_ELEVATOR = 6;
   
 
 
@@ -128,6 +127,7 @@ public static final double[] ELEV_INCHES = {
 60.5
 };
  
+//Values for the elevator
 public static final int ELEV_LO_PANEL = 0;
 public static final int ELEV_LO_FUEL = 1;
 public static final int ELEV_MI_PANEL = 2;

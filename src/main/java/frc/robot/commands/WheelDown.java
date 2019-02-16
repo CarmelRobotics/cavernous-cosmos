@@ -7,13 +7,17 @@
 
 package frc.robot.commands;
 
+import frc.robot.Robot;
 import frc.robot.subsystems.WheelDropper;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class WheelDown extends Command {
-  private static WheelDropper wDrop;
+  private  WheelDropper wDrop;
   public WheelDown() {
-    wDrop = new WheelDropper();
+    wDrop = Robot.dropper;
+
+
+    requires(wDrop);
   }
 
   // Called just before this Command runs the first time
@@ -37,10 +41,14 @@ public class WheelDown extends Command {
   @Override
   protected void end() {
 
+    wDrop.stop();
+
   }
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    wDrop.stop();
+
   }
 }

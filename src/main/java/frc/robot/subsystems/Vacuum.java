@@ -19,8 +19,7 @@ public class Vacuum extends Subsystem {
     //private Relay spike2;
     
     public Vacuum() {
-        //spike1 = new Relay(0);
-        //spike2 = new Relay(1);
+        //pike1 = new Relay(0);
 	}
 
     public void initialize(){

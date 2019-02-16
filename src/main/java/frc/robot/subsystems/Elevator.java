@@ -86,6 +86,7 @@ public class Elevator extends Subsystem {
     public void setElevatorMovement(double rotations) {
         extendPID.setReference(rotations, ControlType.kPosition);
         System.out.println("setElevatorMovement Run");
+        
     }
 
     public void testMotor(double speed) {
@@ -93,8 +94,7 @@ public class Elevator extends Subsystem {
     }
 
     public void setElevatorRelativePos(int pos) {
-        this.currentPos = pos;
-    }
+        this.currentPos = pos;    }
 
     public void setElevatorVelocity(double rpm) {
         extendPID.setReference(rpm, ControlType.kVelocity);

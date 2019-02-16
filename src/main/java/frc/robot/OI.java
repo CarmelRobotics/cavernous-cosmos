@@ -9,8 +9,7 @@ package frc.robot;
 
 
 import edu.wpi.first.wpilibj.buttons.Button;
-import frc.robot.commands.DriveBackwards;
-import frc.robot.commands.DriveForward;
+
 
 
 import frc.robot.commands.*;
@@ -56,8 +55,6 @@ public class OI {
 
 
   //Declaring Buttons
-  private static Button moveForward;
-  private static Button moveBackwards;
   private static Button wheelUp;
   private static Button wheelDown;
   private static Button succOn;
@@ -76,33 +73,33 @@ public class OI {
      //Button inits
      wheelUp = RobotMap.WHEEL_UP;
      wheelDown = RobotMap.WHEEL_DOWN;
-     succOn = RobotMap.SUCC_ON;
-     succOn = RobotMap.SUCC_OFF;
+     //succOn = RobotMap.SUCC_ON;
+    // succOn = RobotMap.SUCC_OFF;
 
      //Elevator
-    jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
-    jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
-    jst_button_elevlow = RobotMap.ELEV_LOW_BUTTON;
-    jst_button_elevmid = RobotMap.ELEV_MID_BUTTON;
-    jst_button_elevhigh = RobotMap.ELEV_HIGH_BUTTON;
-    jst_button_elevhatch = RobotMap.ELEV_HATCH_BUTTON;
-    jst_button_elevfuel = RobotMap.ELEV_FUEL_BUTTON;
+    //jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
+   // jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
+   /// jst_button_elevlow = RobotMap.ELEV_LOW_BUTTON;
+    //jst_button_elevmid = RobotMap.ELEV_MID_BUTTON;
+    //jst_button_elevhigh = RobotMap.ELEV_HIGH_BUTTON;
+    //jst_button_elevhatch = RobotMap.ELEV_HATCH_BUTTON;
+    //jst_button_elevfuel = RobotMap.ELEV_FUEL_BUTTON;
  
      //Button Commands
      wheelUp.whenPressed(new WheelUp());
      wheelDown.whenPressed(new WheelDown());
-     succOn.whenPressed(new SuccOn());
-     succOff.whenPressed(new SuccOff());
+    // succOn.whenPressed(new SuccOn());
+     //succOff.whenPressed(new SuccOff());
      System.out.println("init complete!");
 
     //Elevator Commands
-    jst_button_elevhatch.whenPressed(new MoveElevatorPending(0));
-    jst_button_elevfuel.whenPressed(new MoveElevatorPending(1));
-    jst_button_elevlow.whenPressed(new MoveElevatorPending(0));
-    jst_button_elevmid.whenPressed(new MoveElevatorPending(1));
-    jst_button_elevhigh.whenPressed(new MoveElevatorPending(2));
-    jst_button_elevup.whenPressed(new MoveElevatorUp());
-    jst_button_elevdown.whenPressed(new MoveElevatorDown());
+   // jst_button_elevhatch.whenPressed(new MoveElevatorPending(0));
+   // jst_button_elevfuel.whenPressed(new MoveElevatorPending(1));
+   // jst_button_elevlow.whenPressed(new MoveElevatorPending(0));
+    //jst_button_elevmid.whenPressed(new MoveElevatorPending(1));
+    //jst_button_elevhigh.whenPressed(new MoveElevatorPending(2));
+    //jst_button_elevup.whenPressed(new MoveElevatorUp());
+    //jst_button_elevdown.whenPressed(new MoveElevatorDown());
     
    
     System.out.println("init complete!");

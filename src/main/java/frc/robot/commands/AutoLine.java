@@ -50,7 +50,7 @@ public class AutoLine extends Command {
 
   public AutoLine() {
 
-    irSys - Robot.m_ir;
+    irSys = Robot.m_ir;
     dTrain = Robot.m_dt;
     us = Robot.m_us;
     
@@ -89,25 +89,25 @@ public class AutoLine extends Command {
       if (middle) {
         //if vision command isn't running and two of the sensors are active
         if (left) { //slide left slowly
-          dTrain.set4Wheel(0.0, 0.0);
-          dTrain.setSlide(slideVelocitySlow);
+          //dTrain.set4Wheel(0.0, 0.0);
+         // dTrain.setSlide(slideVelocitySlow);
         }
         else if (right) { //slide right slowly
-          dTrain.set4Wheel(0.0, 0.0);
-          dTrain.setSlide(slideVelocitySlow);
+         // dTrain.set4Wheel(0.0, 0.0);
+          //dTrain.setSlide(slideVelocitySlow);
         }
         else {
-          dTrain.setSlide(0.0);
-          dTrain.set4Wheel(forwardVelocitySlow, 0.0);
+        //  dTrain.setSlide(0.0);
+         // dTrain.set4Wheel(forwardVelocitySlow, 0.0);
         }
       }
       else if (left) { //slide left quickly
-        dTrain.set4Wheel(0.0, 0.0);
-        dTrain.setSlide(slideVelocityFast);
+       // dTrain.set4Wheel(0.0, 0.0);
+       // dTrain.setSlide(slideVelocityFast);
       }
       else if (right) { //slide right quickly
-        dTrain.set4Wheel(0.0, 0.0);
-        dTrain.setSlide(slideVelocityFast);
+       // dTrain.set4Wheel(0.0, 0.0);
+       // dTrain.setSlide(slideVelocityFast);
       }
       else { //if vision command isn't running and no sensors are active, run vision
         visionRunning = true;
