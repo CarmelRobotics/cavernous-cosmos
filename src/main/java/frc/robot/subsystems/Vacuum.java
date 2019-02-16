@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Relay.Value;
 
 /**
@@ -17,15 +18,28 @@ import edu.wpi.first.wpilibj.Relay.Value;
 public class Vacuum extends Subsystem {
     private Relay spike1;
     //private Relay spike2;
-    
-    public Vacuum() {
-        //pike1 = new Relay(0);
-	}
+    private Servo servoLeft;
+    private Servo servoRight;
 
-    public void initialize(){
+
+    public Vacuum() {
         spike1 = new Relay(0);
+        servoLeft = new Servo(8);
+        servoRight = new Servo(9);
+    }
+    
+    public void suckerUp() {
+       // servoRight.set(0);
+       // servoLeft.set(1);
 
     }
+
+    public void suckerDown() {
+     //   servoRight.set(0);
+      //  servoLeft.set(1);
+        
+    }
+    
     public void off(){
         System.out.println("off!");
         spike1.set(Value.kOff);

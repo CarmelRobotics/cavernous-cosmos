@@ -62,12 +62,13 @@ public static final int SparkMAX1 = 1;
   //Suction Buttons
   public static final JoystickButton SUCC_ON = new JoystickButton(JOYSTICK_A, 4);
   public static final JoystickButton SUCC_OFF = new JoystickButton(JOYSTICK_A, 5);
+ // public static final JoystickButton SUCC_UP = new JoystickButton(JOYSTICK_A, 6);
+  //public static final JoystickButton SUCC_DOWN = new JoystickButton(JOYSTICK_A, 7);
 
-  //Not So Sure Buttons
-  //public static final JoystickButton MOVE_FORWARD = new JoystickButton(JOYSTICK_A, 6);
-  //public static final JoystickButton MOVE_BACKWARDS = new JoystickButton(JOYSTICK_A, 7);
-  //public static final JoystickButton DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 7);
-  //public static final JoystickButton UP_BUTTON = new JoystickButton(JOYSTICK_A, 8);
+  //Lifter Arm Buttons
+  public static final JoystickButton LIFTERARM_FORWARD = new JoystickButton(JOYSTICK_A, 11);
+  public static final JoystickButton LIFTERARM_DOWN= new JoystickButton(JOYSTICK_A, 12);
+  
 
   //Elevator Buttons
  // public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);

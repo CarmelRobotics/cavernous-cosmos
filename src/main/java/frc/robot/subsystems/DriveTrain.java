@@ -115,7 +115,7 @@ public class DriveTrain extends Subsystem {
 	public void arcadeDrive() {
 
 
-		drive.arcadeDrive(jStick_A.getY(), jStick_A.getX(), true);
+		drive.arcadeDrive(-jStick_A.getY(), jStick_A.getX(), true);
 
 
 		//Old. Only use if new doesn't work
@@ -138,18 +138,20 @@ public class DriveTrain extends Subsystem {
 	public void slideDrive(){
 
 		//First param is ALWAYS getY. Wheels will seem to spin opposite directions if X is first
-		drive.arcadeDrive(jStick_A.getY(), jStick_A.getX());
+		drive.arcadeDrive(-jStick_A.getY(), jStick_A.getX());
 	
-		//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
+	
+	//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
 		motorMiddle.set(jStick_A.getZ());
+
+		
 	
 	  }
 
 
 	  
 	public void motorTest(){
-
-		//motorElevator.set(-1);
+	motorElevator.set(-.5);
 	
 	  }
 

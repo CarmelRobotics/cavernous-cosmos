@@ -41,7 +41,8 @@ public class LifterArm extends Subsystem {
   //Declaring Solenoid
   private DoubleSolenoid theFortyFiver;
   private DoubleSolenoid theGrounder;
-
+  public Boolean isFortyFive;
+  public Boolean isGrounded;
 
 
   public LifterArm() {
@@ -65,22 +66,38 @@ public class LifterArm extends Subsystem {
 
   
 //Wheel is initally up so forward puts it down in place
-  public void forward(DoubleSolenoid sol){ 
+  public void theFortyFiverForward(){ 
 
-    sol.set(DoubleSolenoid.Value.kForward);
+    theFortyFiver.set(DoubleSolenoid.Value.kForward);
+    isFortyFive = true;
+    isGrounded = false;
+  }
+
+  public void theFortyFiverReverse(){ 
+
+    theFortyFiver.set(DoubleSolenoid.Value.kReverse);
+    isFortyFive = false;
+    isGrounded = false;
 
   }
 
-//Wheel is initally up so reverse puts it back in place
+  public void theGrounderForward(){ 
 
-  public void reverse(DoubleSolenoid sol){ 
-
-
-    sol.set(DoubleSolenoid.Value.kReverse);
-
-    RobotMap.WHEEL_DROPPED = false;
+    theGrounder.set(DoubleSolenoid.Value.kForward);
+    isGrounded = true;
+    isFortyFive = false;
 
   }
+
+  public void theGrounderReverse(){ 
+
+    theGrounder.set(DoubleSolenoid.Value.kReverse);
+    isFortyFive = true;
+    isGrounded = false;
+  }
+
+
+  
 
 
 
@@ -99,5 +116,7 @@ public DoubleSolenoid getTheGrounder() {
 
   return theGrounder;
 }
+
+
 
 }

@@ -59,7 +59,10 @@ public class OI {
   private static Button wheelDown;
   private static Button succOn;
   private static Button succOff;
-
+  private static Button lifterArmDown;
+  private static Button lifterArmUp;
+  private static Button suckerUp;
+  private static Button suckerDown;
   //Declaring Local Joysticks
   private static Joystick jStick_A;
   private static Joystick jStick_B;
@@ -75,7 +78,10 @@ public class OI {
      wheelDown = RobotMap.WHEEL_DOWN;
      //succOn = RobotMap.SUCC_ON;
     // succOn = RobotMap.SUCC_OFF;
-
+      //suckerUp = RobotMap.SUCC_UP;
+       //suckerDown = RobotMap.SUCC_DOWN;
+    lifterArmUp =   RobotMap.LIFTERARM_FORWARD;
+    lifterArmDown =   RobotMap.LIFTERARM_DOWN;
      //Elevator
     //jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
    // jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
@@ -88,8 +94,12 @@ public class OI {
      //Button Commands
      wheelUp.whenPressed(new WheelUp());
      wheelDown.whenPressed(new WheelDown());
+     //lifterArmUp.whenPressed(new LifterArmForward());
+     //lifterArmDown.whenPressed(new LifterArmReverse());
     // succOn.whenPressed(new SuccOn());
      //succOff.whenPressed(new SuccOff());
+     //suckerUp.whenPressed(new SuckerUp());
+     //suckerUp.whenPressed(new SuckerDown());
      System.out.println("init complete!");
 
     //Elevator Commands

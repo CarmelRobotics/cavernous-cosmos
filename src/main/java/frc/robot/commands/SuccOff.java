@@ -12,8 +12,8 @@ public class SuccOff extends Command {
 
 
   public SuccOff() {
-    vac = new Vacuum();
-
+    
+    vac = Robot.vac;
 
     requires(vac);
   }
@@ -21,7 +21,7 @@ public class SuccOff extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-      vac.initialize();
+    
   }
   
 

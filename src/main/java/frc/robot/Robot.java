@@ -26,7 +26,7 @@ import frc.robot.subsystems.CompressorA;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.IRSystem;
-
+import frc.robot.subsystems.LifterArm;
 import frc.robot.subsystems.Vacuum;
 import frc.robot.subsystems.Ultrasound;
 import frc.robot.subsystems.WheelDropper;
@@ -56,6 +56,7 @@ public class Robot extends TimedRobot {
   public static Vacuum vac;
   public static WheelDropper dropper;
   public static Compressor compressor;
+  public static LifterArm arm;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -78,6 +79,7 @@ public static DriveTrain m_dt;
   //  vac = new Vacuum();
     dropper = new WheelDropper();
     compressor = new Compressor(0); 
+    //arm = new LifterArm();
     OI.initialize();
 
   }
