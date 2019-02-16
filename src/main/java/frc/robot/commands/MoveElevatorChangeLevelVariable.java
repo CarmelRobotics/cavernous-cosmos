@@ -40,7 +40,7 @@ public class MoveElevatorChangeLevelVariable extends Command {
   @Override
   protected void execute() {
 
-    el.setDesiredLevel(level);;
+    el.setDesiredLevel(level);
 
   }
 

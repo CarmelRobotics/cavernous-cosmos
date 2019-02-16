@@ -33,7 +33,7 @@ public class ResetElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    el.setElevatorMovement(200);//el.setElevatorVelocity(12); //RPM
+    el.setElevatorMovement(12); //RPM
     System.out.println("hello");
   }
 

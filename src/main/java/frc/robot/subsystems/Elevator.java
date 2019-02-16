@@ -54,11 +54,11 @@ public class Elevator extends Subsystem {
         // PID coefficients
         kP = 0.1;  //originally 0.1
         kI = 1e-4; //originally 1e-4
-        kD = 0.5; //originally 1
-        kIz = 0.5; //originally 0
-        kFF = 0.5; //originally 0
-        kMaxOutput = 0.1; //originally -1
-        kMinOutput = -0.1; //originally 1
+        kD = 1; //originally 1
+        kIz = 0; //originally 0
+        kFF = 0; //originally 0
+        kMaxOutput = -0.5; //originally -1
+        kMinOutput = 0.5; //originally 1
 
         // set PID controller values
         extendPID.setP(kP);
@@ -88,7 +88,8 @@ public class Elevator extends Subsystem {
         System.out.println("setElevatorMovement Run");
     }
 
-    public void testMotor(double speed) {
+    //hello moto
+    public void setMotorSpeed(double speed) {
         extend.set(speed);
     }
 

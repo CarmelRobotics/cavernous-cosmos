@@ -41,7 +41,8 @@ public class MoveElevatorUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    el.setElevatorMovement(heightOfTarget - currentRelativePos);
+    Command move = new MoveElevatorSetMotor(heightOfTarget - currentRelativePos);
+    move.start();
   }
 
   // Make this return true when this Command no longer needs to run execute()
