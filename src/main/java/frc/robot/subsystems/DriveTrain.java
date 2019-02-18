@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.revrobotics.CANEncoder;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -43,11 +44,11 @@ public class DriveTrain extends Subsystem {
 	private static Joystick jStick_B;
 
 	//Declaring Speed Controllers (Sparks)
-    private SpeedController motorFLeft;
-    private SpeedController motorBLeft;
-    private SpeedController motorFRight;
-	private SpeedController motorBRight;
-	private SpeedController motorMiddle;
+    private CANSparkMax motorFLeft;
+    private CANSparkMax motorBLeft;
+    private CANSparkMax motorFRight;
+	private CANSparkMax motorBRight;
+	private CANSparkMax motorMiddle;
 	private SpeedController motorElevator;
 	
 	//Declaring Speed Controller Groups
@@ -140,22 +141,27 @@ public class DriveTrain extends Subsystem {
 		//First param is ALWAYS getY. Wheels will seem to spin opposite directions if X is first
 		drive.arcadeDrive(-jStick_A.getY(), jStick_A.getX());
 	
-	
+		motorMiddle.setIdleMode(IdleMode.kCoast);
 	//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
 		motorMiddle.set(jStick_A.getZ());
 
-		
+	
 	
 	  }
 
 
 	  
 	public void motorTest(){
-	motorElevator.set(-.5);
+	//motorElevator.set(-.5);
 	
 	  }
 
-
-    
+	  public void set4Wheel(double velocity, double rotation){
+		drive.arcadeDrive(velocity, rotation);
+	  }
+	
+	  public void setSlide(double velocity){
+		motorMiddle.set(velocity);
+	  }
 
 }

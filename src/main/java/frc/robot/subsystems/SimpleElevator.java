@@ -7,14 +7,36 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
 public class SimpleElevator extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+
+  private SpeedController motorElevator;
+
+
+  public SimpleElevator() {
+
+    motorElevator = new CANSparkMax(RobotMap.CAN_ID_ELEVATOR,MotorType.kBrushless);
+  }
+
+  public void move(double speed) {
+
+    motorElevator.set(speed);
+
+
+  }
+
+
+
+
 
   @Override
   public void initDefaultCommand() {

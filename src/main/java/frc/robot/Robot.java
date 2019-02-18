@@ -27,6 +27,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.IRSystem;
 import frc.robot.subsystems.LifterArm;
+import frc.robot.subsystems.SimpleElevator;
 import frc.robot.subsystems.Vacuum;
 import frc.robot.subsystems.Ultrasound;
 import frc.robot.subsystems.WheelDropper;
@@ -55,8 +56,9 @@ public class Robot extends TimedRobot {
   public static Elevator m_el;
   public static Vacuum vac;
   public static WheelDropper dropper;
-  public static Compressor compressor;
+  public static CompressorA compressor;
   public static LifterArm arm;
+
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -68,7 +70,7 @@ public static DriveTrain m_dt;
   @Override
   public void robotInit() {
   
-   // m_ir = new IRSystem();
+    m_ir = new IRSystem();
 	driver = new DriveTrain();
   //  m_us = new Ultrasound();
    // m_el = new Elevator();
@@ -78,7 +80,8 @@ public static DriveTrain m_dt;
     drive = new DriveTrain();
   //  vac = new Vacuum();
     dropper = new WheelDropper();
-    compressor = new Compressor(0); 
+    compressor = new CompressorA(); 
+   
     //arm = new LifterArm();
     OI.initialize();
 
@@ -127,12 +130,15 @@ public static DriveTrain m_dt;
   @Override
   public void teleopPeriodic() {
     //System.out.println(m_ir.getLeftIR());
+  //  compressor.checkPressure();
     Scheduler.getInstance().run();
     //m_el.testMotor(0.1);
   //  System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());
     drive.slideDrive();
     drive.motorTest();
-
+   System.out.println("Left: "+  m_ir.getLeftIR());
+   System.out.println("Middle:" +  m_ir.getMiddleIR());
+   System.out.println("right" +  m_ir.getRightIR());
   }
 
 

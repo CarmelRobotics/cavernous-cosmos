@@ -30,21 +30,21 @@ public class IRSystem extends Subsystem {
    * @return the leftIR state
    */
   public double getLeftIR() {
-    return leftIR.getVoltage();
+    return leftIR.getAverageVoltage();
   }
 
   /**
    * @return the middleIR state
    */
   public double getMiddleIR() {
-    return middleIR.getVoltage();
+    return middleIR.getAverageVoltage();
   }
 
   /**
    * @return the rightIR state
    */
   public double getRightIR() {
-    return rightIR.getVoltage();
+    return rightIR.getAverageVoltage();
   }
 
   @Override
