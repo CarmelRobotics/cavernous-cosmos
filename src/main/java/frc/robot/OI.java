@@ -66,6 +66,9 @@ public class OI {
   //Declaring Local Joysticks
   private static Joystick jStick_A;
   private static Joystick jStick_B;
+
+  private static JoystickButton jst_button_elevup;
+  private static JoystickButton jst_button_elevdown;
   
   public static void initialize() {
 
@@ -83,8 +86,8 @@ public class OI {
     lifterArmUp =   RobotMap.LIFTERARM_FORWARD;
     lifterArmDown =   RobotMap.LIFTERARM_DOWN;
      //Elevator
-    //jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
-   // jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
+    jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
+   jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
    /// jst_button_elevlow = RobotMap.ELEV_LOW_BUTTON;
     //jst_button_elevmid = RobotMap.ELEV_MID_BUTTON;
     //jst_button_elevhigh = RobotMap.ELEV_HIGH_BUTTON;
@@ -108,8 +111,8 @@ public class OI {
    // jst_button_elevlow.whenPressed(new MoveElevatorPending(0));
     //jst_button_elevmid.whenPressed(new MoveElevatorPending(1));
     //jst_button_elevhigh.whenPressed(new MoveElevatorPending(2));
-    //jst_button_elevup.whenPressed(new MoveElevatorUp());
-    //jst_button_elevdown.whenPressed(new MoveElevatorDown());
+    jst_button_elevup.whenPressed(new MoveElevatorUp());
+    jst_button_elevdown.whenPressed(new MoveElevatorDown());
     
    
     System.out.println("init complete!");
