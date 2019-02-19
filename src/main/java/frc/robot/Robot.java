@@ -27,7 +27,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.IRSystem;
 import frc.robot.subsystems.LifterArm;
-import frc.robot.subsystems.SimpleElevator;
+
 import frc.robot.subsystems.Vacuum;
 import frc.robot.subsystems.Ultrasound;
 import frc.robot.subsystems.WheelDropper;
@@ -135,7 +135,7 @@ public static DriveTrain m_dt;
     //m_el.testMotor(0.1);
   //  System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());
     drive.slideDrive();
-    drive.motorTest();
+    
    System.out.println("Left: "+  m_ir.getLeftIR());
    System.out.println("Middle:" +  m_ir.getMiddleIR());
    System.out.println("right" +  m_ir.getRightIR());

@@ -7,37 +7,34 @@
 
 package frc.robot.commands;
 
+
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.LifterArm;
+import frc.robot.subsystems.DriveTrain;
 
-public class LifterArmForward extends Command {
+public class GearshiftHigh extends Command {
+  private final DriveTrain drt;
 
-  public LifterArm arm;
-  public LifterArmForward() {
-   
-    arm = Robot.arm;
-    requires(arm);
+	
 
-  }
+	public GearshiftHigh() {
+
+		drt = Robot.getDriveTrain();
+
+		requires(drt);
+
+	}
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
-    arm.isFortyFive = false;
-    arm.isGrounded = false;
+    drt.gearshiftHigh();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(arm.isFortyFive) {
-    arm.theGrounderForward();
-    }
-    else if(!arm.isGrounded) {
-      arm.theFortyFiverForward();
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -49,16 +46,11 @@ public class LifterArmForward extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    arm.stop(arm.getTheFortyFiver());
-    arm.stop(arm.getTheGrounder());
-   
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    arm.stop(arm.getTheFortyFiver());
-    arm.stop(arm.getTheGrounder());
   }
 }

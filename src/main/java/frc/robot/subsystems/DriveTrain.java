@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -58,6 +59,11 @@ public class DriveTrain extends Subsystem {
 	//Declaring Drive
 	private DifferentialDrive drive;
 
+	private DoubleSolenoid gearShift;
+
+
+
+
 	//Old. Only use if new doesn't work
 	//private DifferentialDrive drive2;
 	
@@ -91,6 +97,10 @@ public class DriveTrain extends Subsystem {
 		//Constructing the DriveTrain out of Spark Motor Groups
 		drive = new DifferentialDrive(motorLeft, motorRight);
 		
+		//Constructing Solenoid
+		
+    	gearShift = new DoubleSolenoid(RobotMap.SOLE_GEARSHIFT_HIGH, RobotMap.SOLE_GEARSHIFT_LOW);
+
 
 		//Use to get encoder
 		//encoder = motorTest.getEncoder();
@@ -149,13 +159,6 @@ public class DriveTrain extends Subsystem {
 	
 	  }
 
-
-	  
-	public void motorTest(){
-	//motorElevator.set(-.5);
-	
-	  }
-
 	  public void set4Wheel(double velocity, double rotation){
 		drive.arcadeDrive(velocity, rotation);
 	  }
@@ -163,5 +166,20 @@ public class DriveTrain extends Subsystem {
 	  public void setSlide(double velocity){
 		motorMiddle.set(velocity);
 	  }
+
+	  public void gearshiftHigh() {
+		gearShift.set(DoubleSolenoid.Value.kForward);
+
+
+	}
+
+	public void gearshiftLow() {
+
+		gearShift.set(DoubleSolenoid.Value.kReverse);
+
+	}
+
+
+
 
 }

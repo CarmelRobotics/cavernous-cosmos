@@ -63,12 +63,19 @@ public class OI {
   private static Button lifterArmUp;
   private static Button suckerUp;
   private static Button suckerDown;
+  private static Button jst_button_elevup;
+  private static Button jst_button_elevdown;
+  private static Button gearshiftUp;
+  private static Button gearshiftDown;
+
+  public static Button changeArmAngleTo0;
+	public static Button changeArmAngleTo1;
+	public static Button changeArmAngleTo2;
   //Declaring Local Joysticks
   private static Joystick jStick_A;
   private static Joystick jStick_B;
 
-  private static JoystickButton jst_button_elevup;
-  private static JoystickButton jst_button_elevdown;
+ 
   
   public static void initialize() {
 
@@ -83,8 +90,10 @@ public class OI {
     // succOn = RobotMap.SUCC_OFF;
       //suckerUp = RobotMap.SUCC_UP;
        //suckerDown = RobotMap.SUCC_DOWN;
-    lifterArmUp =   RobotMap.LIFTERARM_FORWARD;
-    lifterArmDown =   RobotMap.LIFTERARM_DOWN;
+       //Lifterarm
+       changeArmAngleTo0 = RobotMap.CHANGE_ARM_ANGLE_0;
+       changeArmAngleTo1 = RobotMap.CHANGE_ARM_ANGLE_1;
+       changeArmAngleTo2 = RobotMap.CHANGE_ARM_ANGLE_2;
      //Elevator
     jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
    jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
@@ -94,6 +103,10 @@ public class OI {
     //jst_button_elevhatch = RobotMap.ELEV_HATCH_BUTTON;
     //jst_button_elevfuel = RobotMap.ELEV_FUEL_BUTTON;
  
+    gearshiftUp = RobotMap.GEARSHIFT_UP;
+    gearshiftDown = RobotMap.GEARSHIFT_DOWN;
+
+
      //Button Commands
      wheelUp.whenPressed(new WheelUp());
      wheelDown.whenPressed(new WheelDown());
@@ -103,7 +116,15 @@ public class OI {
      //succOff.whenPressed(new SuccOff());
      //suckerUp.whenPressed(new SuckerUp());
      //suckerUp.whenPressed(new SuckerDown());
-     System.out.println("init complete!");
+    ///DriveTrain
+     gearshiftUp.whenPressed(new GearshiftHigh());
+     gearshiftDown.whenPressed(new GearshiftLow());
+
+    //LifterArm
+    changeArmAngleTo0.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_0));
+		changeArmAngleTo1.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_1));
+		changeArmAngleTo2.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_2));
+
 
     //Elevator Commands
    // jst_button_elevhatch.whenPressed(new MoveElevatorPending(0));
@@ -115,7 +136,7 @@ public class OI {
     jst_button_elevdown.whenPressed(new MoveElevatorDown());
     
    
-    System.out.println("init complete!");
+   
 
   }
 
