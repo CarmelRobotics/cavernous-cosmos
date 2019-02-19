@@ -151,7 +151,7 @@ public class DriveTrain extends Subsystem {
 		//First param is ALWAYS getY. Wheels will seem to spin opposite directions if X is first
 		drive.arcadeDrive(-jStick_A.getY(), jStick_A.getX());
 	
-		motorMiddle.setIdleMode(IdleMode.kCoast);
+		//motorMiddle.setIdleMode(IdleMode.kCoast);
 	//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
 		motorMiddle.set(jStick_A.getZ());
 

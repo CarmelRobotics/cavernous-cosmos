@@ -48,6 +48,11 @@ public class RobotMap {
   public static final double ARM_POSITION_1 = 548; // 20 degrees on arm gear 
   public static final double ARM_POSITION_2 = 1508; // 55 degrees on arm gear
 
+  //Sucker
+  public static final int RELAY_ID = 0; 
+  public static final int SERVO_LEFT = 5; 
+  public static final int SERVO_RIGHT = 6; 
+
 // -- Spark CAN IDs --
 
   public static final int CAN_ID_FRONT_RIGHT = 3;

@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Relay.Value;
@@ -23,9 +24,9 @@ public class Vacuum extends Subsystem {
 
 
     public Vacuum() {
-        spike1 = new Relay(0);
-        servoLeft = new Servo(8);
-        servoRight = new Servo(9);
+        spike1 = new Relay(RobotMap.RELAY_ID);
+        servoLeft = new Servo(RobotMap.SERVO_LEFT);
+        servoRight = new Servo(RobotMap.SERVO_RIGHT);
     }
     
     public void suckerUp() {
