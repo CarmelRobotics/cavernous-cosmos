@@ -49,7 +49,8 @@ public class RobotMap {
   public static final double ARM_POSITION_2 = 1508; // 55 degrees on arm gear
 
   //Sucker
-  public static final int RELAY_ID = 0; 
+  public static final int SPIKE1_RELAY_ID = 0; 
+  public static final int SPIKE2_RELAY_ID = 1; 
   public static final int SERVO_LEFT = 5; 
   public static final int SERVO_RIGHT = 6; 
 
@@ -90,21 +91,20 @@ public class RobotMap {
 
 
   //Drive Train
-  public static final JoystickButton WHEEL_UP = new JoystickButton(JOYSTICK_A, 2);
-  public static final JoystickButton WHEEL_DOWN = new JoystickButton(JOYSTICK_A, 3);
-  public static final JoystickButton GEARSHIFT_UP = new JoystickButton(JOYSTICK_A, 8);
-  public static final JoystickButton GEARSHIFT_DOWN = new JoystickButton(JOYSTICK_A, 9);
+  public static final JoystickButton WHEEL_UP = new JoystickButton(JOYSTICK_A, 3);
+  public static final JoystickButton WHEEL_DOWN = new JoystickButton(JOYSTICK_A, 4);
+  
+  public static final JoystickButton GEARSHIFT = new JoystickButton(JOYSTICK_A, 2);
 
   //Suction Buttons
-  public static final JoystickButton SUCC_ON = new JoystickButton(JOYSTICK_A, 4);
-  public static final JoystickButton SUCC_OFF = new JoystickButton(JOYSTICK_A, 5);
+  public static final JoystickButton SUCC_CONTROL = new JoystickButton(JOYSTICK_A, 5);
  // public static final JoystickButton SUCC_UP = new JoystickButton(JOYSTICK_A, 6);
   //public static final JoystickButton SUCC_DOWN = new JoystickButton(JOYSTICK_A, 7);
 
   //Lifter Arm Buttons
-  public static final JoystickButton CHANGE_ARM_ANGLE_0 = new JoystickButton(JOYSTICK_A, 10);
-  public static final JoystickButton CHANGE_ARM_ANGLE_1 = new JoystickButton(JOYSTICK_A, 11);
-  public static final JoystickButton CHANGE_ARM_ANGLE_2 = new JoystickButton(JOYSTICK_A, 12);
+  public static final JoystickButton CHANGE_ARM_ANGLE_0 = new JoystickButton(JOYSTICK_A, 6);
+  public static final JoystickButton CHANGE_ARM_ANGLE_1 = new JoystickButton(JOYSTICK_A, 7);
+  public static final JoystickButton CHANGE_ARM_ANGLE_2 = new JoystickButton(JOYSTICK_A, 8);
 
   //Elevator Buttons
  // public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_A, 3);
@@ -114,8 +114,8 @@ public class RobotMap {
   //public static final JoystickButton ELEV_HIGH_BUTTON = new JoystickButton(JOYSTICK_B, 6);
  // public static final JoystickButton ELEV_HATCH_BUTTON = new JoystickButton(JOYSTICK_B, 7);
   //public static final JoystickButton ELEV_FUEL_BUTTON = new JoystickButton(JOYSTICK_B, 8);
-  public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_A, 7);
-  public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 6);
+  public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_A, 11);
+  public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(JOYSTICK_A, 12);
 
   
 

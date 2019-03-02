@@ -57,15 +57,12 @@ public class OI {
   //Declaring Buttons
   private static Button wheelUp;
   private static Button wheelDown;
-  private static Button succOn;
-  private static Button succOff;
   private static Button lifterArmDown;
   private static Button lifterArmUp;
-  private static Button suckerUp;
-  private static Button suckerDown;
+  private static Button suckerControl;
   private static Button jst_button_elevup;
   private static Button jst_button_elevdown;
-  private static Button gearshiftUp;
+  private static Button gearshift;
   private static Button gearshiftDown;
 
   public static Button changeArmAngleTo0;
@@ -86,8 +83,8 @@ public class OI {
      //Button inits
      wheelUp = RobotMap.WHEEL_UP;
      wheelDown = RobotMap.WHEEL_DOWN;
-     //succOn = RobotMap.SUCC_ON;
-    // succOn = RobotMap.SUCC_OFF;
+    
+     suckerControl = RobotMap.SUCC_CONTROL;
       //suckerUp = RobotMap.SUCC_UP;
        //suckerDown = RobotMap.SUCC_DOWN;
        //Lifterarm
@@ -103,8 +100,8 @@ public class OI {
     //jst_button_elevhatch = RobotMap.ELEV_HATCH_BUTTON;
     //jst_button_elevfuel = RobotMap.ELEV_FUEL_BUTTON;
  
-    gearshiftUp = RobotMap.GEARSHIFT_UP;
-    gearshiftDown = RobotMap.GEARSHIFT_DOWN;
+    
+    gearshift = RobotMap.GEARSHIFT;
 
 
      //Button Commands
@@ -112,13 +109,11 @@ public class OI {
      wheelDown.whenPressed(new WheelDown());
      //lifterArmUp.whenPressed(new LifterArmForward());
      //lifterArmDown.whenPressed(new LifterArmReverse());
-    // succOn.whenPressed(new SuccOn());
-     //succOff.whenPressed(new SuccOff());
-     //suckerUp.whenPressed(new SuckerUp());
-     //suckerUp.whenPressed(new SuckerDown());
+    
+     suckerControl.whenPressed(new SuckerControl());
     ///DriveTrain
-     gearshiftUp.whenPressed(new GearshiftHigh());
-     gearshiftDown.whenPressed(new GearshiftLow());
+     gearshift.whenPressed(new Gearshift());
+     
 
     //LifterArm
     changeArmAngleTo0.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_0));

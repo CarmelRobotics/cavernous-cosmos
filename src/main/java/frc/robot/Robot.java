@@ -82,7 +82,7 @@ public static DriveTrain m_dt;
     dropper = new WheelDropper();
     compressor = new CompressorA(); 
    
-    //arm = new LifterArm();
+    arm = new LifterArm();
     OI.initialize();
 
   }

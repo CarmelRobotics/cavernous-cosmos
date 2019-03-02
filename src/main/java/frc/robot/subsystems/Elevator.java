@@ -234,6 +234,19 @@ public class Elevator extends Subsystem {
     }
 
 
+    public void manualUp(double value) {
+
+        extend.set(value);
+
+    }
+
+
+    public void manualDown(double value) {
+
+        extend.set(value);
+        
+    }
+
 
     @Override
 
