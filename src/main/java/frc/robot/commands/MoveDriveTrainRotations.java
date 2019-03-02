@@ -8,11 +8,25 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrain;
+
+
+
 
 public class MoveDriveTrainRotations extends Command {
-  public MoveDriveTrainRotations() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+
+private DriveTrain drt;
+
+private double totalDistance;
+  public MoveDriveTrainRotations(double rotations) {
+    
+    drt = Robot.driver;
+    requires(drt);
+
+    totalDistance = rotations * 36;
+
+
   }
 
   // Called just before this Command runs the first time

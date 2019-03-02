@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 
 
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.revrobotics.CANEncoder;
@@ -24,6 +25,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import frc.robot.commands.MoveDriveTrainRotations;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -52,6 +54,12 @@ public class DriveTrain extends Subsystem {
 	private CANSparkMax motorMiddle;
 	private SpeedController motorElevator;
 	
+	//Drive Train Encoders
+	private CANEncoder motorFLeftEncoder;
+	private CANEncoder motorBLeftEncoder;
+	private CANEncoder motorBRightEncoder;
+	private CANEncoder motorFRightEncoder;
+	private CANEncoder motorMiddleEncoder;
 	//Declaring Speed Controller Groups
     private SpeedControllerGroup motorLeft;
     private SpeedControllerGroup motorRight;
@@ -149,11 +157,11 @@ public class DriveTrain extends Subsystem {
 	public void slideDrive(){
 
 		//First param is ALWAYS getY. Wheels will seem to spin opposite directions if X is first
-		drive.arcadeDrive(-jStick_A.getY(), jStick_A.getX());
+		drive.arcadeDrive(-jStick_A.getY(), jStick_A.getZ());
 	
 		//motorMiddle.setIdleMode(IdleMode.kCoast);
 	//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
-		motorMiddle.set(jStick_A.getZ());
+		motorMiddle.set(jStick_A.getX());
 
 	
 	
@@ -170,7 +178,6 @@ public class DriveTrain extends Subsystem {
 	  public void gearshiftHigh() {
 		gearShift.set(DoubleSolenoid.Value.kForward);
 
-
 	}
 
 	public void gearshiftLow() {
@@ -178,6 +185,18 @@ public class DriveTrain extends Subsystem {
 		gearShift.set(DoubleSolenoid.Value.kReverse);
 
 	}
+
+
+	public void moveAccordingToRotations(double rotations) {
+
+	Command moveDistance = new MoveDriveTrainRotations(rotations);
+		
+		moveDistance.start();
+
+	}
+
+
+
 
 
 

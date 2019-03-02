@@ -14,10 +14,10 @@ import frc.robot.subsystems.Vacuum;
 
 
 
-public class SuckerUp extends Command {
+public class SuckerControl extends Command {
   private static Vacuum vac;
 
-  public SuckerUp() {
+  public SuckerControl() {
   
     vac = Robot.vac;
 
@@ -34,7 +34,14 @@ public class SuckerUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    if(vac.spike1.get() == vac.spike1.get().kOff) {
     vac.suckerUp();
+    }
+
+    else {
+      vac.suckerDown();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

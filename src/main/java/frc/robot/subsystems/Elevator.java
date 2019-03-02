@@ -247,6 +247,10 @@ public class Elevator extends Subsystem {
         
     }
 
+    public void manualStop() {
+        extend.stopMotor();
+    }
+
 
     @Override
 

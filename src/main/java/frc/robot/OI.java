@@ -127,8 +127,8 @@ public class OI {
    // jst_button_elevlow.whenPressed(new MoveElevatorPending(0));
     //jst_button_elevmid.whenPressed(new MoveElevatorPending(1));
     //jst_button_elevhigh.whenPressed(new MoveElevatorPending(2));
-    jst_button_elevup.whenPressed(new MoveElevatorUp());
-    jst_button_elevdown.whenPressed(new MoveElevatorDown());
+    jst_button_elevup.whileHeld(new MoveElevatorManual(1));
+    jst_button_elevdown.whileHeld(new MoveElevatorManual(-1));
     
    
    

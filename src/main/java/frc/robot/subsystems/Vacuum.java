@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.Relay.Value;
  * Compressor for the pneumatics.
  */
 public class Vacuum extends Subsystem {
-    private Relay spike1;
-    private Relay spike2;
+    public Relay spike1;
+    public Relay spike2;
     private Servo servoLeft;
     private Servo servoRight;
 
@@ -33,39 +33,21 @@ public class Vacuum extends Subsystem {
     public void suckerUp() {
        // servoRight.set(0);
        // servoLeft.set(1);
+       spike1.set(Value.kOff);
+       spike2.set(Value.kOff);
 
     }
 
     public void suckerDown() {
      //   servoRight.set(0);
       //  servoLeft.set(1);
+      spike1.set(Value.kOn);
+      spike2.set(Value.kOn);
         
     }
     
-    public void Spike1Off(){
-        System.out.println("off!");
-        spike1.set(Value.kOff);
-        //spike2.set(Value.kOff);
-    }
-
-    public void Spike1On(){
-        System.out.println("on!");
-        spike1.set(Value.kOn);
-        //spike2.set(Value.kOn);
-    }
 
 
-    public void Spike2Off(){
-        System.out.println("off!");
-        spike1.set(Value.kOff);
-        //spike2.set(Value.kOff);
-    }
-
-    public void Spike2On(){
-        System.out.println("on!");
-        spike2.set(Value.kOn);
-        //spike2.set(Value.kOn);
-    }
 
 	@Override
 	protected void initDefaultCommand() {

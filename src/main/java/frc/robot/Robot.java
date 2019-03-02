@@ -73,7 +73,7 @@ public static DriveTrain m_dt;
     m_ir = new IRSystem();
 	driver = new DriveTrain();
   //  m_us = new Ultrasound();
-   // m_el = new Elevator();
+    m_el = new Elevator();
 	oi = new OI();
     
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -136,9 +136,7 @@ public static DriveTrain m_dt;
   //  System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());
     drive.slideDrive();
     
-   System.out.println("Left: "+  m_ir.getLeftIR());
-   System.out.println("Middle:" +  m_ir.getMiddleIR());
-   System.out.println("right" +  m_ir.getRightIR());
+   
   }
 
 

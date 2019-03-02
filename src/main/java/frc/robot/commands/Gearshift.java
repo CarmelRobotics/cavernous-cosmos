@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
 
-public class GearshiftHigh extends Command {
+public class Gearshift extends Command {
   private final DriveTrain drt;
 
 	
 
-	public GearshiftHigh() {
+	public Gearshift() {
 
 		drt = Robot.getDriveTrain();
 
@@ -29,12 +29,14 @@ public class GearshiftHigh extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //drt.gearshiftHigh();
+   
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    drt.gearshiftHigh();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,6 +48,7 @@ public class GearshiftHigh extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    drt.gearshiftLow();
   }
 
   // Called when another command which requires one or more of the same
