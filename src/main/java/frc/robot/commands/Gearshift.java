@@ -7,28 +7,36 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
-import frc.robot.subsystems.WheelDropper;
+
+
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrain;
 
-public class WheelDown extends Command {
-  private  WheelDropper wDrop;
-  public WheelDown() {
-    wDrop = Robot.dropper;
+public class Gearshift extends Command {
+  private final DriveTrain drt;
 
+	
 
-    requires(wDrop);
-  }
+	public Gearshift() {
+
+		drt = Robot.getDriveTrain();
+
+		requires(drt);
+
+	}
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+   
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    wDrop.down();
+
+    drt.gearshiftHigh();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,15 +48,12 @@ public class WheelDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-
-    wDrop.stop();
-
+    drt.gearshiftLow();
   }
+
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    wDrop.stop();
-
   }
 }

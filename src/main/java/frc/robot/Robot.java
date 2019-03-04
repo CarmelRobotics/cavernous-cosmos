@@ -1,63 +1,88 @@
 /*----------------------------------------------------------------------------*/
+
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
+
 /* must be accompanied by the FIRST BSD license file in the root directory of */
+
 /* the project.                                                               */
+
 /*----------------------------------------------------------------------------*/
+
+
 
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
+
+
+import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.MoveElevatorChangeLevelVariable;
-import frc.robot.commands.MoveElevatorSetMotor;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ResetElevator;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.CompressorA;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.IRSystem;
+import frc.robot.subsystems.LifterArm;
+
+import frc.robot.subsystems.Vacuum;
+import frc.robot.subsystems.Ultrasound;
+import frc.robot.subsystems.WheelDropper;
+import edu.wpi.first.wpilibj.command.Scheduler;
+
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+
 
 
 
 public class Robot extends TimedRobot {
-  public static OI m_oi;
+  public static OI oi;
+  public static DriveTrain driver;
   public static IRSystem m_ir;
-  public static DriveTrain m_dt;
   public static Ultrasound m_us;
   public static Elevator m_el;
-  //public static Vacuum vac;
+  public static Vacuum vac;
   public static WheelDropper dropper;
   public static CompressorA compressor;
+  public static LifterArm arm;
 
-  private NetworkTableEntry visionSeesTarget;
-  private NetworkTableEntry distanceRobotToTarget;
-  private NetworkTableEntry angleDistanceVectorToRobotAnterior;
-  private NetworkTableEntry angleDistanceVectorToTargetAnterior;
-
+//Changes
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  private static DriveTrain drive; 
+  private static DriveTrain drive;
+public static DriveTrain m_dt; 
 
 
   @Override
   public void robotInit() {
-    m_oi = new OI();
-    m_ir = new IRSystem();
-    m_dt = new DriveTrain();
-    m_us = new Ultrasound();
-    m_el = new Elevator();
-
-
-    
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
   
+    m_ir = new IRSystem();
+	driver = new DriveTrain();
+  //  m_us = new Ultrasound();
+    m_el = new Elevator();
+	oi = new OI();
+    
+    SmartDashboard.putData("Auto mode", m_chooser);
     drive = new DriveTrain();
-    //vac = new Vacuum();
+  //  vac = new Vacuum();
     dropper = new WheelDropper();
-    compressor = new CompressorA();
+    compressor = new CompressorA(); 
+   
+    arm = new LifterArm();
     OI.initialize();
 
   }
@@ -71,10 +96,7 @@ public class Robot extends TimedRobot {
   public void disabledInit() {
   }
 
-  @Override
-  public void disabledPeriodic() {
-    Scheduler.getInstance().run();
-  }
+
 
  
   @Override
@@ -95,9 +117,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    Command test = new MoveElevatorSetMotor(10);
-    test.start();
-    //m_el.setElevatorMovement(10);
+   // Command reset = new ResetElevator();
+	//reset.start();
+	compressor.start();
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
@@ -108,15 +130,35 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //System.out.println(m_ir.getLeftIR());
+  //  compressor.checkPressure();
     Scheduler.getInstance().run();
     //m_el.testMotor(0.1);
-    System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());
-    //drive.slideDrive();
-
+  //  System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());
+    drive.slideDrive();
+    
+   
   }
 
 
   @Override
   public void testPeriodic() {
   }
+
+	/**
+
+	 * This function is called periodically during test mode.
+
+	 */
+
+
+	public static DriveTrain getDriveTrain() { //method to return the drive train as a drive train.
+
+		return driver;
+
+	}
+
+	
+	
+
+
 }

@@ -7,17 +7,26 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
-import frc.robot.subsystems.WheelDropper;
 import edu.wpi.first.wpilibj.command.Command;
-
-public class WheelDown extends Command {
-  private  WheelDropper wDrop;
-  public WheelDown() {
-    wDrop = Robot.dropper;
+import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrain;
 
 
-    requires(wDrop);
+
+
+public class MoveDriveTrainRotations extends Command {
+
+private DriveTrain drt;
+
+private double totalDistance;
+  public MoveDriveTrainRotations(double rotations) {
+    
+    drt = Robot.driver;
+    requires(drt);
+
+    totalDistance = rotations * 36;
+
+
   }
 
   // Called just before this Command runs the first time
@@ -28,7 +37,6 @@ public class WheelDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    wDrop.down();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,15 +48,11 @@ public class WheelDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-
-    wDrop.stop();
-
   }
+
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    wDrop.stop();
-
   }
 }

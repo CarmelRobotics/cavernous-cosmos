@@ -8,36 +8,46 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Relay.Value;
 
 /**
  * Compressor for the pneumatics.
  */
 public class Vacuum extends Subsystem {
-    private Relay spike1;
-    //private Relay spike2;
-    
+    public Relay spike1;
+    public Relay spike2;
+    private Servo servoLeft;
+    private Servo servoRight;
+
+
     public Vacuum() {
-        //spike1 = new Relay(0);
-        //spike2 = new Relay(1);
-	}
-
-    public void initialize(){
-        spike1 = new Relay(0);
+        spike1 = new Relay(RobotMap.SPIKE1_RELAY_ID);
+        spike2 = new Relay(RobotMap.SPIKE2_RELAY_ID);
+        servoLeft = new Servo(RobotMap.SERVO_LEFT);
+        servoRight = new Servo(RobotMap.SERVO_RIGHT);
+    }
+    
+    public void suckerUp() {
+       // servoRight.set(0);
+       // servoLeft.set(1);
+       spike1.set(Value.kOff);
+       spike2.set(Value.kOff);
 
     }
-    public void off(){
-        System.out.println("off!");
-        spike1.set(Value.kOff);
-        //spike2.set(Value.kOff);
-    }
 
-    public void on(){
-        System.out.println("on!");
-        spike1.set(Value.kOn);
-        //spike2.set(Value.kOn);
+    public void suckerDown() {
+     //   servoRight.set(0);
+      //  servoLeft.set(1);
+      spike1.set(Value.kOn);
+      spike2.set(Value.kOn);
+        
     }
+    
+
+
 
 	@Override
 	protected void initDefaultCommand() {

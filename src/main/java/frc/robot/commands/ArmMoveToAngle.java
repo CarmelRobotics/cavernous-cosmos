@@ -4,47 +4,61 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+
 package frc.robot.commands;
 
-import frc.robot.OI;
-import frc.robot.subsystems.Vacuum;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.subsystems.LifterArm;
 
-public class SuccOff extends Command {
-  private static Vacuum vac;
-  public static OI oi;
-  public SuccOff() {
-    vac = new Vacuum();
+public class ArmMoveToAngle extends Command {
+
+  private LifterArm arm;
+
+  public ArmMoveToAngle() {
+
+    arm = Robot.arm;
+    
+		requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-      vac.initialize();
+    //Starting pos
+    arm.atBottom = false;
+    arm.atAngle = false;
+    arm.atTop= true;
   }
-  
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    vac.off();
+    if(arm.getTopSwitch() == true) {
+    arm.moveMotorForward();
+    }
+
+    else {
+      arm.moveMotorReverse();
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return arm.getAngleSwitch();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-
+    arm.armStop();
   }
+
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
   }
 }
-*/

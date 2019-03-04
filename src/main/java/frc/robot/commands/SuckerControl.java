@@ -6,27 +6,41 @@
 /*----------------------------------------------------------------------------*/
 package frc.robot.commands;
 
-import frc.robot.OI;
-import frc.robot.subsystems.Vacuum;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.subsystems.Vacuum;
 
-public class SuccOn extends Command {
+
+
+
+public class SuckerControl extends Command {
   private static Vacuum vac;
-  public static OI oi;
-  public SuccOn() {
-    vac = new Vacuum();
+
+  public SuckerControl() {
+  
+    vac = Robot.vac;
+
+    requires(vac);
+
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-      vac.initialize();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    vac.on();
+
+    if(vac.spike1.get() == vac.spike1.get().kOff) {
+    vac.suckerUp();
+    }
+
+    else {
+      vac.suckerDown();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,8 +52,8 @@ public class SuccOn extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-
   }
+
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override

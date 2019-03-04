@@ -7,48 +7,49 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
-import frc.robot.subsystems.WheelDropper;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.subsystems.LifterArm;
 
-public class WheelDown extends Command {
-  private  WheelDropper wDrop;
-  public WheelDown() {
-    wDrop = Robot.dropper;
+public class ArmMoveToBottom extends Command {
+  private LifterArm arm;
 
+  public ArmMoveToBottom() {
 
-    requires(wDrop);
+    arm = Robot.arm;
+    
+		requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //Starting pos
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    wDrop.down();
+    
+    arm.moveMotorReverse();
+  
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return arm.getGroundSwitch();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-
-    wDrop.stop();
-
+    arm.armStop();
   }
+
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    wDrop.stop();
-
   }
 }

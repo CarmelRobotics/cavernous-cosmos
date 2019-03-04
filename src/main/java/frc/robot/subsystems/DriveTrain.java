@@ -1,87 +1,204 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
 
+
+
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+import com.revrobotics.CANEncoder;
+
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.SpeedController;
+
+import edu.wpi.first.wpilibj.VictorSP;
+
+import edu.wpi.first.wpilibj.Talon;
+
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import frc.robot.commands.MoveDriveTrainRotations;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+
+
+import edu.wpi.first.wpilibj.PWMTalonSRX;
+import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.Spark;
+
+
 
 
 
 public class DriveTrain extends Subsystem {
-  private static CANSparkMax brSpark;
-  private static CANSparkMax blSpark;
-  private static CANSparkMax frSpark;
-  private static CANSparkMax flSpark;
 
-  private static CANSparkMax midSpark;
 
-  private static SpeedControllerGroup sparkGroupLeft;
-  private static SpeedControllerGroup sparkGroupRight;
+	//Declaring Joysticks
+	private static Joystick jStick_A;
+	private static Joystick jStick_B;
 
-  private static DifferentialDrive drive;
+	//Declaring Speed Controllers (Sparks)
+    private CANSparkMax motorFLeft;
+    private CANSparkMax motorBLeft;
+    private CANSparkMax motorFRight;
+	private CANSparkMax motorBRight;
+	private CANSparkMax motorMiddle;
+	private SpeedController motorElevator;
+	
+	//Drive Train Encoders
+	private CANEncoder motorFLeftEncoder;
+	private CANEncoder motorBLeftEncoder;
+	private CANEncoder motorBRightEncoder;
+	private CANEncoder motorFRightEncoder;
+	private CANEncoder motorMiddleEncoder;
+	//Declaring Speed Controller Groups
+    private SpeedControllerGroup motorLeft;
+    private SpeedControllerGroup motorRight;
 
-  private static Joystick jStick_A;
-  private static Joystick jStick_B;
+	//Declaring Drive
+	private DifferentialDrive drive;
 
-  public DriveTrain(){
-    super("Drive Train");
-    brSpark = new CANSparkMax(RobotMap.CAN_ID_BACK_RIGHT, MotorType.kBrushless);
-    blSpark = new CANSparkMax(RobotMap.CAN_ID_BACK_LEFT, MotorType.kBrushless);
-    frSpark = new CANSparkMax(RobotMap.CAN_ID_FRONT_RIGHT, MotorType.kBrushless);
-    flSpark = new CANSparkMax(RobotMap.CAN_ID_BACK_LEFT, MotorType.kBrushless);
+	private DoubleSolenoid gearShift;
 
-    midSpark = new CANSparkMax(RobotMap.CAN_ID_DROPWHEEL, MotorType.kBrushless);
 
-    sparkGroupLeft = new SpeedControllerGroup(blSpark, flSpark);
-    sparkGroupRight = new SpeedControllerGroup(brSpark, frSpark);
 
-    drive = new DifferentialDrive(sparkGroupLeft, sparkGroupRight);
 
-    jStick_A = RobotMap.JOYSTICK_A;
-    jStick_B = RobotMap.JOYSTICK_B;
+	//Old. Only use if new doesn't work
+	//private DifferentialDrive drive2;
+	
+	//How to declare encoder
+	//private CANEncoder encoder;
 
-  }
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
+    public DriveTrain() {
 
-  /**
-   * The 4-Wheel drive method of the robot
-   */
-  public void mainDrive(){
-    drive.arcadeDrive(jStick_A.getX(), jStick_A.getY());
+    	super("Drive Train");
+		
 
-  }
+		//Contructing Joysticks
+    	jStick_A = new Joystick(RobotMap.JOYSTICK_A_ID);
+		jStick_B = new Joystick(RobotMap.JOYSTICK_B_ID);
 
-  /**
-   * Used to drive the mid wheel of the robot
-   */
-  public void slideDrive(){
-    drive.arcadeDrive(jStick_A.getX(), jStick_A.getY());
-    midSpark.set(jStick_B.getY());
-  }
+		//Contructing Spark Motors
+		motorFLeft = new CANSparkMax (RobotMap.CAN_ID_FRONT_LEFT,MotorType.kBrushless);
+		motorFRight = new CANSparkMax (RobotMap.CAN_ID_FRONT_RIGHT,MotorType.kBrushless);
+		motorBLeft = new CANSparkMax (RobotMap.CAN_ID_BACK_LEFT,MotorType.kBrushless);
+		motorBRight = new CANSparkMax (RobotMap.CAN_ID_BACK_RIGHT,MotorType.kBrushless);
+		motorMiddle = new CANSparkMax(RobotMap.CAN_ID_DROPWHEEL,MotorType.kBrushless);
+		motorElevator = new CANSparkMax(RobotMap.CAN_ID_ELEVATOR,MotorType.kBrushless);
+		
 
-  public void set4Wheel(double velocity, double rotation){
-    drive.arcadeDrive(velocity, rotation);
-  }
+		//Contructing Spark Motor Groups
+    	motorLeft = new SpeedControllerGroup(motorFLeft, motorBLeft);
+    	motorRight = new SpeedControllerGroup(motorFRight, motorBRight);
 
-  public void setSlide(double velocity){
-    midSpark.set(velocity);
-  }
+
+		//Constructing the DriveTrain out of Spark Motor Groups
+		drive = new DifferentialDrive(motorLeft, motorRight);
+		
+		//Constructing Solenoid
+		
+    	//gearShift = new DoubleSolenoid(RobotMap.SOLE_GEARSHIFT_HIGH, RobotMap.SOLE_GEARSHIFT_LOW);
+
+
+		//Use to get encoder
+		//encoder = motorTest.getEncoder();
+
+		//Old. Only use if other drive system does't work
+    	//drive = new DifferentialDrive(motorLeft, motorLeft);
+		//drive2 = new DifferentialDrive(motorRight, motorRight);
+	
+    }
+
+
+
+	@Override
+
+	protected void initDefaultCommand() {
+
+		// TODO Auto-generated method stub
+
+		
+
+	}
+ 
+	public void arcadeDrive() {
+
+
+		drive.arcadeDrive(-jStick_A.getY(), jStick_A.getX(), true);
+
+
+		//Old. Only use if new doesn't work
+		//Left Side
+		//The negatives on this side make sure that the motors are spinning the opposite direction of the right side.
+		//drive.arcadeDrive(-stick.getX(), -stick.getY(), true);
+		//right side
+		//The negative stick x makes sure the robot turns in the right direction
+		//drive2.arcadeDrive(-stick.getX(), stick.getY(), true);
+
+	
+		//Printing Encoder values
+		//System.out.println("Encoder Position" + encoder.getPosition());
+		//System.out.println("Encoder Velocity" + encoder.getVelocity());
+
+	}
+
+
+
+	public void slideDrive(){
+
+		//First param is ALWAYS getY. Wheels will seem to spin opposite directions if X is first
+		drive.arcadeDrive(-jStick_A.getY(), jStick_A.getZ());
+	
+		//motorMiddle.setIdleMode(IdleMode.kCoast);
+	//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
+		motorMiddle.set(jStick_A.getX());
+
+	
+	
+	  }
+
+	  public void set4Wheel(double velocity, double rotation){
+		drive.arcadeDrive(velocity, rotation);
+	  }
+	
+	  public void setSlide(double velocity){
+		motorMiddle.set(velocity);
+	  }
+
+	  public void gearshiftHigh() {
+		gearShift.set(DoubleSolenoid.Value.kForward);
+
+	}
+
+	public void gearshiftLow() {
+
+		gearShift.set(DoubleSolenoid.Value.kReverse);
+
+	}
+
+
+	public void moveAccordingToRotations(double rotations) {
+
+	Command moveDistance = new MoveDriveTrainRotations(rotations);
+		
+		moveDistance.start();
+
+	}
+
+
+
+
+
+
 
 }

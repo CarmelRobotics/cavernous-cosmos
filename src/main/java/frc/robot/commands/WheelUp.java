@@ -8,12 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 import frc.robot.subsystems.WheelDropper;
 
 public class WheelUp extends Command {
-  private static WheelDropper wDrop;
+  private  WheelDropper wDrop;
   public WheelUp() {
-    wDrop = new WheelDropper();
+    wDrop = Robot.dropper;
+
+    requires(wDrop);
   }
 
   // Called just before this Command runs the first time
@@ -24,6 +27,7 @@ public class WheelUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    
     wDrop.up();
   }
 
@@ -36,11 +40,14 @@ public class WheelUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    wDrop.stop();
 
   }
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    wDrop.stop();
+
   }
 }
