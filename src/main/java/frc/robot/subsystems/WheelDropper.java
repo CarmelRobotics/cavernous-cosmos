@@ -18,7 +18,7 @@ public class WheelDropper extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   // Somebody once told me
-  
+
   //Declaring Solenoid
   private DoubleSolenoid dropper;
 
@@ -33,24 +33,24 @@ public class WheelDropper extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  
+
 //Wheel is initally up so forward puts it down in place
-  public void down(){ 
+  public void down(){
     dropper.set(DoubleSolenoid.Value.kForward);
     RobotMap.WHEEL_DROPPED = true;
   }
 //Wheel is initally up so reverse puts it back in place
-  public void up(){ 
+  public void up(){
 
     dropper.set(DoubleSolenoid.Value.kReverse);
     RobotMap.WHEEL_DROPPED = false;
   }
 
-  public void stop(){ 
+  public void stop(){
     dropper.set(DoubleSolenoid.Value.kOff);
-  
+
   }
 
-  
- 
+
+
 }

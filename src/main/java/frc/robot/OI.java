@@ -32,12 +32,12 @@ public class OI {
     public static Button changeArmAngleTo0;
     public static Button changeArmAngleTo1;
     public static Button changeArmAngleTo2;
-  
+
   /*Joysticks */
     private static Joystick jStick_A;
     private static Joystick jStick_B;
- 
-  
+
+
   public static void initialize() {
     /* Joystick inits */
       jStick_A = RobotMap.JOYSTICK_A;
@@ -57,18 +57,18 @@ public class OI {
       /* Elevator */
         jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
         jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
-        
+
         gearshift = RobotMap.GEARSHIFT;
 
       /* Buttons */
         wheelUp.whenPressed(new WheelUp());
         wheelDown.whenPressed(new WheelDown());
-      
+
         SuckerControl.whenPressed(new SuckerControl());
-      
+
       /* DriveTrain */
         gearshift.whenPressed(new Gearshift());
-      
+
       /* LifterArm */
         changeArmAngleTo0.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_0));
         changeArmAngleTo1.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_1));

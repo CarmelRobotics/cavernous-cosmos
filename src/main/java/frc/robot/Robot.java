@@ -41,11 +41,12 @@ public class Robot extends TimedRobot {
   public static WheelDropper dropper;
   public static CompressorA compressor;
   public static LifterArm arm;
+
 //Changes
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   private static DriveTrain drive;
-public static DriveTrain m_dt;
+  public static DriveTrain m_dt;
 
   @Override
   public void robotInit() {
