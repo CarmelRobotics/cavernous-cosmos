@@ -4,15 +4,12 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Relay.Value;
-
 /**
  * Compressor for the pneumatics.
  */
@@ -21,7 +18,6 @@ public class Vacuum extends Subsystem {
     public Relay spike2;
     private Servo servoLeft;
     private Servo servoRight;
-
 
     public Vacuum() {
         spike1 = new Relay(RobotMap.SPIKE1_RELAY_ID);
@@ -35,9 +31,7 @@ public class Vacuum extends Subsystem {
        // servoLeft.set(1);
        spike1.set(Value.kOff);
        spike2.set(Value.kOff);
-
     }
-
     public void suckerDown() {
      //   servoRight.set(0);
       //  servoLeft.set(1);
@@ -46,8 +40,6 @@ public class Vacuum extends Subsystem {
         
     }
     
-
-
 
 	@Override
 	protected void initDefaultCommand() {

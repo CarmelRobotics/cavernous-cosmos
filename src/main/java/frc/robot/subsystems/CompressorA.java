@@ -4,20 +4,16 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Compressor;
 import frc.robot.RobotMap;
-
 /**
  * Compressor for the pneumatics.
  */
 public class CompressorA extends Subsystem {
 	
 	private static Compressor compress;
-
 	/**
 	 * Creates a new Compressor Subsystem<br>
 	 * Initializes wpilib Compressor<br>
@@ -48,9 +44,7 @@ public class CompressorA extends Subsystem {
         }
 	}
 
-
 	@Override
 	protected void initDefaultCommand() {
-
 	}
 }
