@@ -76,8 +76,8 @@ public class RobotMap {
   /*Arm */
     public static final int ANGLER_ID = 6;
     public static final int ARM_STARTING_POSITION = 0; //17158 //raw sensor units
-    public static final double ARM_POSITION_0 = 0; // 0 degrees on arm gear 
-    public static final double ARM_POSITION_1 = 548; // 20 degrees on arm gear 
+    public static final double ARM_POSITION_0 = 0; // 0 degrees on arm gear
+    public static final double ARM_POSITION_1 = 548; // 20 degrees on arm gear
     public static final double ARM_POSITION_2 = 1508; // 55 degrees on arm gear
 
 
@@ -132,11 +132,11 @@ public class RobotMap {
   };
 
   /* Values for the elevator */
-  public static final int ELEV_LO_PANEL = 0;
-  public static final int ELEV_LO_FUEL = 1;
-  public static final int ELEV_MI_PANEL = 2;
-  public static final int ELEV_MI_FUEL = 3;
-  public static final int ELEV_HI_PANEL = 4;
-  public static final int ELEV_HI_FUEL = 5;
+    public static final int ELEV_LO_PANEL = 0;
+    public static final int ELEV_LO_FUEL = 1;
+    public static final int ELEV_MI_PANEL = 2;
+    public static final int ELEV_MI_FUEL = 3;
+    public static final int ELEV_HI_PANEL = 4;
+    public static final int ELEV_HI_FUEL = 5;
 
 }

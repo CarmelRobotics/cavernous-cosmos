@@ -18,8 +18,11 @@ public class MoveElevatorSetMotor extends Command {
   public MoveElevatorSetMotor(double rotations) {
 
     el = Robot.m_el;
+
+    //accounting for gear ratio
     totalMovement = rotations * 36;
 
+    //variable to easily check if movement is up or down
     if (totalMovement >= 0)
       isMovementPositive = true;
     else
@@ -32,7 +35,8 @@ public class MoveElevatorSetMotor extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
+    
+    //starting height is the current encoder value minus the encoder value read as zero at the beginning of operation; current relative value
     startingHeight = el.getElevatorActualEncoderPos() - el.getRelativeZero();
     heightOfTarget = startingHeight + totalMovement;
   }
@@ -40,6 +44,7 @@ public class MoveElevatorSetMotor extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    //current height is derived the same way as starting height but is called every time execute() runs
     double currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
     double movementRemaining = heightOfTarget - currentRelativePos;
 

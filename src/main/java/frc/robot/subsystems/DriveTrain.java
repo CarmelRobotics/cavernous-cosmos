@@ -122,14 +122,14 @@ public class DriveTrain extends Subsystem {
 	
 	
 	  }
-	  public void set4Wheel(double velocity, double rotation){
+	public void set4Wheel(double velocity, double rotation){
 		drive.arcadeDrive(velocity, rotation);
-	  }
+	}
 	
-	  public void setSlide(double velocity){
+	public void setSlide(double velocity){
 		motorMiddle.set(velocity);
-	  }
-	  public void gearshiftHigh() {
+  	}
+	public void gearshiftHigh() {
 		gearShift.set(DoubleSolenoid.Value.kForward);
 	}
 	public void gearshiftLow() {
