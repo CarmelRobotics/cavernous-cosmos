@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    m_ir = new IRSystem();
+   // m_ir = new IRSystem();
 	driver = new DriveTrain();
   //  m_us = new Ultrasound();
     m_el = new Elevator();

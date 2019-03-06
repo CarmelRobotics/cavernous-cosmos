@@ -44,37 +44,36 @@ public class OI {
       jStick_B = RobotMap.JOYSTICK_B;
 
     /* Button inits */
-      /* Middle Wheel */
+      //Middle Wheel
         wheelUp = RobotMap.WHEEL_UP;
         wheelDown = RobotMap.WHEEL_DOWN;
         suckerControl = RobotMap.SUCC_CONTROL;
      
-      /* Lifterarm */
+      // Lifterarm
         changeArmAngleTo0 = RobotMap.CHANGE_ARM_ANGLE_0;
         changeArmAngleTo1 = RobotMap.CHANGE_ARM_ANGLE_1;
         changeArmAngleTo2 = RobotMap.CHANGE_ARM_ANGLE_2;
 
-      /* Elevator */
+      // Elevator
         jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
         jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
-
         gearshift = RobotMap.GEARSHIFT;
 
-      /* Buttons */
+      // Buttons
         wheelUp.whenPressed(new WheelUp());
         wheelDown.whenPressed(new WheelDown());
 
-        SuckerControl.whenPressed(new SuckerControl());
+        suckerControl.whenPressed(new SuckerControl());
 
-      /* DriveTrain */
+      // DriveTrain
         gearshift.whenPressed(new Gearshift());
 
-      /* LifterArm */
+      // LifterArm
         changeArmAngleTo0.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_0));
         changeArmAngleTo1.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_1));
         changeArmAngleTo2.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_2));
 
-      /* Elevator Commands */
+      // Elevator Commands
         jst_button_elevup.whileHeld(new MoveElevatorManual(1));
         jst_button_elevdown.whileHeld(new MoveElevatorManual(-1));
   }

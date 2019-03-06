@@ -24,7 +24,7 @@ public class WheelDropper extends Subsystem {
 
   public WheelDropper() {
     //Constructing Solenoid
-    dropper = new DoubleSolenoid(RobotMap.DROP_PCM_ID_UP, RobotMap.DROP_PCM_ID_DOWN);
+    dropper = new DoubleSolenoid(RobotMap.WHEELDROP_PCM_ID_UP, RobotMap.WHEELDROP_PCM_ID_DOWN);
   //  dropper = new DoubleSolenoid(RobotMap.DROP_PCM_ID_DOWN, RobotMap.DROP_PCM_ID_UP);
   }
 
