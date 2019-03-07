@@ -66,7 +66,7 @@ public class OI {
         suckerControl.whenPressed(new SuckerControl());
 
       // DriveTrain
-        gearshift.whenPressed(new Gearshift());
+        gearshift.whileHeld(new Gearshift());
 
       // LifterArm
         changeArmAngleTo0.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_0));

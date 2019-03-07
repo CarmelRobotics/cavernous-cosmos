@@ -20,24 +20,24 @@ public class Vacuum extends Subsystem {
     private Servo servoRight;
 
     public Vacuum() {
-        spike1 = new Relay(RobotMap.RELAY_SPIKE_LEFT);
-        spike2 = new Relay(RobotMap.RELAY_SPIKE_RIGHT);
-        servoLeft = new Servo(RobotMap.PWM_SERVO_LEFT);
-        servoRight = new Servo(RobotMap.PWM_SERVO_RIGHT);
+       // spike1 = new Relay(RobotMap.RELAY_SPIKE_LEFT);
+       // spike2 = new Relay(RobotMap.RELAY_SPIKE_RIGHT);
+       // servoLeft = new Servo(RobotMap.PWM_SERVO_LEFT);
+       // servoRight = new Servo(RobotMap.PWM_SERVO_RIGHT);
     
     }
     
     public void suckerUp() {
        // servoRight.set(0);
        // servoLeft.set(1);
-       spike1.set(Value.kOff);
-       spike2.set(Value.kOff);
+       //spike1.set(Value.kOff);
+       //spike2.set(Value.kOff);
     }
     public void suckerDown() {
      //   servoRight.set(0);
       //  servoLeft.set(1);
-      spike1.set(Value.kOn);
-      spike2.set(Value.kOn);
+      //spike1.set(Value.kOn);
+      //spike2.set(Value.kOn);
         
     }
     

@@ -14,8 +14,8 @@ public class SuckerControl extends Command {
   private static Vacuum vac;
   public SuckerControl() {
   
-    vac = Robot.vac;
-    requires(vac);
+    //vac = Robot.vac;
+    //requires(vac);
 
   }
   // Called just before this Command runs the first time
@@ -25,12 +25,12 @@ public class SuckerControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(vac.spike1.get() == vac.spike1.get().kOff) {
-    vac.suckerUp();
-    }
-    else {
-      vac.suckerDown();
-    }
+    //if(vac.spike1.get() == vac.spike1.get().kOff) {
+    //vac.suckerUp();
+    //}
+    //else {
+    //  vac.suckerDown();
+    //}
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override

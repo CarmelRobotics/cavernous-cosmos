@@ -20,20 +20,20 @@ public class RobotMap {
     public static boolean WHEEL_DROPPED = false;
 
   /* Joystick Button IDs*/
-    public static final int BUTTON_ID_WHEEL_UP = 0;
-    public static final int BUTTON_ID_WHEEL_DOWN = 0;
-    public static final int BUTTON_ID_GEARSHIFT = 0;
+    public static final int BUTTON_ID_WHEEL_UP = 3;
+    public static final int BUTTON_ID_WHEEL_DOWN = 4;
+    public static final int BUTTON_ID_GEARSHIFT = 1;
 
-    public static final int BUTTON_ID_SUCC_CONTROL = 0;
-    public static final int BUTTON_ID_SUCC_UP = 0;
-    public static final int BUTTON_ID_SUCC_DOWN = 0;
+    public static final int BUTTON_ID_SUCC_CONTROL = 5;
+    public static final int BUTTON_ID_SUCC_UP = 11;
+    public static final int BUTTON_ID_SUCC_DOWN = 12;
 
-    public static final int BUTTON_ID_CHANGE_ARM_ANGLE_0 = 0;
-    public static final int BUTTON_ID_CHANGE_ARM_ANGLE_1 = 0;
-    public static final int BUTTON_ID_CHANGE_ARM_ANGLE_2 = 0;
+    public static final int BUTTON_ID_CHANGE_ARM_ANGLE_0 = 8;
+    public static final int BUTTON_ID_CHANGE_ARM_ANGLE_1 = 9;
+    public static final int BUTTON_ID_CHANGE_ARM_ANGLE_2 = 10;
 
-    public static final int BUTTON_ID_ELEV_UP_BUTTON = 0;
-    public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 0;
+    public static final int BUTTON_ID_ELEV_UP_BUTTON = 6;
+    public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 7;
 
   /* Spark CAN IDs */
     public static final int CAN_ID_FRONT_RIGHT = 3;
@@ -48,6 +48,7 @@ public class RobotMap {
     public static final int PWM_ROLLER_OUTER = 1;
     public static final int PWN_ARM_ACTUATOR = 2;
     public static final int PWM_PUMP_1 = 3;
+
     public static final int PWM_PUMP_2 = 4;
     public static final int PWM_SERVO_LEFT = 8;
     public static final int PWM_SERVO_RIGHT = 9;
@@ -68,8 +69,8 @@ public class RobotMap {
     public static final int ULTRASOUND_OUT = 0;
 
   /* Pneumatic Control IDs */
-    public static final int WHEELDROP_PCM_ID_UP = 2;
-    public static final int WHEELDROP_PCM_ID_DOWN = 3;
+    public static final int WHEELDROP_PCM_ID_UP = 3;
+    public static final int WHEELDROP_PCM_ID_DOWN = 2;
     public static final int SOLE_GEARSHIFT_LOW = 0;
     public static final int SOLE_GEARSHIFT_HIGH = 1;
 
