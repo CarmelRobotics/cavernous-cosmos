@@ -81,7 +81,7 @@ public class DriveTrain extends Subsystem {
 		
 		//Constructing Solenoid
 		
-    	//gearShift = new DoubleSolenoid(RobotMap.SOLE_GEARSHIFT_HIGH, RobotMap.SOLE_GEARSHIFT_LOW);
+    	gearShift = new DoubleSolenoid(RobotMap.SOLE_GEARSHIFT_HIGH, RobotMap.SOLE_GEARSHIFT_LOW);
 
 		//Use to get encoder
 		//encoder = motorTest.getEncoder();
