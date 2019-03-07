@@ -32,8 +32,8 @@ public class RobotMap {
     public static final int BUTTON_ID_CHANGE_ARM_ANGLE_1 = 0;
     public static final int BUTTON_ID_CHANGE_ARM_ANGLE_2 = 0;
 
-    public static final int BUTTON_ID_ELEV_UP_BUTTON = 0;
-    public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 0;
+    public static final int BUTTON_ID_ELEV_UP_BUTTON = 3;
+    public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 4;
 
   /* Spark CAN IDs */
     public static final int CAN_ID_FRONT_RIGHT = 3;

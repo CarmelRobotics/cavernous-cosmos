@@ -20,12 +20,10 @@ private DriveTrain drt;
 
 private double totalDistance;
   public MoveDriveTrainRotations(double rotations) {
-    
     drt = Robot.driver;
     requires(drt);
 
     totalDistance = rotations * 36;
-
 
   }
 
