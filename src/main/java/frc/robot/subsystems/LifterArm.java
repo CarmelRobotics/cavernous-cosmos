@@ -18,13 +18,13 @@ public class LifterArm extends Subsystem {
 	private boolean hasNotMoved;
 
   //Limit Switches
-  private DigitalInput groundSwitch;
-  private DigitalInput angleSwitch;
-  private DigitalInput topSwitch;
+  	private DigitalInput groundSwitch;
+  	private DigitalInput angleSwitch;
+  	private DigitalInput topSwitch;
   //Position Tellers
-  public Boolean atBottom;
-  public Boolean atAngle;
-  public Boolean atTop;
+  	public Boolean atBottom;
+  	public Boolean atAngle;
+  	public Boolean atTop;
 
 	public LifterArm() {
 
@@ -43,12 +43,12 @@ public class LifterArm extends Subsystem {
 	}
 
 
-public void moveMotorForward() {
-  angler.set(ControlMode.PercentOutput, 1);
-}
-public void moveMotorReverse() {
-  angler.set(ControlMode.PercentOutput, -1);
-}
+	public void moveMotorForward() {
+  	angler.set(ControlMode.PercentOutput, 1);
+	}
+	public void moveMotorReverse() {
+  	angler.set(ControlMode.PercentOutput, -1);
+	}
 
 
 	public boolean armChangeAngle(double desiredPos) { //This method serves to change the arm's angle to any given angle

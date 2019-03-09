@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.ResetElevator;
-import frc.robot.subsystems.CompressorA;
+import frc.robot.commands.elevator.ResetElevator;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.IRSystem;
@@ -39,7 +38,7 @@ public class Robot extends TimedRobot {
   public static Elevator m_el;
   public static Vacuum vac;
   public static WheelDropper dropper;
-  public static CompressorA compressor;
+  public static Compressor compressor;
   public static LifterArm arm;
 
 //Changes
@@ -52,19 +51,18 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
    // m_ir = new IRSystem();
-	driver = new DriveTrain();
+	  driver = new DriveTrain();
   //  m_us = new Ultrasound();
     m_el = new Elevator();
-	oi = new OI();
+	  oi = new OI();
 
     SmartDashboard.putData("Auto mode", m_chooser);
     drive = new DriveTrain();
-   vac = new Vacuum();
+    vac = new Vacuum();
     dropper = new WheelDropper();
-    compressor = new CompressorA();
-
+    compressor = new Compressor(RobotMap.COMPRESSER_ID);
     arm = new LifterArm();
-    OI.initialize();
+    OI.initialize(); //Calls the init method from the OI class
   }
   @Override
   public void robotPeriodic() {
@@ -101,7 +99,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //System.out.println(m_ir.getLeftIR());
-  //  compressor.checkPressure();
+  
     Scheduler.getInstance().run();
     //m_el.testMotor(0.1);
   //  System.out.println("Elevator encoder value: " + m_el.getElevatorActualEncoderPos());

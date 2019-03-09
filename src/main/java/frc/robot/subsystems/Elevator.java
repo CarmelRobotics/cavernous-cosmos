@@ -44,7 +44,6 @@ public class Elevator extends Subsystem {
         timesMoved = 0;
         relativeZero = 0;
     
-
         // PID coefficients
         kP = 0.1;  //originally 0.1
         kI = 1e-4; //originally 1e-4

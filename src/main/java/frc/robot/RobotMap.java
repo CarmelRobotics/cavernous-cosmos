@@ -20,6 +20,7 @@ public class RobotMap {
     public static boolean WHEEL_DROPPED = false;
 
   /* Joystick Button IDs*/
+  //BUTTONS MUST NOT BE SET TO 0. THIS WILL CAUSE AN ERROR.
     public static final int BUTTON_ID_WHEEL_UP = 3;
     public static final int BUTTON_ID_WHEEL_DOWN = 4;
     public static final int BUTTON_ID_GEARSHIFT = 1;
@@ -34,6 +35,10 @@ public class RobotMap {
 
     public static final int BUTTON_ID_ELEV_UP_BUTTON = 6;
     public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 7;
+
+  /* Guitar Buttons */
+
+
 
   /* Spark CAN IDs */
     public static final int CAN_ID_FRONT_RIGHT = 3;
@@ -74,6 +79,8 @@ public class RobotMap {
     public static final int SOLE_GEARSHIFT_LOW = 0;
     public static final int SOLE_GEARSHIFT_HIGH = 1;
 
+    public static final int COMPRESSER_ID = 0;
+
   /*Arm */
     public static final int ANGLER_ID = 6;
     public static final int ARM_STARTING_POSITION = 0; //17158 //raw sensor units
@@ -81,13 +88,30 @@ public class RobotMap {
     public static final double ARM_POSITION_1 = 548; // 20 degrees on arm gear
     public static final double ARM_POSITION_2 = 1508; // 55 degrees on arm gear
 
+  /* Arm DIO */
+    public static final int POSITION_90_LIMIT_ID = 0;
+    public static final int POSITION_0_LIMIT_ID = 0;
 
 
+    /* Ball-Intake PWMs */
+    public static final int[] INTAKE_IDs = {
+      0,
+      1,
+      2,
+      3
+    };
+
+  /* Ball Intake DIO */
+  public static final int INTAKE_LIMIT_ID = 0;
+
+  /*  Elevator DIO */
+  public static final int POSITION_1_LIMIT_ID = 0;
+  public static final int POSITION_2_LIMIT_ID = 0;
   /* Joysticks */
     public static final int JOYSTICK_A_ID = 0;
     public static final Joystick JOYSTICK_A = new Joystick(JOYSTICK_A_ID);
-    public static final int JOYSTICK_B_ID = 1;
-    public static final Joystick JOYSTICK_B = new Joystick(JOYSTICK_B_ID);
+    public static final int GUITAR_ID = 1;
+    public static final Joystick GUITAR = new Joystick(GUITAR_ID);
 
   /* Joystick Button */
     //Drive Train

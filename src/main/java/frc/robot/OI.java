@@ -9,6 +9,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.buttons.Button;
 
 import frc.robot.commands.*;
+import frc.robot.commands.arm.ArmChangePosition;
+import frc.robot.commands.drivetrain.Gearshift;
+import frc.robot.commands.drivetrain.WheelDown;
+import frc.robot.commands.drivetrain.WheelUp;
+import frc.robot.commands.elevator.MoveElevatorManual;
+import frc.robot.commands.intake.IntakeIn;
+import frc.robot.commands.intake.IntakeOut;
+import frc.robot.commands.vacuum.SuckerControl;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -28,10 +36,11 @@ public class OI {
     private static Button jst_button_elevup;
     private static Button jst_button_elevdown;
     private static Button gearshift;
-    private static Button gearshiftDown;
     public static Button changeArmAngleTo0;
     public static Button changeArmAngleTo1;
     public static Button changeArmAngleTo2;
+    private static Button intakeSpit;
+    private static Button intakeSuck;
 
   /*Joysticks */
     private static Joystick jStick_A;
@@ -41,7 +50,7 @@ public class OI {
   public static void initialize() {
     /* Joystick inits */
       jStick_A = RobotMap.JOYSTICK_A;
-      jStick_B = RobotMap.JOYSTICK_B;
+      jStick_B = RobotMap.GUITAR;
 
     /* Button inits */
       //Middle Wheel
@@ -76,5 +85,9 @@ public class OI {
       // Elevator Commands
         jst_button_elevup.whileHeld(new MoveElevatorManual(1.0));
         jst_button_elevdown.whileHeld(new MoveElevatorManual(-1.0));
+
+      // Intake Commands
+        intakeSuck.whileHeld(new IntakeIn());
+        intakeSpit.whileHeld(new IntakeOut());
   }
 }

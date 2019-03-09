@@ -4,50 +4,60 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
-package frc.robot.commands;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.LifterArm;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.Elevator;
 
-public class ArmManualLower extends Command {
+public class MoveElevatorPos extends Command {
 
-  private LifterArm arm;
-  public ArmManualLower() {
-    super("ArmChangePosition");
-		arm = Robot.arm;
-		
-		requires(Robot.arm);
+  private Elevator el;
+
+  private int goal;
+  private double heightOfTarget;
+
+  public MoveElevatorPos(int desiredPos) {
+
+    el = Robot.m_el;
+    goal = desiredPos;
+
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    heightOfTarget = convertInToRot(RobotMap.ELEV_INCHES[goal]);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    arm.manualLowerAngle();
+    double currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
+    el.setElevatorMovement(heightOfTarget - currentRelativePos);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    arm.armStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    arm.armStop();
+  }
+
+  private double convertInToRot(double inches) {
+    return inches*1; //insert conversion math here
   }
 }

@@ -5,22 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.subsystems.Elevator;
+import edu.wpi.first.wpilibj.DigitalInput;
 
-public class MoveElevatorManual extends Command {
+import frc.robot.subsystems.BallIntake;
+import frc.robot.RobotMap;
 
-private Elevator el;
-private double elValue;
-  public MoveElevatorManual(double value) {
-  
-  el = Robot.m_el;
-  requires(el);
-  elValue = value;
-  
+public class IntakeIn extends Command {
+
+  private BallIntake bi;
+
+  public IntakeIn() {
+    requires(bi);
+    bi = new BallIntake();
+    ls = new DigitalInput(RobotMap.INTAKE_LIMIT_ID);
   }
 
   // Called just before this Command runs the first time
@@ -31,26 +31,24 @@ private double elValue;
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    el.manual(elValue);
-    System.out.println("Manual Arm command" + elValue);
+    bi.intakeIn();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return !ls.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    el.manualStop();
+    bi.intakeOff();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    el.manualStop();
   }
 }

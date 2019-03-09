@@ -31,15 +31,15 @@ public class Vacuum extends Subsystem {
     public void suckerUp() {
         isSuckerStart = true;
         isSuckerDown = false;
-        servoRight.set(1);
-        servoLeft.set(0);
+        servoRight.set(1); //Start position for the robot
+        servoLeft.set(0);  //Start position for the robot
        //spike1.set(Value.kOff);
        //spike2.set(Value.kOff);
     }
     public void suckerDown() {
         isSuckerStart = false;
         isSuckerDown = true;
-        servoRight.set(0);
+        servoRight.set(0);  
         servoLeft.set(1);
       //spike1.set(Value.kOn);
       //spike2.set(Value.kOn);

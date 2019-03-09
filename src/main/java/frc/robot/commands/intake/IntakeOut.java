@@ -5,54 +5,40 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.subsystems.Elevator;
 
-public class MoveElevatorChangeLevelVariable extends Command {
+public class IntakeOut extends Command {
+  
+  private BallIntake bi;
 
-  private int level;
-  private Elevator el;
-
- /**
- * levels
- * 0: low elevator button pressed
- * 1: middle elevator button pressed
- * 2: high elevator button pressed
- */
-  public MoveElevatorChangeLevelVariable(int desiredLevel) {
-    
-    level = desiredLevel;
-
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  public IntakeOut() {
+    requires(bi);
+    bi = new BallIntake();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    el = Robot.m_el;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    el.setDesiredLevel(level);;
-
+    bi.intakeOut();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    bi.intakeOff();
   }
 
   // Called when another command which requires one or more of the same

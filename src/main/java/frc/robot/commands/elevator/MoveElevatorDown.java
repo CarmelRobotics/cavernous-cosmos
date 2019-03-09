@@ -5,51 +5,86 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.LifterArm;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.Elevator;
 
-public class ArmMoveToBottom extends Command {
-  private LifterArm arm;
+public class MoveElevatorDown extends Command {
 
-  public ArmMoveToBottom() {
 
-    arm = Robot.arm;
-    
-		requires(Robot.arm);
+
+  private Elevator el;
+
+  
+
+  private double heightOfTarget;
+
+  private double currentRelativePos;
+
+
+
+  public MoveElevatorDown() {
+
+
+
+    el = Robot.m_el;
+
+
+
+    // Use requires() here to declare subsystem dependencies
+
+    // eg. requires(chassis);
+
   }
 
+
+
   // Called just before this Command runs the first time
+
   @Override
+
   protected void initialize() {
-    //Starting pos
+
+    currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
+    double nearestLowerLevel = 0;
+
+    for (int i = 0; convertInToRot(RobotMap.ELEV_INCHES[i]) < currentRelativePos; i++)
+      nearestLowerLevel = convertInToRot(RobotMap.ELEV_INCHES[i]);
+
+    heightOfTarget = nearestLowerLevel;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    arm.moveMotorReverse();
-  
+    Command move = new MoveElevatorSetMotor(heightOfTarget - currentRelativePos);
+    move.start();
   }
+
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return arm.getGroundSwitch();
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    arm.armStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+
   }
+
+  private double convertInToRot(double inches) {
+    return inches*1; //insert conversion math here
+  }
+
 }

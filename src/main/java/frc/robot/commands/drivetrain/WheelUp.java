@@ -5,51 +5,49 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.LifterArm;
+import frc.robot.subsystems.WheelDropper;
 
-public class ArmMoveToTop extends Command {
-  private LifterArm arm;
+public class WheelUp extends Command {
+  private  WheelDropper wDrop;
+  public WheelUp() {
+    wDrop = Robot.dropper;
 
-  public ArmMoveToTop() {
-
-    arm = Robot.arm;
-    
-		requires(Robot.arm);
+    requires(wDrop);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //Starting pos
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     
-    arm.moveMotorForward();
-  
+    wDrop.up();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return arm.getTopSwitch();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    arm.armStop();
-  }
+    wDrop.stop();
 
+  }
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    wDrop.stop();
+
   }
 }
