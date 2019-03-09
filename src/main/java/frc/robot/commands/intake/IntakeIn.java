@@ -16,7 +16,7 @@ import frc.robot.RobotMap;
 public class IntakeIn extends Command {
 
   private BallIntake bi;
-
+  private DigitalInput ls;
   public IntakeIn() {
     requires(bi);
     bi = new BallIntake();
