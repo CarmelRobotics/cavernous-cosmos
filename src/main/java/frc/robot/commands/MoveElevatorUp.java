@@ -8,7 +8,7 @@ import frc.robot.subsystems.Elevator;
 public class MoveElevatorUp extends Command {
 
   private Elevator el;
-  
+  private Command move;
   private double heightOfTarget;
   private double currentRelativePos;
 
@@ -34,7 +34,7 @@ public class MoveElevatorUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Command move = new MoveElevatorSetMotor(heightOfTarget - currentRelativePos);
+    move = new MoveElevatorSetMotor(heightOfTarget - currentRelativePos);
     move.start();
   }
 
@@ -47,6 +47,7 @@ public class MoveElevatorUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    move.close();
   }
 
   // Called when another command which requires one or more of the same

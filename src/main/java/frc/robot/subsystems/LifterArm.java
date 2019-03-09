@@ -11,7 +11,7 @@ import frc.robot.RobotMap;
 
 
 public class LifterArm extends Subsystem {
-	
+
 	private WPI_TalonSRX angler;
 	private int startingPos;
 	private double currentPos;
@@ -35,7 +35,7 @@ public class LifterArm extends Subsystem {
 
 		angler.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		angler.setSelectedSensorPosition(RobotMap.ARM_STARTING_POSITION, 0, 0);
-		
+
 	}
 
 	@Override
@@ -69,26 +69,26 @@ public void moveMotorReverse() {
 			System.out.println("Ok, We are there! Sweet!");
 			return true; //movement is finished
 		}
-		
+
 	}
-	
+
 	public void manualRaiseAngle() {
 		angler.set(ControlMode.PercentOutput, .7);
 		System.out.println(-angler.getSelectedSensorPosition(0)/(4096/360));
 		System.out.println("raising here");
 
 	}
-	
-	public void manualLowerAngle() { 
+
+	public void manualLowerAngle() {
 		angler.set(ControlMode.PercentOutput, -0.3);
 		System.out.println(-angler.getSelectedSensorPosition(0)/(4096/360));
 		System.out.println("lowering here");
-		
+
 	}
 
-	public void armRaiseAngle(double currentPos, double desiredPos) 
+	public void armRaiseAngle(double currentPos, double desiredPos)
 	{ //Code to raise the arm
-		
+
 		if(desiredPos - currentPos >= 100) //If we are far away from our destination angle old:5
 		{
 			angler.set(ControlMode.PercentOutput, .8); //.7
@@ -98,14 +98,14 @@ public void moveMotorReverse() {
 			angler.set(ControlMode.PercentOutput, .5); //.7
 		}
 		currentPos = -(angler.getSelectedSensorPosition(0)/(4096/360));
-		
+
 		//System.out.println("raising, cp: " + currentPos + " dp: " + desiredPos);
 		if (currentPos >= desiredPos || currentPos >= desiredPos + 3 || currentPos >= desiredPos-3) {
 			hasNotMoved = false;
 		}
 	}
 
-	public void armLowerAngle(double currentPos, double desiredPos) 
+	public void armLowerAngle(double currentPos, double desiredPos)
 	{ //Code to lower the arm
 		if(desiredPos - currentPos <= -50)//If we are far away from our destination angle
 		{
@@ -116,28 +116,28 @@ public void moveMotorReverse() {
 			angler.set(ControlMode.PercentOutput, -0.2);
 		}
 		currentPos = -(angler.getSelectedSensorPosition(0)/(4096/360));
-		
+
 		//System.out.println("lowering, cp: " + currentPos + " dp: " + desiredPos);
 		if (currentPos <= desiredPos || currentPos <= desiredPos + 3 || currentPos <= desiredPos-3) {
 			hasNotMoved = false;
 		}
 	}
 
-	public void armAnglerStop() {  
-		
+	public void armAnglerStop() {
+
 		angler.set(ControlMode.PercentOutput, 0.0);
 		System.out.println("time to stop!");
 		hasNotMoved = true;
 	}
 
-	public void armStop() {  
+	public void armStop() {
 		angler.stopMotor();
 	}
-	
+
 	public int getAnglerPosition() {
 		return -(angler.getSelectedSensorPosition(0)/(4096/360));
 	}
-	
+
 	public void setAnglerPosition(int pos) {
 		angler.setSelectedSensorPosition(pos, 0, 0);
 	}

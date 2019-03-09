@@ -16,26 +16,31 @@ import edu.wpi.first.wpilibj.Relay.Value;
 public class Vacuum extends Subsystem {
     public Relay spike1;
     public Relay spike2;
-    private Servo servoLeft;
-    private Servo servoRight;
-
+    public Servo servoLeft;
+    public Servo servoRight;
+    public boolean isSuckerStart = true;
+    public boolean isSuckerDown;
     public Vacuum() {
        // spike1 = new Relay(RobotMap.RELAY_SPIKE_LEFT);
        // spike2 = new Relay(RobotMap.RELAY_SPIKE_RIGHT);
-       // servoLeft = new Servo(RobotMap.PWM_SERVO_LEFT);
-       // servoRight = new Servo(RobotMap.PWM_SERVO_RIGHT);
+       servoLeft = new Servo(RobotMap.PWM_SERVO_LEFT);
+        servoRight = new Servo(RobotMap.PWM_SERVO_RIGHT);
     
     }
     
     public void suckerUp() {
-       // servoRight.set(0);
-       // servoLeft.set(1);
+        isSuckerStart = true;
+        isSuckerDown = false;
+        servoRight.set(1);
+        servoLeft.set(0);
        //spike1.set(Value.kOff);
        //spike2.set(Value.kOff);
     }
     public void suckerDown() {
-     //   servoRight.set(0);
-      //  servoLeft.set(1);
+        isSuckerStart = false;
+        isSuckerDown = true;
+        servoRight.set(0);
+        servoLeft.set(1);
       //spike1.set(Value.kOn);
       //spike2.set(Value.kOn);
         

@@ -17,9 +17,10 @@ private Elevator el;
 private double elValue;
   public MoveElevatorManual(double value) {
   
-    el = Robot.m_el;
+  el = Robot.m_el;
   requires(el);
   elValue = value;
+  
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +31,8 @@ private double elValue;
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    el.manualUp(elValue);
+    el.manual(elValue);
+    System.out.println("Manual Arm command" + elValue);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -49,5 +51,6 @@ private double elValue;
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    el.manualStop();
   }
 }

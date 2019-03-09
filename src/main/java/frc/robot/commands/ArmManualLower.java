@@ -4,53 +4,50 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.Vacuum;
+import frc.robot.subsystems.LifterArm;
 
+public class ArmManualLower extends Command {
 
-public class SuckerControl extends Command {
-  private static Vacuum vac;
-  public SuckerControl() {
-  
-    vac = Robot.vac;
-    requires(vac);
-
+  private LifterArm arm;
+  public ArmManualLower() {
+    super("ArmChangePosition");
+		arm = Robot.arm;
+		
+		requires(Robot.arm);
   }
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //if(vac.spike1.get() == vac.spike1.get().kOff) {
-      //if(vac.servoLeft.get() == vac.servoLeft.
-      if(vac.isSuckerDown) {
-    vac.suckerUp();
-      }
-    else {
-      vac.suckerDown();
-    }
-    System.out.println("Sucker up");
-    //}
-    //else {
-    //  vac.suckerDown();
-    //}
+    arm.manualLowerAngle();
   }
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
   }
+
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    arm.armStop();
   }
+
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    arm.armStop();
   }
 }

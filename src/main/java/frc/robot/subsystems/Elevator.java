@@ -117,16 +117,12 @@ public class Elevator extends Subsystem {
         this.timesMoved++;
     }
 
-    public void manualUp(double value) {
+    public void manual(double value) {
         extend.set(value);
     }
 
-    public void manualDown(double value) {
-        extend.set(value);
-        
-    }
     public void manualStop() {
-        extend.stopMotor();
+        extend.set(0);
     }
 
     @Override

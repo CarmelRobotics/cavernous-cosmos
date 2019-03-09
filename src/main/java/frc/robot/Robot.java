@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putData("Auto mode", m_chooser);
     drive = new DriveTrain();
-  //  vac = new Vacuum();
+   vac = new Vacuum();
     dropper = new WheelDropper();
     compressor = new CompressorA();
 

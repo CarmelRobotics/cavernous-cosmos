@@ -15,7 +15,7 @@ import frc.robot.subsystems.Elevator;
 public class MoveElevatorPos extends Command {
 
   private Elevator el;
-  
+
   private int goal;
   private double heightOfTarget;
 
@@ -37,8 +37,8 @@ public class MoveElevatorPos extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double currentRelativepos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
-    el.setElevatorMovement(heightOfTarget - currentRelativepos);
+    double currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
+    el.setElevatorMovement(heightOfTarget - currentRelativePos);
   }
 
   // Make this return true when this Command no longer needs to run execute()

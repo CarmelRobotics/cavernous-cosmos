@@ -55,5 +55,6 @@ public class Gearshift extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    drt.gearshiftLow();
   }
 }

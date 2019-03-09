@@ -9,24 +9,18 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.LifterArm;
 
+public class ArmManualRaise extends Command {
 
+  private LifterArm arm;
 
+  public ArmManualRaise() {
 
-public class MoveDriveTrainRotations extends Command {
-
-private DriveTrain drt;
-
-private double totalDistance;
-  public MoveDriveTrainRotations(double rotations) {
     
-    drt = Robot.driver;
-    requires(drt);
-
-    totalDistance = rotations * 36;
-
-
+		arm = Robot.arm;
+		
+		requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
@@ -37,6 +31,7 @@ private double totalDistance;
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    arm.manualRaiseAngle();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,11 +43,13 @@ private double totalDistance;
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    arm.armStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    arm.armStop();
   }
 }
