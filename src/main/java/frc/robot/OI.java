@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 
 import frc.robot.commands.*;
 import frc.robot.commands.arm.ArmChangePosition;
+import frc.robot.commands.arm.ArmManualLower;
+import frc.robot.commands.arm.ArmManualRaise;
 import frc.robot.commands.drivetrain.Gearshift;
 import frc.robot.commands.drivetrain.WheelDown;
 import frc.robot.commands.drivetrain.WheelUp;
@@ -17,6 +19,7 @@ import frc.robot.commands.elevator.MoveElevatorManual;
 import frc.robot.commands.intake.IntakeIn;
 import frc.robot.commands.intake.IntakeOut;
 import frc.robot.commands.vacuum.SuckerControl;
+import frc.robot.commands.vacuum.SuckerDown;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -33,6 +36,7 @@ public class OI {
     private static Button lifterArmDown;
     private static Button lifterArmUp;
     private static Button suckerControl;
+    private static Button suckerDown;
     private static Button jst_button_elevup;
     private static Button jst_button_elevdown;
     private static Button gearshift;
@@ -57,23 +61,28 @@ public class OI {
         wheelUp = RobotMap.WHEEL_UP;
         wheelDown = RobotMap.WHEEL_DOWN;
         suckerControl = RobotMap.SUCC_CONTROL;
-     
+        suckerDown = RobotMap.SUCC_DOWN;
       // Lifterarm
         changeArmAngleTo0 = RobotMap.CHANGE_ARM_ANGLE_0;
         changeArmAngleTo1 = RobotMap.CHANGE_ARM_ANGLE_1;
         changeArmAngleTo2 = RobotMap.CHANGE_ARM_ANGLE_2;
 
+        lifterArmUp = RobotMap.MANUAL_LIFTERARM_UP_BUTTON;
+        lifterArmDown= RobotMap.MANUAL_LIFTERARM_DOWN_BUTTON;
       // Elevator
         jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
         jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
         gearshift = RobotMap.GEARSHIFT;
 
+        //Intake Init
+        intakeSuck = RobotMap.INTAKEIN_BUTTON;
+        intakeSpit = RobotMap.INTAKEOUT_BUTTON;
       // Buttons
         wheelUp.whenPressed(new WheelUp());
         wheelDown.whenPressed(new WheelDown());
 
         suckerControl.whenPressed(new SuckerControl());
-
+        suckerDown.whenPressed(new SuckerDown());
       // DriveTrain
         gearshift.whileHeld(new Gearshift());
 
@@ -81,7 +90,8 @@ public class OI {
         changeArmAngleTo0.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_0));
         changeArmAngleTo1.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_1));
         changeArmAngleTo2.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_2));
-
+        lifterArmUp.whileHeld(new ArmManualRaise());
+        lifterArmUp.whileHeld(new ArmManualLower());
       // Elevator Commands
         jst_button_elevup.whileHeld(new MoveElevatorManual(1.0));
         jst_button_elevdown.whileHeld(new MoveElevatorManual(-1.0));

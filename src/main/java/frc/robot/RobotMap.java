@@ -37,8 +37,11 @@ public class RobotMap {
     public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 7;
 
   /* Guitar Buttons */
-
-
+  public static final int BUTTON_ID_INTAKEIN_BUTTON = 8;
+  public static final int BUTTON_ID_INTAKEOUT_BUTTON = 9;
+  public static final int BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON = 1;
+  public static final int BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON = 2;
+  public static final int BUTTON_ID_SUCKER= 2;
 
   /* Spark CAN IDs */
     public static final int CAN_ID_FRONT_RIGHT = 3;
@@ -79,10 +82,10 @@ public class RobotMap {
     public static final int SOLE_GEARSHIFT_LOW = 0;
     public static final int SOLE_GEARSHIFT_HIGH = 1;
 
-    public static final int COMPRESSER_ID = 0;
+    //public static final int COMPRESSER_ID = 0;
 
   /*Arm */
-    public static final int ANGLER_ID = 6;
+    public static final int ANGLER_ID = 10;
     public static final int ARM_STARTING_POSITION = 0; //17158 //raw sensor units
     public static final double ARM_POSITION_0 = 0; // 0 degrees on arm gear
     public static final double ARM_POSITION_1 = 548; // 20 degrees on arm gear
@@ -93,13 +96,7 @@ public class RobotMap {
     public static final int POSITION_0_LIMIT_ID = 0;
 
 
-    /* Ball-Intake PWMs */
-    public static final int[] INTAKE_IDs = {
-      0,
-      1,
-      2,
-      3
-    };
+   
 
   /* Ball Intake DIO */
   public static final int INTAKE_LIMIT_ID = 0;
@@ -122,7 +119,7 @@ public class RobotMap {
     //Suction Buttons
       public static final JoystickButton SUCC_CONTROL = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCC_CONTROL);
       public static final JoystickButton SUCC_UP = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCC_UP);
-      public static final JoystickButton SUCC_DOWN = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCC_DOWN);
+      public static final JoystickButton SUCC_DOWN = new JoystickButton(GUITAR, BUTTON_ID_SUCKER);
 
     //Lifter Arm Buttons
       public static final JoystickButton CHANGE_ARM_ANGLE_0 = new JoystickButton(JOYSTICK_A, BUTTON_ID_CHANGE_ARM_ANGLE_0);
@@ -133,6 +130,14 @@ public class RobotMap {
       public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_A, BUTTON_ID_ELEV_UP_BUTTON);
       public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(JOYSTICK_A, BUTTON_ID_ELEV_DOWN_BUTTON);
 
+    //Intake Buttons
+    public static final JoystickButton INTAKEIN_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_INTAKEIN_BUTTON);
+    public static final JoystickButton INTAKEOUT_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_INTAKEOUT_BUTTON);
+
+     //LifterArm
+     public static final JoystickButton MANUAL_LIFTERARM_UP_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON);
+     public static final JoystickButton MANUAL_LIFTERARM_DOWN_BUTTON  = new JoystickButton(GUITAR, BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON);
+    
   /** -- Relative Distances in Inches to Set Elevator Heights --
    * These numbers represent how many inches the elevator would have to
    * travel in order to reach the stated height, given that the elevator starts at its

@@ -18,7 +18,7 @@ public class Gearshift extends Command {
 
 	public Gearshift() {
 
-		drt = Robot.getDriveTrain();
+	drt = Robot.getDriveTrain();
 
 		requires(drt);
 
@@ -34,7 +34,7 @@ public class Gearshift extends Command {
   @Override
   protected void execute() {
 
-    drt.gearshiftHigh();
+    //drt.gearshiftHigh();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,13 +46,13 @@ public class Gearshift extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    drt.gearshiftLow();
+    //drt.gearshiftLow();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    drt.gearshiftLow();
+    //drt.gearshiftLow();
   }
 }

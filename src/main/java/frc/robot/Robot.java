@@ -9,16 +9,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.*;
+import frc.robot.commands.drivetrain.MoveDrivetrainX;
 import frc.robot.commands.elevator.ResetElevator;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.IRSystem;
-import frc.robot.subsystems.LifterArm;
-import frc.robot.subsystems.Vacuum;
-import frc.robot.subsystems.Ultrasound;
-import frc.robot.subsystems.WheelDropper;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -40,6 +34,8 @@ public class Robot extends TimedRobot {
   public static WheelDropper dropper;
   public static Compressor compressor;
   public static LifterArm arm;
+  public static Vision vision;
+  public static BallIntake intake;
 
 //Changes
   Command m_autonomousCommand;
@@ -60,8 +56,10 @@ public class Robot extends TimedRobot {
     drive = new DriveTrain();
     vac = new Vacuum();
     dropper = new WheelDropper();
-    compressor = new Compressor(RobotMap.COMPRESSER_ID);
+    compressor = new Compressor();
     arm = new LifterArm();
+    vision = new Vision();
+    intake = new BallIntake();
     OI.initialize(); //Calls the init method from the OI class
   }
   @Override
@@ -94,6 +92,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    //Command big = new MoveDrivetrainX(90);
+   // big.start();
   }
 
   @Override

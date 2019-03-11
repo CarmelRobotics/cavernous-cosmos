@@ -5,20 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.vacuum;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Vacuum;
 
-public class IntakeOut extends Command {
-  
-  private BallIntake bi;
-
-  public IntakeOut() {
-  
-    bi = Robot.intake;
-    requires(bi);
+public class SuckerDown extends Command {
+  private static Vacuum vac;
+  public SuckerDown() {
+    vac = Robot.vac;
+    requires(vac);
   }
 
   // Called just before this Command runs the first time
@@ -29,25 +26,25 @@ public class IntakeOut extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    bi.intakeOut();
+    vac.suckerDown();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    bi.intakeOff();
+    vac.servoLeft.stopMotor();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    bi.intakeOff();
+    vac.servoLeft.stopMotor();
   }
 }

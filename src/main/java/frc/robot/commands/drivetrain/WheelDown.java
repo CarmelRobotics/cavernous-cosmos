@@ -15,8 +15,6 @@ public class WheelDown extends Command {
   private  WheelDropper wDrop;
   public WheelDown() {
     wDrop = Robot.dropper;
-
-
     requires(wDrop);
   }
 

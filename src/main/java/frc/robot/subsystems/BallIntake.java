@@ -22,15 +22,12 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
   private VictorSP intakeScOne;
   private VictorSP intakeScTwo;
-  private VictorSP intakeScThree;
-  private VictorSP intakeScFour;
+
 
   public BallIntake(){
-    intakeScOne = new VictorSP(RobotMap.INTAKE_IDs[0]);
-    intakeScTwo = new VictorSP(RobotMap.INTAKE_IDs[1]);
-    intakeScThree = new VictorSP(RobotMap.INTAKE_IDs[2]);
-    intakeScFour = new VictorSP(RobotMap.INTAKE_IDs[3]);
-
+    intakeScOne = new VictorSP(RobotMap.PWM_ROLLER_INNER);
+    intakeScTwo = new VictorSP(RobotMap.PWM_ROLLER_OUTER);
+  
 
   }
 
@@ -41,24 +38,21 @@ public class BallIntake extends Subsystem {
   public void intakeIn(){
     
     intakeScOne.set(1);
-    intakeScTwo.set(1);
-    intakeScThree.set(1);
-    intakeScFour.set(1);
+    intakeScTwo.set(-1);
+    
     
   }
 
   public void intakeOff(){
     intakeScOne.set(0);
     intakeScTwo.set(0);
-    intakeScThree.set(0);
-    intakeScFour.set(0);
+   
   }
   
   public void intakeOut(){
-    intakeScOne.set(-1);
+    intakeScOne.set(1);
     intakeScTwo.set(-1);
-    intakeScThree.set(-1);
-    intakeScFour.set(-1);
+    
   }
 
 }

@@ -5,22 +5,26 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.*;
 
-public class MoveDrivetrainY extends Command {
+public class MoveDrivetrainX extends Command {
 
   private DriveTrain drt;
 
-  private double start;
+  private double startL;
+  private double startR;
   private int goal;
   private double targetGoal;
   private double totalMovement;
+  private double totalMovementHopefully;
   private boolean isMovementPositive;
 
-  public MoveDrivetrainY(double rotations) {
+  public MoveDrivetrainX(double degrees) {
 
     drt = Robot.driver;
 
     //accounting for gear ratio
-    totalMovement = rotations;
+    totalMovement = degrees;//((degrees/360)*34.648*Math.PI)/(6*Math.PI);
+
+    totalMovementHopefully = totalMovement/2;
 
     //variable to easily check if movement is up or down
     if (totalMovement >= 0)
@@ -35,8 +39,8 @@ public class MoveDrivetrainY extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    start = drt.getEncoderFLeft();
-    targetGoal = start + totalMovement;
+    startL = drt.getEncoderFLeft();
+    startR = drt.getEncoderFRight();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -44,7 +48,8 @@ public class MoveDrivetrainY extends Command {
   protected void execute() {
     //current is derived the same way as start but is called every time execute() runs
     double currentPos = drt.getEncoderFLeft();
-    double movementRemaining = targetGoal - currentPos;
+    double distanceTraveled = drt.getEncoderFLeft() - startL;
+    double movementRemaining = totalMovementHopefully - distanceTraveled;
 
     double negativeMovementMultiplier;
     if (isMovementPositive)
@@ -74,16 +79,25 @@ public class MoveDrivetrainY extends Command {
     else if (absRemain <= absTotal) {
       speed = 0.85 * negativeMovementMultiplier;
     }
-    drt.set4Wheel(speed, 0.0);
+    drt.set4Wheel(0.0, speed);
     System.out.println("Movement remaining: " + absRemain);
     System.out.println("Speed: " + speed);
     System.out.println("Total: " + absTotal);
+    System.out.println("Current encoder: " + drt.getEncoderFLeft());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (Math.abs(drt.getEncoderFLeft() - targetGoal) < 0.75)
+    double traveledL = drt.getEncoderFLeft() - startL;
+    double remainingL = totalMovementHopefully - traveledL;
+    double absL = Math.abs(remainingL);
+
+    double traveledR = drt.getEncoderFLeft() - startL;
+    double remainingR = totalMovementHopefully - traveledR;
+    double absR = Math.abs(remainingR);
+
+    if (absL < 5 && absR < 5)
       return true;
     return false;
   }

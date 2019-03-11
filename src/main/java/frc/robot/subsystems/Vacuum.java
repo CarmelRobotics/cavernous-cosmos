@@ -19,29 +19,33 @@ public class Vacuum extends Subsystem {
     public Servo servoLeft;
     public Servo servoRight;
     public boolean isSuckerStart = true;
-    public boolean isSuckerDown;
+    public boolean isSuckerDown = false;
     public Vacuum() {
-       // spike1 = new Relay(RobotMap.RELAY_SPIKE_LEFT);
-       // spike2 = new Relay(RobotMap.RELAY_SPIKE_RIGHT);
+        spike1 = new Relay(RobotMap.RELAY_SPIKE_LEFT);
+        spike2 = new Relay(RobotMap.RELAY_SPIKE_RIGHT);
        servoLeft = new Servo(RobotMap.PWM_SERVO_LEFT);
         servoRight = new Servo(RobotMap.PWM_SERVO_RIGHT);
-    
+       // servoRight.set(0);
+        //servoLeft.set(0);
     }
     
     public void suckerUp() {
         isSuckerStart = true;
-        isSuckerDown = false;
-        servoRight.set(1); //Start position for the robot
-        servoLeft.set(0);  //Start position for the robot
+        isSuckerDown = false; //
+        servoRight.set(0); //Start position for the robot //0
+        servoLeft.set(1);  //Start position for the robot //1
+    
+        System.out.println("Right " + servoRight.getPosition());
+        System.out.println("Left " + servoLeft.getPosition());
        //spike1.set(Value.kOff);
        //spike2.set(Value.kOff);
     }
     public void suckerDown() {
         isSuckerStart = false;
         isSuckerDown = true;
-        servoRight.set(0);  
-        servoLeft.set(1);
-      //spike1.set(Value.kOn);
+        servoRight.set(1);  //1
+        servoLeft.set(0); //0
+     // spike1.set(Value.kOn);
       //spike2.set(Value.kOn);
         
     }

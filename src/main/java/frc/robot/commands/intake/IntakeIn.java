@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 import frc.robot.subsystems.BallIntake;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class IntakeIn extends Command {
@@ -18,9 +19,10 @@ public class IntakeIn extends Command {
   private BallIntake bi;
   private DigitalInput ls;
   public IntakeIn() {
-    requires(bi);
-    bi = new BallIntake();
+   
+    bi = Robot.intake;
     ls = new DigitalInput(RobotMap.INTAKE_LIMIT_ID);
+    requires(bi);
   }
 
   // Called just before this Command runs the first time
@@ -37,7 +39,8 @@ public class IntakeIn extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return !ls.get();
+  //  return !ls.get();
+  return false;
   }
 
   // Called once after isFinished returns true
@@ -50,5 +53,6 @@ public class IntakeIn extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    bi.intakeOff();
   }
 }
