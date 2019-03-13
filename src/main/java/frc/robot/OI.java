@@ -91,7 +91,7 @@ public class OI {
         changeArmAngleTo1.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_1));
         changeArmAngleTo2.whenPressed(new ArmChangePosition(RobotMap.ARM_POSITION_2));
         lifterArmUp.whileHeld(new ArmManualRaise());
-        lifterArmUp.whileHeld(new ArmManualLower());
+        lifterArmDown.whileHeld(new ArmManualLower());
       // Elevator Commands
         jst_button_elevup.whileHeld(new MoveElevatorManual(1.0));
         jst_button_elevdown.whileHeld(new MoveElevatorManual(-1.0));

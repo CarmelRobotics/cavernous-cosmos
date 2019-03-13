@@ -30,6 +30,7 @@ public class ArmManualLower extends Command {
   @Override
   protected void execute() {
     arm.manualLowerAngle();
+    System.out.println("Lower");
   }
 
   // Make this return true when this Command no longer needs to run execute()

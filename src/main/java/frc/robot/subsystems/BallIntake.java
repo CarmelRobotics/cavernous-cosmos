@@ -50,8 +50,8 @@ public class BallIntake extends Subsystem {
   }
   
   public void intakeOut(){
-    intakeScOne.set(1);
-    intakeScTwo.set(-1);
+    intakeScOne.set(-1);
+    intakeScTwo.set(1);
     
   }
 

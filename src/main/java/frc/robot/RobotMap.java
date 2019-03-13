@@ -39,8 +39,8 @@ public class RobotMap {
   /* Guitar Buttons */
   public static final int BUTTON_ID_INTAKEIN_BUTTON = 8;
   public static final int BUTTON_ID_INTAKEOUT_BUTTON = 9;
-  public static final int BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON = 1;
-  public static final int BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON = 2;
+  public static final int BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON = 3;
+  public static final int BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON = 4;
   public static final int BUTTON_ID_SUCKER= 2;
 
   /* Spark CAN IDs */
@@ -85,7 +85,7 @@ public class RobotMap {
     //public static final int COMPRESSER_ID = 0;
 
   /*Arm */
-    public static final int ANGLER_ID = 10;
+    public static final int ANGLER_ID = 7;
     public static final int ARM_STARTING_POSITION = 0; //17158 //raw sensor units
     public static final double ARM_POSITION_0 = 0; // 0 degrees on arm gear
     public static final double ARM_POSITION_1 = 548; // 20 degrees on arm gear

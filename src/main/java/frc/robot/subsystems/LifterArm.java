@@ -73,14 +73,14 @@ public class LifterArm extends Subsystem {
 	}
 
 	public void manualRaiseAngle() {
-		angler.set(ControlMode.PercentOutput, .7);
+		angler.set(ControlMode.PercentOutput, .2);
 		System.out.println(-angler.getSelectedSensorPosition(0)/(4096/360));
 		System.out.println("raising here");
 
 	}
 
 	public void manualLowerAngle() {
-		angler.set(ControlMode.PercentOutput, -0.3);
+		angler.set(ControlMode.PercentOutput, -0.2);
 		System.out.println(-angler.getSelectedSensorPosition(0)/(4096/360));
 		System.out.println("lowering here");
 

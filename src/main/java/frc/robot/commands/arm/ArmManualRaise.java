@@ -32,6 +32,7 @@ public class ArmManualRaise extends Command {
   @Override
   protected void execute() {
     arm.manualRaiseAngle();
+    System.out.println("Raising");
   }
 
   // Make this return true when this Command no longer needs to run execute()
