@@ -1,26 +1,30 @@
-package frc.robot.commands.elevator;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.*;
 
-public class MoveElevatorSetMotor extends Command {
+public class MoveDrivetrainZ extends Command {
 
-  private Elevator el;
+  private DriveTrain drt;
 
-  private double startingHeight;
+  private double startL;
+  private double startR;
   private int goal;
-  private double heightOfTarget;
+  private double targetGoal;
   private double totalMovement;
+  private double totalMovementHopefully;
   private boolean isMovementPositive;
 
-  public MoveElevatorSetMotor(double rotations) {
+  public MoveDrivetrainZ(double degrees) {
 
-    el = Robot.m_el;
+    drt = Robot.driver;
 
     //accounting for gear ratio
-    totalMovement = rotations * 36;
+    totalMovement = degrees;//((degrees/360)*34.648*Math.PI)/(6*Math.PI);
+
+    totalMovementHopefully = totalMovement/2;
 
     //variable to easily check if movement is up or down
     if (totalMovement >= 0)
@@ -35,18 +39,17 @@ public class MoveElevatorSetMotor extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    
-    //starting height is the current encoder value minus the encoder value read as zero at the beginning of operation; current relative value
-    startingHeight = el.getElevatorActualEncoderPos() - el.getRelativeZero();
-    heightOfTarget = startingHeight + totalMovement;
+    startL = drt.getEncoderFLeft();
+    startR = drt.getEncoderFRight();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //current height is derived the same way as starting height but is called every time execute() runs
-    double currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
-    double movementRemaining = heightOfTarget - currentRelativePos;
+    //current is derived the same way as start but is called every time execute() runs
+    double currentPos = drt.getEncoderFLeft();
+    double distanceTraveled = drt.getEncoderFLeft() - startL;
+    double movementRemaining = totalMovementHopefully - distanceTraveled;
 
     double negativeMovementMultiplier;
     if (isMovementPositive)
@@ -76,16 +79,25 @@ public class MoveElevatorSetMotor extends Command {
     else if (absRemain <= absTotal) {
       speed = 0.85 * negativeMovementMultiplier;
     }
-    el.setMotorSpeed(speed);
+    drt.set4Wheel(0.0, speed);
     System.out.println("Movement remaining: " + absRemain);
     System.out.println("Speed: " + speed);
     System.out.println("Total: " + absTotal);
+    System.out.println("Current encoder: " + drt.getEncoderFLeft());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (Math.abs(el.getElevatorActualEncoderPos() - heightOfTarget) < 0.75)
+    double traveledL = drt.getEncoderFLeft() - startL;
+    double remainingL = totalMovementHopefully - traveledL;
+    double absL = Math.abs(remainingL);
+
+    double traveledR = drt.getEncoderFLeft() - startL;
+    double remainingR = totalMovementHopefully - traveledR;
+    double absR = Math.abs(remainingR);
+
+    if (absL < 5 && absR < 5)
       return true;
     return false;
   }
@@ -93,7 +105,7 @@ public class MoveElevatorSetMotor extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    el.setMotorSpeed(0);
+    //drt.set4Wheel(0.0, 0.0);
     System.out.println("done");
   }
 

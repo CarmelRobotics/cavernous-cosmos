@@ -10,8 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.*;
-import frc.robot.commands.drivetrain.MoveDrivetrainX;
-import frc.robot.commands.elevator.ResetElevator;
+import frc.robot.commands.drivetrain.MoveDrivetrainZ;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -26,10 +25,10 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Robot extends TimedRobot {
   public static OI oi;
-  public static DriveTrain driver;
+  public static DriveTrain drive;
   public static IRSystem m_ir;
   public static Ultrasound m_us;
-  public static Elevator m_el;
+  public static Elevator elevator;
   public static Vacuum vac;
   public static WheelDropper dropper;
   public static Compressor compressor;
@@ -40,26 +39,23 @@ public class Robot extends TimedRobot {
 //Changes
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  private static DriveTrain drive;
  
 
   @Override
   public void robotInit() {
 
-   // m_ir = new IRSystem();
-	  driver = new DriveTrain();
-  //  m_us = new Ultrasound();
-    m_el = new Elevator();
 	  oi = new OI();
 
     SmartDashboard.putData("Auto mode", m_chooser);
     drive = new DriveTrain();
+    elevator = new Elevator();
     vac = new Vacuum();
     dropper = new WheelDropper();
     compressor = new Compressor();
     arm = new LifterArm();
     vision = new Vision();
     intake = new BallIntake();
+
     OI.initialize(); //Calls the init method from the OI class
   }
   @Override
@@ -86,14 +82,15 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void teleopInit() {
-   // Command reset = new ResetElevator();
-	//reset.start();
-	compressor.start();
+
+    
+
+	  compressor.start();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
 
-    //Command big = new MoveDrivetrainX(90);
+    //Command big = new MoveDrivetrainZ(90);
    // big.start();
   }
 
@@ -115,7 +112,7 @@ public class Robot extends TimedRobot {
 	/**
 	 * This function is called periodically during test mode.
 	 */
-
+  
 	public static DriveTrain getDriveTrain() { //method to return the drive train as a drive train.
 		return driver;
 	}

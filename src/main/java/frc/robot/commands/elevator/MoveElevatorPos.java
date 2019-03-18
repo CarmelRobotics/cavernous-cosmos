@@ -15,12 +15,14 @@ public class MoveElevatorPos extends Command {
 
   private Elevator el;
 
+  Command move;
+
   private int goal;
   private double heightOfTarget;
 
   public MoveElevatorPos(int desiredPos) {
 
-    el = Robot.m_el;
+    el = Robot.elevator;
     goal = desiredPos;
 
     // Use requires() here to declare subsystem dependencies
@@ -31,13 +33,14 @@ public class MoveElevatorPos extends Command {
   @Override
   protected void initialize() {
     heightOfTarget = convertInToRot(RobotMap.ELEV_INCHES[goal]);
+    double currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
+    move = new MoveElevatorRotations(heightOfTarget - currentRelativePos);
+    move.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
-    el.setElevatorMovement(heightOfTarget - currentRelativePos);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -49,12 +52,14 @@ public class MoveElevatorPos extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    move.close();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    move.close();
   }
 
   private double convertInToRot(double inches) {

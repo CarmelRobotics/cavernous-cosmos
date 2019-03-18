@@ -17,7 +17,7 @@ private Elevator el;
 private double elValue;
   public MoveElevatorManual(double value) {
   
-  el = Robot.m_el;
+  el = Robot.elevator;
   requires(el);
   elValue = value;
   
@@ -31,7 +31,7 @@ private double elValue;
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    el.manual(elValue);
+    el.setMotorSpeed(elValue);
     System.out.println("Manual Arm command" + elValue);
   }
 
@@ -44,13 +44,13 @@ private double elValue;
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    el.manualStop();
+    el.motorStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    el.manualStop();
+    el.motorStop();
   }
 }

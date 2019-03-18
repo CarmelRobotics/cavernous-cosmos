@@ -18,7 +18,7 @@ public class Gearshift extends Command {
 
 	public Gearshift() {
 
-	drt = Robot.getDriveTrain();
+	drt = Robot.drive;
 
 		requires(drt);
 
