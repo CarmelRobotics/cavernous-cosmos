@@ -44,10 +44,10 @@ public class LifterArm extends Subsystem {
 
 	//For limit switch arm
 	public void moveMotorForward() {
-  	angler.set(ControlMode.PercentOutput, 1);
+  	angler.set(ControlMode.PercentOutput, .5);
 	}
 	public void moveMotorReverse() {
-  	angler.set(ControlMode.PercentOutput, -1);
+  	angler.set(ControlMode.PercentOutput, -.5);
 	}
 
 
