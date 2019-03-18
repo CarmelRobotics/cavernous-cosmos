@@ -6,8 +6,10 @@
 /*----------------------------------------------------------------------------*/
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.JoystickBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -19,46 +21,59 @@ public class RobotMap {
   /* Other Public Variables */
     public static boolean WHEEL_DROPPED = false;
 
+  /* Joysticks */
+    public static final int JOYSTICK_A_ID = 0;
+    public static final Joystick JOYSTICK_A = new Joystick(JOYSTICK_A_ID);
+    public static final int GUITAR_ID = 1;
+    public static final Joystick GUITAR = new Joystick(GUITAR_ID);
+
+
+
   /* Joystick Button IDs*/
   //BUTTONS MUST NOT BE SET TO 0. THIS WILL CAUSE AN ERROR.
-    public static final int BUTTON_ID_WHEEL_UP = 3;
-    public static final int BUTTON_ID_WHEEL_DOWN = 4;
+    public static final int BUTTON_ID_WHEEL_UP = 4;
+    public static final int BUTTON_ID_WHEEL_DOWN = 3;
     public static final int BUTTON_ID_GEARSHIFT = 1;
 
+    public static final int BUTTON_ID_ELEV_HATCH_2 = 10;
+
+
     public static final int BUTTON_ID_SUCC_CONTROL = 5;
-    public static final int BUTTON_ID_SUCC_UP = 11;
-    public static final int BUTTON_ID_SUCC_DOWN = 12;
+    public static final int BUTTON_ID_SUCKER= 6;
 
-    public static final int BUTTON_ID_CHANGE_ARM_ANGLE_0 = 8;
-    public static final int BUTTON_ID_CHANGE_ARM_ANGLE_1 = 9;
-    public static final int BUTTON_ID_CHANGE_ARM_ANGLE_2 = 10;
+  
 
-    public static final int BUTTON_ID_ELEV_UP_BUTTON = 6;
-    public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 7;
+   
 
   /* Guitar Buttons */
-  public static final int BUTTON_ID_INTAKEIN_BUTTON = 8;
-  public static final int BUTTON_ID_INTAKEOUT_BUTTON = 9;
-  public static final int BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON = 3;
-  public static final int BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON = 4;
-  public static final int BUTTON_ID_SUCKER= 2;
+ 
+  public static final int BUTTON_ID_INTAKEIN_POVBUTTON_DEGREES = 4; //Top Button
+  public static final int BUTTON_ID_INTAKEOUT_POVBUTTON_DEGREES = 3; //Bottom Button
+    public static final int BUTTON_ID_ELEV_UP_BUTTON = 9;
+    public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 8;
+  public static final int BUTTON_ID_CHANGE_ARM_ANGLE_0 = 5;
+  public static final int BUTTON_ID_CHANGE_ARM_ANGLE_1 = 7;
+  public static final int BUTTON_ID_CHANGE_ARM_ANGLE_2 = 6;
+  public static final int BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON = 1;
+  public static final int BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON = 2;
+ 
 
   /* Spark CAN IDs */
     public static final int CAN_ID_FRONT_RIGHT = 3;
     public static final int CAN_ID_BACK_RIGHT = 1;
-    public static final int CAN_ID_FRONT_LEFT = 4;
-    public static final int CAN_ID_BACK_LEFT = 2;
+    public static final int CAN_ID_FRONT_LEFT = 4; //4
+    public static final int CAN_ID_BACK_LEFT = 2; //2
     public static final int CAN_ID_DROPWHEEL = 5; //5
     public static final int CAN_ID_ELEVATOR = 6; //6
 
   /* PWM Ports */
     public static final int PWM_ROLLER_INNER = 0;
     public static final int PWM_ROLLER_OUTER = 1;
-    public static final int PWN_ARM_ACTUATOR = 2;
-    public static final int PWM_PUMP_1 = 3;
+   // public static final int PWN_ARM_ACTUATOR = 2;
+    public static final int PWM_PUMP_1 = 2;
 
-    public static final int PWM_PUMP_2 = 4;
-    public static final int PWM_SERVO_LEFT = 8;
+    public static final int PWM_PUMP_2 = 3;
+    public static final int PWM_SERVO_LEFT = 7;
     public static final int PWM_SERVO_RIGHT = 9;
 
   /* Relay Ports */
@@ -77,8 +92,8 @@ public class RobotMap {
     public static final int ULTRASOUND_OUT = 0;
 
   /* Pneumatic Control IDs */
-    public static final int WHEELDROP_PCM_ID_UP = 3;
-    public static final int WHEELDROP_PCM_ID_DOWN = 2;
+    public static final int WHEELDROP_PCM_ID_UP = 2;
+    public static final int WHEELDROP_PCM_ID_DOWN = 3;
     public static final int SOLE_GEARSHIFT_LOW = 0;
     public static final int SOLE_GEARSHIFT_HIGH = 1;
 
@@ -104,11 +119,8 @@ public class RobotMap {
   /*  Elevator DIO */
   public static final int POSITION_1_LIMIT_ID = 0;
   public static final int POSITION_2_LIMIT_ID = 0;
-  /* Joysticks */
-    public static final int JOYSTICK_A_ID = 0;
-    public static final Joystick JOYSTICK_A = new Joystick(JOYSTICK_A_ID);
-    public static final int GUITAR_ID = 1;
-    public static final Joystick GUITAR = new Joystick(GUITAR_ID);
+  
+  
 
   /* Joystick Button */
     //Drive Train
@@ -118,26 +130,31 @@ public class RobotMap {
 
     //Suction Buttons
       public static final JoystickButton SUCC_CONTROL = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCC_CONTROL);
-      public static final JoystickButton SUCC_UP = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCC_UP);
-      public static final JoystickButton SUCC_DOWN = new JoystickButton(GUITAR, BUTTON_ID_SUCKER);
+  
+      public static final JoystickButton SUCC_DOWN = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCKER);
 
     //Lifter Arm Buttons
-      public static final JoystickButton CHANGE_ARM_ANGLE_0 = new JoystickButton(JOYSTICK_A, BUTTON_ID_CHANGE_ARM_ANGLE_0);
-      public static final JoystickButton CHANGE_ARM_ANGLE_1 = new JoystickButton(JOYSTICK_A, BUTTON_ID_CHANGE_ARM_ANGLE_1);
-      public static final JoystickButton CHANGE_ARM_ANGLE_2 = new JoystickButton(JOYSTICK_A, BUTTON_ID_CHANGE_ARM_ANGLE_2);
+      public static final JoystickButton CHANGE_ARM_ANGLE_0 = new JoystickButton(GUITAR, BUTTON_ID_CHANGE_ARM_ANGLE_0);
+      public static final JoystickButton CHANGE_ARM_ANGLE_1 = new JoystickButton(GUITAR, BUTTON_ID_CHANGE_ARM_ANGLE_1);
+      public static final JoystickButton CHANGE_ARM_ANGLE_2 = new JoystickButton(GUITAR, BUTTON_ID_CHANGE_ARM_ANGLE_2);
 
     //Elevator Buttons
-      public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(JOYSTICK_A, BUTTON_ID_ELEV_UP_BUTTON);
-      public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(JOYSTICK_A, BUTTON_ID_ELEV_DOWN_BUTTON);
+      public static final JoystickButton ELEV_UP_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_ELEV_UP_BUTTON);
+      public static final JoystickButton ELEV_DOWN_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_ELEV_DOWN_BUTTON);
+      public static final JoystickButton ELEV_HATCH_2_BUTTON = new JoystickButton(JOYSTICK_A, BUTTON_ID_ELEV_HATCH_2);
 
     //Intake Buttons
-    public static final JoystickButton INTAKEIN_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_INTAKEIN_BUTTON);
-    public static final JoystickButton INTAKEOUT_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_INTAKEOUT_BUTTON);
+    public static final JoystickButton INTAKEIN_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_INTAKEIN_POVBUTTON_DEGREES);
+    public static final JoystickButton INTAKEOUT_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_INTAKEOUT_POVBUTTON_DEGREES);
 
      //LifterArm
      public static final JoystickButton MANUAL_LIFTERARM_UP_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON);
      public static final JoystickButton MANUAL_LIFTERARM_DOWN_BUTTON  = new JoystickButton(GUITAR, BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON);
     
+    //Hat Buttons
+    
+
+
   /** -- Relative Distances in Inches to Set Elevator Heights --
    * These numbers represent how many inches the elevator would have to
    * travel in order to reach the stated height, given that the elevator starts at its

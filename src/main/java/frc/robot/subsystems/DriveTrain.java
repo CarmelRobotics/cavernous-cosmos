@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -53,6 +54,8 @@ public class DriveTrain extends Subsystem {
 	private DoubleSolenoid gearShift;
 
 
+
+	
 	//Old. Only use if new doesn't work
 	//private DifferentialDrive drive2;
 	
@@ -79,13 +82,15 @@ public class DriveTrain extends Subsystem {
 		encBRight = motorBRight.getEncoder();
 		encMiddle = motorMiddle.getEncoder();
 
+	
+
 		//Contructing Spark Motor Groups
     	motorLeft = new SpeedControllerGroup(motorFLeft, motorBLeft);
     	motorRight = new SpeedControllerGroup(motorFRight, motorBRight);
 
 		//Constructing the DriveTrain out of Spark Motor Groups
 		drive = new DifferentialDrive(motorLeft, motorRight);
-		
+		drive.setSafetyEnabled(false);
 		//Constructing Solenoid
 		
     	//gearShift = new DoubleSolenoid(RobotMap.SOLE_GEARSHIFT_HIGH, RobotMap.SOLE_GEARSHIFT_LOW);
@@ -119,14 +124,29 @@ public class DriveTrain extends Subsystem {
 		//System.out.println("Encoder Velocity" + encoder.getVelocity());
 	}
 
+	private double expDriveEquation(double joyvalue, double constant) {
+
+		double value;
+		
+		value = (constant*(Math.pow(joyvalue,3)) + ((1-constant) * joyvalue));
+
+		//System .out.println("full Value " + value);
+
+		//System .out.println("Joyvalue "+ joyvalue);
+		return value;
+	}
+
+
+
 	public void slideDrive(){
+		
 		//First param is ALWAYS getY. Wheels will seem to spin opposite directions if X is first
-		drive.arcadeDrive(-jStick_A.getY(), jStick_A.getZ());
+		drive.arcadeDrive(expDriveEquation(-jStick_A.getY(),.2),expDriveEquation(jStick_A.getZ(),.7));
 	
 		//motorMiddle.setIdleMode(IdleMode.kCoast);
 	//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
-		motorMiddle.set(jStick_A.getX());
-	
+	//	motorMiddle.set(expDriveEquation(jStick_A.getX(),.65)); //Slows down middle wheel movement
+	motorMiddle.set(jStick_A.getX());
 	
 	  }
 	public void set4Wheel(double velocity, double rotation){

@@ -39,12 +39,15 @@ public class OI {
     private static Button suckerDown;
     private static Button jst_button_elevup;
     private static Button jst_button_elevdown;
+    private static Button jst_button_elevhatch2;
     private static Button gearshift;
     public static Button changeArmAngleTo0;
     public static Button changeArmAngleTo1;
     public static Button changeArmAngleTo2;
     private static Button intakeSpit;
     private static Button intakeSuck;
+
+  
 
   /*Joysticks */
     private static Joystick jStick_A;
@@ -55,6 +58,8 @@ public class OI {
     /* Joystick inits */
       jStick_A = RobotMap.JOYSTICK_A;
       jStick_B = RobotMap.GUITAR;
+
+      
 
     /* Button inits */
       //Middle Wheel
@@ -72,14 +77,17 @@ public class OI {
       // Elevator
         jst_button_elevup = RobotMap.ELEV_UP_BUTTON;
         jst_button_elevdown = RobotMap.ELEV_DOWN_BUTTON;
+        jst_button_elevhatch2 = RobotMap.ELEV_HATCH_2_BUTTON;
         gearshift = RobotMap.GEARSHIFT;
 
         //Intake Init
-        intakeSuck = RobotMap.INTAKEIN_BUTTON;
+       intakeSuck = RobotMap.INTAKEIN_BUTTON;
         intakeSpit = RobotMap.INTAKEOUT_BUTTON;
+      
       // Buttons
-        wheelUp.whenPressed(new WheelUp());
-        wheelDown.whenPressed(new WheelDown());
+        //Solenoids MUST be while held. One signal does seem to be enough...
+        wheelUp.whileHeld(new WheelUp());
+        wheelDown.whileHeld(new WheelDown());
 
         suckerControl.whenPressed(new SuckerControl());
         suckerDown.whenPressed(new SuckerDown());
@@ -95,6 +103,7 @@ public class OI {
       // Elevator Commands
         jst_button_elevup.whileHeld(new MoveElevatorManual(1.0));
         jst_button_elevdown.whileHeld(new MoveElevatorManual(-1.0));
+        //jst_button_elevhatch2.whileHeld(new MoveElevatorPending(-1.0));
 
       // Intake Commands
         intakeSuck.whileHeld(new IntakeIn());

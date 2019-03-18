@@ -32,7 +32,7 @@ private double elValue;
   @Override
   protected void execute() {
     el.manual(elValue);
-    System.out.println("Manual Arm command" + elValue);
+  
   }
 
   // Make this return true when this Command no longer needs to run execute()

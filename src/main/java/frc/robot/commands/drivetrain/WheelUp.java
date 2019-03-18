@@ -29,6 +29,8 @@ public class WheelUp extends Command {
   protected void execute() {
     
     wDrop.up();
+    System.out.println("Wheel Up");
+   
   }
 
   // Make this return true when this Command no longer needs to run execute()

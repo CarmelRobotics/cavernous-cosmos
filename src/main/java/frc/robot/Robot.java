@@ -11,17 +11,20 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.*;
 import frc.robot.commands.drivetrain.MoveDrivetrainX;
+import frc.robot.commands.elevator.MoveElevatorSetMotor;
 import frc.robot.commands.elevator.ResetElevator;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Watchdog;
 
 
 public class Robot extends TimedRobot {
@@ -61,6 +64,8 @@ public class Robot extends TimedRobot {
     vision = new Vision();
     intake = new BallIntake();
     OI.initialize(); //Calls the init method from the OI class
+
+    VideoSource camera = CameraServer.getInstance().startAutomaticCapture();
   }
   @Override
   public void robotPeriodic() {
@@ -86,8 +91,9 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void teleopInit() {
-   // Command reset = new ResetElevator();
-	//reset.start();
+   // Command test = new MoveElevatorSetMotor(-2);
+ // test.start();
+  
 	compressor.start();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
@@ -99,7 +105,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    //System.out.println(m_ir.getLeftIR());
+    
   
     Scheduler.getInstance().run();
     //m_el.testMotor(0.1);

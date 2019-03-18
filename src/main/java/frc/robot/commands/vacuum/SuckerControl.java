@@ -27,20 +27,20 @@ public class SuckerControl extends Command {
   protected void execute() {
   
      // if(vac.isSuckerDown) {
-    vac.suckerUp();
+    vac.suckerOut();
      // }
       
     //else {
     //  vac.suckerDown();
     //}
-    System.out.println("Sucker up");
+    //System.out.println("Sucker up");
     
     
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
   // Called once after isFinished returns true
   @Override

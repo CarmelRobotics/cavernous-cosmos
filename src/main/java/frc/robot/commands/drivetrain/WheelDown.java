@@ -27,6 +27,7 @@ public class WheelDown extends Command {
   @Override
   protected void execute() {
     wDrop.down();
+   System.out.println("Wheel Down");
   }
 
   // Make this return true when this Command no longer needs to run execute()
