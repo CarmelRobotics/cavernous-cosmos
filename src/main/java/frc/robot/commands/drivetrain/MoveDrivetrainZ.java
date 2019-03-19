@@ -19,7 +19,7 @@ public class MoveDrivetrainZ extends Command {
 
   public MoveDrivetrainZ(double degrees) {
 
-    drt = Robot.driver;
+    drt = Robot.drive;
 
     //accounting for gear ratio
     totalMovement = degrees;//((degrees/360)*34.648*Math.PI)/(6*Math.PI);
@@ -48,7 +48,7 @@ public class MoveDrivetrainZ extends Command {
   protected void execute() {
     //current is derived the same way as start but is called every time execute() runs
     double currentPos = drt.getEncoderFLeft();
-    double distanceTraveled = drt.getEncoderFLeft() - startL;
+    double distanceTraveled = currentPos - startL;
     double movementRemaining = totalMovementHopefully - distanceTraveled;
 
     double negativeMovementMultiplier;

@@ -36,12 +36,12 @@ public class RobotMap {
     public static final int BUTTON_ID_ELEV_UP_BUTTON = 6;
     public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 7;
 
-  /* Guitar Buttons */
-  public static final int BUTTON_ID_INTAKEIN_BUTTON = 8;
-  public static final int BUTTON_ID_INTAKEOUT_BUTTON = 9;
-  public static final int BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON = 3;
-  public static final int BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON = 4;
-  public static final int BUTTON_ID_SUCKER= 2;
+  /* Guitar Button IDs */
+    public static final int BUTTON_ID_INTAKEIN_BUTTON = 8;
+    public static final int BUTTON_ID_INTAKEOUT_BUTTON = 9;
+    public static final int BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON = 3;
+    public static final int BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON = 4;
+    public static final int BUTTON_ID_SUCKER= 2;
 
   /* Spark CAN IDs */
     public static final int CAN_ID_FRONT_RIGHT = 3;

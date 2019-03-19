@@ -112,9 +112,5 @@ public class Robot extends TimedRobot {
 	/**
 	 * This function is called periodically during test mode.
 	 */
-  
-	public static DriveTrain getDriveTrain() { //method to return the drive train as a drive train.
-		return driver;
-	}
 
 }
