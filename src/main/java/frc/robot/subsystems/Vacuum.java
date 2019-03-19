@@ -33,7 +33,7 @@ public class Vacuum extends Subsystem {
         rightPump = new VictorSP(RobotMap.PWM_PUMP_2);
         
 
-        servoRight.set(0); // RESET TO 0
+        servoRight.set(0); 
         servoLeft.set(1);
         //The pumps need to be set to on at the start
         spike1.set(Value.kOn);
@@ -43,7 +43,7 @@ public class Vacuum extends Subsystem {
     public void suckerOut() {
         isSuckerStart = true;
         isSuckerDown = false; //
-        servoRight.set(0); //RESET TO 0    Start position for the robot //0
+        servoRight.set(0);   //  Start position for the robot //0
         servoLeft.set(1);  //Start position for the robot //1
     
        // System.out.println("Right " + servoRight.getPosition());

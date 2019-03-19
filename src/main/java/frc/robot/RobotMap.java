@@ -38,8 +38,8 @@ public class RobotMap {
     public static final int BUTTON_ID_ELEV_HATCH_2 = 10;
 
 
-    public static final int BUTTON_ID_SUCC_CONTROL = 5;
-    public static final int BUTTON_ID_SUCKER= 6;
+    public static final int BUTTON_ID_SUCC_IN = 5;
+    public static final int BUTTON_ID_SUCKER_OUT= 6;
 
   
 
@@ -129,9 +129,9 @@ public class RobotMap {
       public static final JoystickButton GEARSHIFT = new JoystickButton(JOYSTICK_A, BUTTON_ID_GEARSHIFT);
 
     //Suction Buttons
-      public static final JoystickButton SUCC_CONTROL = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCC_CONTROL);
+      public static final JoystickButton SUCC_IN = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCC_IN);
   
-      public static final JoystickButton SUCC_DOWN = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCKER);
+      public static final JoystickButton SUCC_OUT = new JoystickButton(JOYSTICK_A, BUTTON_ID_SUCKER_OUT);
 
     //Lifter Arm Buttons
       public static final JoystickButton CHANGE_ARM_ANGLE_0 = new JoystickButton(GUITAR, BUTTON_ID_CHANGE_ARM_ANGLE_0);
