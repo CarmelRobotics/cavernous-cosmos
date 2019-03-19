@@ -45,7 +45,6 @@ public class RobotMap {
 
    
 
-<<<<<<< HEAD
   /* Guitar Buttons */
  
   public static final int BUTTON_ID_INTAKEIN_POVBUTTON_DEGREES = 4; //Top Button
@@ -58,14 +57,6 @@ public class RobotMap {
   public static final int BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON = 1;
   public static final int BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON = 2;
  
-=======
-  /* Guitar Button IDs */
-    public static final int BUTTON_ID_INTAKEIN_BUTTON = 8;
-    public static final int BUTTON_ID_INTAKEOUT_BUTTON = 9;
-    public static final int BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON = 3;
-    public static final int BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON = 4;
-    public static final int BUTTON_ID_SUCKER= 2;
->>>>>>> 92821a50c4a039ced0899b0cc37caa8c4883c989
 
   /* Spark CAN IDs */
     public static final int CAN_ID_FRONT_RIGHT = 3;

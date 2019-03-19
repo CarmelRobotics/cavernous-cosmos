@@ -10,13 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.*;
-<<<<<<< HEAD
-import frc.robot.commands.drivetrain.MoveDrivetrainX;
-import frc.robot.commands.elevator.MoveElevatorSetMotor;
-import frc.robot.commands.elevator.ResetElevator;
-=======
-import frc.robot.commands.drivetrain.MoveDrivetrainZ;
->>>>>>> 92821a50c4a039ced0899b0cc37caa8c4883c989
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -92,28 +85,16 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void teleopInit() {
-<<<<<<< HEAD
    // Command test = new MoveElevatorSetMotor(-2);
  // test.start();
   
 	compressor.start();
-=======
-
-    
-
-	  compressor.start();
->>>>>>> 92821a50c4a039ced0899b0cc37caa8c4883c989
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
 
-<<<<<<< HEAD
-    Command big = new MoveDrivetrainX(90);
-    big.start();
-=======
-    //Command big = new MoveDrivetrainZ(90);
+   // Command big = new MoveDrivetrainX(90);
    // big.start();
->>>>>>> 92821a50c4a039ced0899b0cc37caa8c4883c989
   }
 
   @Override

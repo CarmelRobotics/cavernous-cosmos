@@ -31,13 +31,8 @@ private double elValue;
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-<<<<<<< HEAD
-    el.manual(elValue);
-  
-=======
     el.setMotorSpeed(elValue);
-    System.out.println("Manual Arm command" + elValue);
->>>>>>> 92821a50c4a039ced0899b0cc37caa8c4883c989
+  
   }
 
   // Make this return true when this Command no longer needs to run execute()
