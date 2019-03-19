@@ -99,8 +99,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    //Command big = new MoveDrivetrainX(90);
-   // big.start();
+    Command big = new MoveDrivetrainX(90);
+    big.start();
   }
 
   @Override

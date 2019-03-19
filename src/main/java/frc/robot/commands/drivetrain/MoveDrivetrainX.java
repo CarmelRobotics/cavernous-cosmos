@@ -41,6 +41,7 @@ public class MoveDrivetrainX extends Command {
   protected void initialize() {
     startL = drt.getEncoderFLeft();
     startR = drt.getEncoderFRight();
+    //drt.set4Wheel(0.0, 0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -60,7 +61,7 @@ public class MoveDrivetrainX extends Command {
 
     double absRemain = Math.abs(movementRemaining);
     double absTotal = Math.abs(totalMovement);
-
+    /**
     if (absRemain < 0.05 * absTotal) {
       speed = 0.12 * negativeMovementMultiplier;
     }
@@ -76,10 +77,11 @@ public class MoveDrivetrainX extends Command {
     else if (absRemain <= 0.4 * absTotal) {
       speed = 0.75 * negativeMovementMultiplier;
     }
-    else if (absRemain <= absTotal) {
-      speed = 0.85 * negativeMovementMultiplier;
+    */
+    if (absRemain <= absTotal) {
+      speed = 0.5 * negativeMovementMultiplier;
     }
-    drt.set4Wheel(0.0, speed);
+    drt.set4Wheel(0.0, 0.5);
     System.out.println("Movement remaining: " + absRemain);
     System.out.println("Speed: " + speed);
     System.out.println("Total: " + absTotal);
@@ -97,8 +99,8 @@ public class MoveDrivetrainX extends Command {
     double remainingR = totalMovementHopefully - traveledR;
     double absR = Math.abs(remainingR);
 
-    if (absL < 5 && absR < 5)
-      return true;
+    //if (absL < 5 && absR < 5)
+      //return true;
     return false;
   }
 
