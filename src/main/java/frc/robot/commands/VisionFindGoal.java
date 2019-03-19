@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+@Deprecated
 public class VisionFindGoal extends Command {
 
   private AutoLine parent;

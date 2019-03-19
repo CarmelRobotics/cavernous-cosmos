@@ -5,7 +5,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.*;
 
-public class MoveDrivetrainX extends Command {
+public class MoveDrivetrainZ extends Command {
 
   private DriveTrain drt;
 
@@ -17,9 +17,9 @@ public class MoveDrivetrainX extends Command {
   private double totalMovementHopefully;
   private boolean isMovementPositive;
 
-  public MoveDrivetrainX(double degrees) {
+  public MoveDrivetrainZ(double degrees) {
 
-    drt = Robot.driver;
+    drt = Robot.drive;
 
     //accounting for gear ratio
     totalMovement = degrees;//((degrees/360)*34.648*Math.PI)/(6*Math.PI);
@@ -49,7 +49,7 @@ public class MoveDrivetrainX extends Command {
   protected void execute() {
     //current is derived the same way as start but is called every time execute() runs
     double currentPos = drt.getEncoderFLeft();
-    double distanceTraveled = drt.getEncoderFLeft() - startL;
+    double distanceTraveled = currentPos - startL;
     double movementRemaining = totalMovementHopefully - distanceTraveled;
 
     double negativeMovementMultiplier;

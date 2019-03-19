@@ -17,7 +17,7 @@ public class MoveDrivetrainY extends Command {
 
   public MoveDrivetrainY(double rotations) {
 
-    drt = Robot.driver;
+    drt = Robot.drive;
 
     //accounting for gear ratio
     totalMovement = rotations;

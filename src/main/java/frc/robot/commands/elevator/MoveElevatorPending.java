@@ -23,7 +23,7 @@ public class MoveElevatorPending extends Command {
  * 1: fuel elevator button pressed
  */
   public MoveElevatorPending(int panelOrFuel) {
-    el = Robot.m_el;
+    el = Robot.elevator;
     initialButton = el.getDesiredLevel();
     secondButton = panelOrFuel;
     // Use requires() here to declare subsystem dependencies
@@ -79,11 +79,13 @@ public class MoveElevatorPending extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    move.close();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    move.close();
   }
 }

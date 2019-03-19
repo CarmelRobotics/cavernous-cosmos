@@ -33,14 +33,14 @@ public class MoveElevatorChangeLevelVariable extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    el = Robot.m_el;
+    el = Robot.elevator;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    el.setDesiredLevel(level);;
+    el.setDesiredLevel(level);
 
   }
 

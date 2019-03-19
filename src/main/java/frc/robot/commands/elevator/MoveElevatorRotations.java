@@ -5,7 +5,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Elevator;
 
-public class MoveElevatorSetMotor extends Command {
+public class MoveElevatorRotations extends Command {
 
   private Elevator el;
 
@@ -15,9 +15,9 @@ public class MoveElevatorSetMotor extends Command {
   private double totalMovement;
   private boolean isMovementPositive;
 
-  public MoveElevatorSetMotor(double rotations) {
+  public MoveElevatorRotations(double rotations) {
 
-    el = Robot.m_el;
+    el = Robot.elevator;
 
     //accounting for gear ratio
     totalMovement = rotations * 36;

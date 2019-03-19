@@ -26,10 +26,8 @@ import frc.robot.RobotMap;
 public class Elevator extends Subsystem {
 
     private CANSparkMax extend;
-    private CANPIDController extendPID;
     private CANEncoder extendEnc;
     private CANDigitalInput extendLimit;
-    private double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
     private int currentPos; //the elevator's current position
     private int desiredLevel;
     private int timesMoved;
@@ -37,28 +35,11 @@ public class Elevator extends Subsystem {
 
     public Elevator() {
         extend = new CANSparkMax(RobotMap.CAN_ID_ELEVATOR, MotorType.kBrushless);
-        extendPID = extend.getPIDController();
         extendEnc = extend.getEncoder();
         //extendLimit = new CANDigitalInput(extend, LimitSwitch.kReverse, LimitSwitchPolarity.kNormallyClosed);
         desiredLevel = 0;
         timesMoved = 0;
         relativeZero = 0;
-    
-        // PID coefficients
-        kP = 0.1;  //originally 0.1
-        kI = 1e-4; //originally 1e-4
-        kD = 1; //originally 1
-        kIz = 0; //originally 0
-        kFF = 0; //originally 0
-        kMaxOutput = -0.5; //originally -1
-        kMinOutput = 0.5; //originally 1
-        // set PID controller values
-        extendPID.setP(kP);
-        extendPID.setI(kI);
-        extendPID.setD(kD);
-        extendPID.setIZone(kIz);
-        extendPID.setFF(kFF);
-        extendPID.setOutputRange(kMinOutput, kMaxOutput);
     }
 
     public double getElevatorActualEncoderPos() {
@@ -73,11 +54,6 @@ public class Elevator extends Subsystem {
         relativeZero = zero;
     }
 
-    public void setElevatorMovement(double rotations) {
-        extendPID.setReference(rotations, ControlType.kPosition);
-        System.out.println("setElevatorMovement Run");
-    }
-
     //hello moto
     public void setMotorSpeed(double speed) {
         extend.set(speed);
@@ -87,40 +63,28 @@ public class Elevator extends Subsystem {
         this.currentPos = pos;
     }
 
-    public void setElevatorVelocity(double rpm) {
-        extendPID.setReference(rpm, ControlType.kVelocity);
-    }
-
     public boolean getElevatorLimitSwitch() {
         //normally closed: true means limit switch isn't active, false means it is
         return false;//extendLimit.get();
     }
 
     public int getDesiredLevel() {
-        //normally closed: true means limit switch isn't active, false means it is
         return desiredLevel;
     }
 
     public void setDesiredLevel(int dL) {
-        //normally closed: true means limit switch isn't active, false means it is
         this.desiredLevel = dL;
     }
 
     public int getTimesMoved() {
-        //normally closed: true means limit switch isn't active, false means it is
         return timesMoved;
     }
 
     public void addToTimesMoved() {
-        //normally closed: true means limit switch isn't active, false means it is
         this.timesMoved++;
     }
 
-    public void manual(double value) {
-        extend.set(value);
-    }
-
-    public void manualStop() {
+    public void motorStop() {
         extend.set(0);
     }
 

@@ -51,7 +51,7 @@ public class AutoLine extends Command {
   public AutoLine() {
 
     irSys = Robot.m_ir;
-    dTrain = Robot.driver;
+    dTrain = Robot.drive;
     us = Robot.m_us;
     
     threshold = 0.0;
