@@ -28,8 +28,8 @@ public class MoveElevatorUpOneLevel extends Command {
     System.out.println(currentRelativePos);
     double nearestHigherLevel = 0;
 
-    for (int i = RobotMap.ELEV_INCHES.length - 1; convertInToRot(RobotMap.ELEV_INCHES[i]) > currentRelativePos; i--)
-      nearestHigherLevel = convertInToRot(RobotMap.ELEV_INCHES[i]);
+    for (int i = RobotMap.ELEV_INCHES.length - 1; el.convertInToRot(RobotMap.ELEV_INCHES[i]) > currentRelativePos; i--)
+      nearestHigherLevel = el.convertInToRot(RobotMap.ELEV_INCHES[i]);
 
     heightOfTarget = nearestHigherLevel;
 
@@ -61,7 +61,4 @@ public class MoveElevatorUpOneLevel extends Command {
     move.close();
   }
 
-  private double convertInToRot(double inches) {
-    return inches*1; //insert conversion math here
-  }
 }

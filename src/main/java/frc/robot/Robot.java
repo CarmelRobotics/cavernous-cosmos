@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.*;
+import frc.robot.commands.elevator.MoveElevatorRotations;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
   public static LifterArm arm;
   public static Vision vision;
   public static BallIntake intake;
+  public static Watchdog wd;
 
 //Changes
   Command m_autonomousCommand;
@@ -45,7 +47,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-	  oi = new OI();
+    oi = new OI();
+    
+    //wd = Watchdog.getInstance();
 
     SmartDashboard.putData("Auto mode", m_chooser);
     drive = new DriveTrain();
@@ -82,24 +86,27 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    drive.slideDrive();
   }
   @Override
   public void teleopInit() {
-   // Command test = new MoveElevatorSetMotor(-2);
- // test.start();
+   //Command test = new MoveElevatorRotations(elevator.convertInToRot(5));
+   //test.start();
+
+    double actualPosition = elevator.getElevatorActualEncoderPos();
+    elevator.setRelativeZero(actualPosition);
   
 	compressor.start();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
 
-   // Command big = new MoveDrivetrainX(90);
+   // Command big = new MoveDrivetrainZ(90);
    // big.start();
   }
 
   @Override
   public void teleopPeriodic() {
-    
   
     Scheduler.getInstance().run();
     //m_el.testMotor(0.1);

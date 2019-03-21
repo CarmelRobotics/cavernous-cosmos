@@ -68,6 +68,7 @@ public class DriveTrain extends Subsystem {
 		//Contructing Joysticks
     	jStick_A = new Joystick(RobotMap.JOYSTICK_A_ID);
 		jStick_B = new Joystick(RobotMap.GUITAR_ID);
+
 		//Contructing Spark Motors
 		motorFLeft = new CANSparkMax (RobotMap.CAN_ID_FRONT_LEFT,MotorType.kBrushless);
 		motorFRight = new CANSparkMax (RobotMap.CAN_ID_FRONT_RIGHT,MotorType.kBrushless);
@@ -141,7 +142,7 @@ public class DriveTrain extends Subsystem {
 	public void slideDrive(){
 		
 		//First param is ALWAYS getY. Wheels will seem to spin opposite directions if X is first
-		drive.arcadeDrive(expDriveEquation(-jStick_A.getY(),.2),expDriveEquation(jStick_A.getZ(),.7));
+		drive.arcadeDrive(expDriveEquation(-jStick_A.getY(),.2),expDriveEquation(jStick_A.getZ(),.6));
 	
 		//motorMiddle.setIdleMode(IdleMode.kCoast);
 	//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
@@ -187,7 +188,5 @@ public class DriveTrain extends Subsystem {
 		Command moveDistance = new MoveDrivetrainY(rotations);
 		moveDistance.start();
 	}
-
-
 
 }

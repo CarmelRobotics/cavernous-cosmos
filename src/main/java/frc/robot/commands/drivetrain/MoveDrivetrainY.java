@@ -101,7 +101,4 @@ public class MoveDrivetrainY extends Command {
   protected void interrupted() {
   }
 
-  private double convertInToRot(double inches) {
-    return inches*1; //insert conversion math here
-  }
 }

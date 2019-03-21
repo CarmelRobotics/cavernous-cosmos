@@ -39,8 +39,8 @@ public class MoveElevatorDownOneLevel extends Command {
     currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
     double nearestLowerLevel = 0;
 
-    for (int i = 0; convertInToRot(RobotMap.ELEV_INCHES[i]) < currentRelativePos; i++)
-      nearestLowerLevel = convertInToRot(RobotMap.ELEV_INCHES[i]);
+    for (int i = 0; el.convertInToRot(RobotMap.ELEV_INCHES[i]) < currentRelativePos; i++)
+      nearestLowerLevel = el.convertInToRot(RobotMap.ELEV_INCHES[i]);
 
     heightOfTarget = nearestLowerLevel;
   }
@@ -70,10 +70,6 @@ public class MoveElevatorDownOneLevel extends Command {
   @Override
   protected void interrupted() {
     move.close();
-  }
-
-  private double convertInToRot(double inches) {
-    return inches*1; //insert conversion math here
   }
 
 }

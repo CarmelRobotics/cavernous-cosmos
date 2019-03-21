@@ -63,6 +63,7 @@ public class Elevator extends Subsystem {
         this.currentPos = pos;
     }
 
+    @Deprecated
     public boolean getElevatorLimitSwitch() {
         //normally closed: true means limit switch isn't active, false means it is
         return false;//extendLimit.get();
@@ -87,6 +88,10 @@ public class Elevator extends Subsystem {
     public void motorStop() {
         extend.set(0);
     }
+
+    public double convertInToRot(double inches) {
+        return inches/RobotMap.IN_CONVERT; //insert conversion math here
+      }
 
     @Override
     public void initDefaultCommand() {

@@ -116,8 +116,5 @@ public class MoveDrivetrainZ extends Command {
   @Override
   protected void interrupted() {
   }
-
-  private double convertInToRot(double inches) {
-    return inches*1; //insert conversion math here
-  }
+  
 }

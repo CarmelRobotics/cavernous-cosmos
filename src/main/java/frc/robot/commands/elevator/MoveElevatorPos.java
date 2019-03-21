@@ -32,7 +32,7 @@ public class MoveElevatorPos extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    heightOfTarget = convertInToRot(RobotMap.ELEV_INCHES[goal]);
+    heightOfTarget = el.convertInToRot(RobotMap.ELEV_INCHES[goal]);
     double currentRelativePos = el.getElevatorActualEncoderPos() - el.getRelativeZero();
     move = new MoveElevatorRotations(heightOfTarget - currentRelativePos);
     move.start();
@@ -62,7 +62,4 @@ public class MoveElevatorPos extends Command {
     move.close();
   }
 
-  private double convertInToRot(double inches) {
-    return inches*1; //insert conversion math here
-  }
 }

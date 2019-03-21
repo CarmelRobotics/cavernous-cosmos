@@ -20,6 +20,7 @@ public class RobotMap {
 
   /* Other Public Variables */
     public static boolean WHEEL_DROPPED = false;
+    public static double IN_CONVERT = 7.2;
 
   /* Joysticks */
     public static final int JOYSTICK_A_ID = 0;
