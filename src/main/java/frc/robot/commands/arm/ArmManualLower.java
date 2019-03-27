@@ -14,6 +14,7 @@ import frc.robot.subsystems.LifterArm;
 public class ArmManualLower extends Command {
 
   private LifterArm arm;
+  
   public ArmManualLower() {
     super("ArmChangePosition");
 		arm = Robot.arm;

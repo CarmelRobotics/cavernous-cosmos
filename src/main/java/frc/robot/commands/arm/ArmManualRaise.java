@@ -16,8 +16,6 @@ public class ArmManualRaise extends Command {
   private LifterArm arm;
 
   public ArmManualRaise() {
-
-    
 		arm = Robot.arm;
 		
 		requires(Robot.arm);

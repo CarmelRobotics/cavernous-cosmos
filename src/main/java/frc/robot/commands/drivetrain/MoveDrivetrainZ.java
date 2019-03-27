@@ -12,7 +12,6 @@ public class MoveDrivetrainZ extends Command {
   private double startLeft;
   private double goal;
   private double totalMovement;
-  private double totalMovementHopefully;
   private int movementMultiplier;
 
   public MoveDrivetrainZ(double degrees) {
