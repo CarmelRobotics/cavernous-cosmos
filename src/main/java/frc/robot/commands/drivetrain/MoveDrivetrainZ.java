@@ -9,28 +9,29 @@ public class MoveDrivetrainZ extends Command {
 
   private DriveTrain drt;
 
-  private double startL;
-  private double startR;
-  private int goal;
-  private double targetGoal;
+  private double startLeft;
+  private double goal;
   private double totalMovement;
   private double totalMovementHopefully;
-  private boolean isMovementPositive;
+  private int movementMultiplier;
 
   public MoveDrivetrainZ(double degrees) {
 
+    double turningConversionFactor = 1;
+
     drt = Robot.drive;
 
-    //accounting for gear ratio
-    totalMovement = degrees;//((degrees/360)*34.648*Math.PI)/(6*Math.PI);
+    startLeft = drt.getEncoderFLeft();
+    goal = startLeft + degrees * turningConversionFactor;
 
-    totalMovementHopefully = totalMovement/2;
+    totalMovement = startLeft + goal;
 
-    //variable to easily check if movement is up or down
-    if (totalMovement >= 0)
-      isMovementPositive = true;
-    else
-      isMovementPositive = false;
+    if (degrees >= 0.0) {
+      movementMultiplier = 1;
+    }
+    else {
+      movementMultiplier = -1;
+    }
 
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -39,68 +40,53 @@ public class MoveDrivetrainZ extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    startL = drt.getEncoderFLeft();
-    startR = drt.getEncoderFRight();
-    //drt.set4Wheel(0.0, 0.5);
+ 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //current is derived the same way as start but is called every time execute() runs
-    double currentPos = drt.getEncoderFLeft();
-    double distanceTraveled = currentPos - startL;
-    double movementRemaining = totalMovementHopefully - distanceTraveled;
+    double currentLeft = drt.getEncoderFLeft();
+    double distanceTraveled = currentLeft - startLeft;
+    double distanceRemaining = totalMovement - distanceTraveled;
 
-    double negativeMovementMultiplier;
-    if (isMovementPositive)
-      negativeMovementMultiplier = 1.0;
-    else
-      negativeMovementMultiplier = -1.0;
-    double speed = 0;
-
-    double absRemain = Math.abs(movementRemaining);
+    double absRemain = Math.abs(distanceRemaining);
     double absTotal = Math.abs(totalMovement);
-    /**
+
+    double speed = 0.0;
+
     if (absRemain < 0.05 * absTotal) {
-      speed = 0.12 * negativeMovementMultiplier;
+      speed = 0.12 * movementMultiplier;
     }
     else if (absRemain < 0.1 * absTotal) {
-      speed = 0.20 * negativeMovementMultiplier;
+      speed = 0.20 * movementMultiplier;
     }
     else if (absRemain < 0.2 * absTotal) {
-      speed = 0.25 * negativeMovementMultiplier;
+      speed = 0.25 * movementMultiplier;
     }
     else if (absRemain <= 0.3 * absTotal) {
-      speed = 0.60 * negativeMovementMultiplier;
+      speed = 0.60 * movementMultiplier;
     }
     else if (absRemain <= 0.4 * absTotal) {
-      speed = 0.75 * negativeMovementMultiplier;
+      speed = 0.75 * movementMultiplier;
     }
-    */
-    if (absRemain <= absTotal) {
-      speed = 0.5 * negativeMovementMultiplier;
+    else if (absRemain <= absTotal) {
+      speed = 0.5 * movementMultiplier;
     }
-    drt.set4Wheel(0.0, 0.5);
-    System.out.println("Movement remaining: " + absRemain);
-    System.out.println("Speed: " + speed);
-    System.out.println("Total: " + absTotal);
-    System.out.println("Current encoder: " + drt.getEncoderFLeft());
+
+    drt.set4Wheel(0.0, speed);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    double traveledL = drt.getEncoderFLeft() - startL;
-    double remainingL = totalMovementHopefully - traveledL;
-    double absL = Math.abs(remainingL);
+    double traveledLeft = drt.getEncoderFLeft() - startLeft;
+    double remainingLeft = totalMovement - traveledLeft;
+    double absLeft = Math.abs(remainingLeft);
 
-    double traveledR = drt.getEncoderFLeft() - startL;
-    double remainingR = totalMovementHopefully - traveledR;
-    double absR = Math.abs(remainingR);
-
-    //if (absL < 5 && absR < 5)
-      //return true;
+    if (absLeft < 5)
+     return true;
     return false;
   }
 
