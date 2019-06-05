@@ -12,14 +12,20 @@ import frc.robot.commands.*;
 import frc.robot.commands.arm.ArmChangePosition;
 import frc.robot.commands.arm.ArmManualLower;
 import frc.robot.commands.arm.ArmManualRaise;
+import frc.robot.commands.arm.PistonIn;
+import frc.robot.commands.arm.PistonOut;
 import frc.robot.commands.drivetrain.Gearshift;
-import frc.robot.commands.drivetrain.WheelDown;
-import frc.robot.commands.drivetrain.WheelUp;
+import frc.robot.commands.drivetrain.TimerDriveTrain;
+//import frc.robot.commands.drivetrain.WheelDown;
+//import frc.robot.commands.drivetrain.WheelUp;
 import frc.robot.commands.elevator.MoveElevatorManual;
+import frc.robot.commands.elevator.MoveElevatorPos;
+import frc.robot.commands.elevator.MoveElevatorRotations;
 import frc.robot.commands.intake.IntakeIn;
 import frc.robot.commands.intake.IntakeOut;
 import frc.robot.commands.vacuum.SuckerIn;
 import frc.robot.commands.vacuum.SuckerOut;
+
 import frc.robot.commands.vacuum.SuckerIn;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -38,17 +44,17 @@ public class OI {
     private static Button lifterArmUp;
     private static Button suckerIn;
     private static Button suckerOut;
-    private static Button jst_button_elevup;
-    private static Button jst_button_elevdown;
-    private static Button jst_button_elevhatch2;
+    public static Button jst_button_elevup;
+    public static Button jst_button_elevdown;
+    public static Button jst_button_elevhatch2;
     private static Button gearshift;
     public static Button changeArmAngleTo0;
     public static Button changeArmAngleTo1;
     public static Button changeArmAngleTo2;
     private static Button intakeSpit;
     private static Button intakeSuck;
-
-  
+    private static Button timerDrive;
+    public static Button approachObjective;
 
   /*Joysticks */
     private static Joystick jStick_A;
@@ -85,10 +91,17 @@ public class OI {
        intakeSuck = RobotMap.INTAKEIN_BUTTON;
         intakeSpit = RobotMap.INTAKEOUT_BUTTON;
       
+      //Drive Train
+      timerDrive = RobotMap.TIMER_DRIVETRAIN_BUTTON;
+      
       // Buttons
-        //Solenoids MUST be while held. One signal does seem to be enough...
-        wheelUp.whileHeld(new WheelUp());
-        wheelDown.whileHeld(new WheelDown());
+        //Solenoids MUST be while held. One signal doesn't seem to be enough...
+        //Button seems to have two functions
+        wheelUp.whenPressed(new PistonOut());
+        wheelDown.whenPressed(new PistonIn());
+
+        wheelUp.whenPressed(new SuckerOut());
+        wheelDown.whenPressed(new SuckerIn());
 
         suckerIn.whenPressed(new SuckerIn());
         suckerOut.whenPressed(new SuckerOut());
@@ -109,5 +122,9 @@ public class OI {
       // Intake Commands
         intakeSuck.whileHeld(new IntakeIn());
         intakeSpit.whileHeld(new IntakeOut());
-  }
+
+        //Drive Train Commands
+        timerDrive.whenPressed(new TimerDriveTrain());
+        
+    }
 }

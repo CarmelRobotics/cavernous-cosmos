@@ -37,9 +37,9 @@ public class BallIntake extends Subsystem {
 
   public void intakeIn(){
     
-    intakeScOne.set(1);
-    intakeScTwo.set(-1);
-    
+    intakeScOne.set(-1);
+    intakeScTwo.set(-.3);
+    //System.out.println("Top speed: "  + intakeScOne.get());
     
   }
 
@@ -50,7 +50,7 @@ public class BallIntake extends Subsystem {
   }
   
   public void intakeOut(){
-    intakeScOne.set(-1);
+    intakeScOne.set(1);
     intakeScTwo.set(1);
     
   }

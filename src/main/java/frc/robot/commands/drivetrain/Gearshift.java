@@ -11,13 +11,15 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
 
+@Deprecated
 public class Gearshift extends Command {
   private final DriveTrain drt;
 
 	public Gearshift() {
-
+    
 	drt = Robot.drive;
 
 		requires(drt);
@@ -33,26 +35,29 @@ public class Gearshift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    //drt.gearshiftHigh();
+    //if(!RobotMap.SHIFTER_HIGH)
+      drt.gearshiftHigh();
+    //else
+      //drt.gearshiftLow();
+    RobotMap.SHIFTER_HIGH = !RobotMap.SHIFTER_HIGH;
+    System.out.println("Shifted! High? " + RobotMap.SHIFTER_HIGH);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //drt.gearshiftLow();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    //drt.gearshiftLow();
+    drt.gearshiftLow();
   }
 }

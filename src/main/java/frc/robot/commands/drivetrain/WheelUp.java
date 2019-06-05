@@ -4,13 +4,14 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/** 
 package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.WheelDropper;
 
+@Deprecated
 public class WheelUp extends Command {
   private  WheelDropper wDrop;
   public WheelUp() {
@@ -53,3 +54,4 @@ public class WheelUp extends Command {
 
   }
 }
+*/

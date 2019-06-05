@@ -21,6 +21,9 @@ public class RobotMap {
   /* Other Public Variables */
     public static boolean WHEEL_DROPPED = false;
     public static double IN_CONVERT = 7.2;
+    public static boolean SHIFTER_HIGH = false;
+    public static boolean PISTON_OUT = true;
+    public static boolean ELEV_MOVING = false;
 
   /* Joysticks */
     public static final int JOYSTICK_A_ID = 0;
@@ -42,8 +45,8 @@ public class RobotMap {
     public static final int BUTTON_ID_SUCC_IN = 5;
     public static final int BUTTON_ID_SUCKER_OUT= 6;
 
-  
-
+    public static final int BUTTON_DRIVETRAIN_TIMER = 12;
+    public static int BUTTON_APPROACH_OBJECTIVE = 11;
    
 
   /* Guitar Buttons */
@@ -92,6 +95,9 @@ public class RobotMap {
   /* Digital Output Ports */
     public static final int ULTRASOUND_OUT = 0;
 
+  /* Limit Switches */
+    public static final int ELEV_BOTTOM_LIMIT = 0;
+    
   /* Pneumatic Control IDs */
     public static final int WHEELDROP_PCM_ID_UP = 2;
     public static final int WHEELDROP_PCM_ID_DOWN = 3;
@@ -152,9 +158,9 @@ public class RobotMap {
      public static final JoystickButton MANUAL_LIFTERARM_UP_BUTTON = new JoystickButton(GUITAR, BUTTON_ID_MANUAL_LIFTERARM_UP_BUTTON);
      public static final JoystickButton MANUAL_LIFTERARM_DOWN_BUTTON  = new JoystickButton(GUITAR, BUTTON_ID_MANUAL_LIFTERARM_DOWN_BUTTON);
     
-    //Hat Buttons
-    
-
+    //DriveTrain Buttons
+    public static final JoystickButton TIMER_DRIVETRAIN_BUTTON = new JoystickButton(JOYSTICK_A,BUTTON_DRIVETRAIN_TIMER);
+    public static final JoystickButton APPROACH_OBJECTIVE_BUTTON = new JoystickButton(JOYSTICK_A,BUTTON_APPROACH_OBJECTIVE);
 
   /** -- Relative Distances in Inches to Set Elevator Heights --
    * These numbers represent how many inches the elevator would have to

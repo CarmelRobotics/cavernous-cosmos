@@ -43,11 +43,8 @@ public class Vacuum extends Subsystem {
     public void suckerOut() {
         isSuckerStart = true;
         isSuckerDown = false; //
-        servoRight.set(0);   //  Start position for the robot //0
-        servoLeft.set(1);  //Start position for the robot //1
-    
-       // System.out.println("Right " + servoRight.getPosition());
-       // System.out.println("Left " + servoLeft.getPosition());
+    //    servoRight.set(0);   //  Start position for the robot //0
+     //   servoLeft.set(1);  //Start position for the robot //1
         spike1.set(Value.kOn);
         spike2.set(Value.kOn);
         leftPump.set(0);
@@ -56,8 +53,8 @@ public class Vacuum extends Subsystem {
     public void suckerIn() {
         isSuckerStart = false;
         isSuckerDown = true;
-        servoRight.set(1);  //RESET TO 1
-        servoLeft.set(0); //0
+      //  servoRight.set(1);  //RESET TO 1
+      //  servoLeft.set(0); //0
         spike1.set(Value.kOff);
         spike2.set(Value.kOff);
         //Pumps go on when sucker goes in

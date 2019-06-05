@@ -9,6 +9,7 @@ import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANDigitalInput.LimitSwitch;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -28,6 +29,7 @@ public class Elevator extends Subsystem {
     private CANSparkMax extend;
     private CANEncoder extendEnc;
     private CANDigitalInput extendLimit;
+    private DigitalInput bottomLimit;
     private int currentPos; //the elevator's current position
     private int desiredLevel;
     private int timesMoved;
@@ -36,6 +38,7 @@ public class Elevator extends Subsystem {
     public Elevator() {
         extend = new CANSparkMax(RobotMap.CAN_ID_ELEVATOR, MotorType.kBrushless);
         extendEnc = extend.getEncoder();
+        bottomLimit = new DigitalInput(RobotMap.ELEV_BOTTOM_LIMIT);
         //extendLimit = new CANDigitalInput(extend, LimitSwitch.kReverse, LimitSwitchPolarity.kNormallyClosed);
         desiredLevel = 0;
         timesMoved = 0;
@@ -56,6 +59,8 @@ public class Elevator extends Subsystem {
 
     //hello moto
     public void setMotorSpeed(double speed) {
+        if(!bottomLimit.get())
+            speed = Math.max(speed, 0);
         extend.set(speed);
     }
 
@@ -92,6 +97,10 @@ public class Elevator extends Subsystem {
     public double convertInToRot(double inches) {
         return inches/RobotMap.IN_CONVERT; //insert conversion math here
       }
+
+    public DigitalInput getBottomLimit() {
+        return bottomLimit;
+    }
 
     @Override
     public void initDefaultCommand() {

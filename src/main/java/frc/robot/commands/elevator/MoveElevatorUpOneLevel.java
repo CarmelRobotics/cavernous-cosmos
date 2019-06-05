@@ -33,8 +33,8 @@ public class MoveElevatorUpOneLevel extends Command {
 
     heightOfTarget = nearestHigherLevel;
 
-    move = new MoveElevatorRotations(heightOfTarget - currentRelativePos);
-    move.start();
+    //move = new MoveElevatorRotations(heightOfTarget - currentRelativePos);
+    //move.start();
   }
 
   // Called repeatedly when this Command is scheduled to run

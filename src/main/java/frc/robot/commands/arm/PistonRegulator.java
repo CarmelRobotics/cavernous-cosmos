@@ -4,31 +4,34 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/**
-package frc.robot.commands.drivetrain;
+
+package frc.robot.commands.arm;
 
 import frc.robot.Robot;
-import frc.robot.subsystems.WheelDropper;
+import frc.robot.RobotMap;
+import frc.robot.commands.vacuum.SuckerOut;
+import frc.robot.subsystems.HatchPiston;
 import edu.wpi.first.wpilibj.command.Command;
 
-@Deprecated
-public class WheelDown extends Command {
-  private  WheelDropper wDrop;
-  public WheelDown() {
-    wDrop = Robot.dropper;
-    requires(wDrop);
+public class PistonRegulator extends Command {
+  private HatchPiston hPiston;
+  private Command vac;
+  public PistonRegulator() {
+    hPiston = Robot.piston;
+    requires(hPiston);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //vac = new SuckerOut();
+    //vac.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    wDrop.down();
-   System.out.println("Wheel Down");
+   //System.out.println("Wheel Down");
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,15 +44,15 @@ public class WheelDown extends Command {
   @Override
   protected void end() {
 
-    wDrop.stop();
+    //hPiston.stop();
+    //vac.close();
 
   }
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    wDrop.stop();
-
+    hPiston.stop();
+    vac.close();
   }
 }
-*/

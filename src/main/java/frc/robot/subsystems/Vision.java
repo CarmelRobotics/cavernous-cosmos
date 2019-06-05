@@ -23,7 +23,13 @@ public class Vision extends Subsystem {
     public static NetworkTableEntry objectYawEntry;
     
     public Vision(){
+        VisionInit();
+    }
 
+    public void VisionInit(){
+        ntinst = NetworkTableInstance.getDefault();
+        ntinst.startServer();
+        System.out.println("vision started...");
     }
     
     public void VisionPeriodic()
@@ -33,6 +39,7 @@ public class Vision extends Subsystem {
         headingEntry = values.getEntry("heading");
         distanceEntry = values.getEntry("distance");
         objectYawEntry = values.getEntry("objectYaw");
+        System.out.println("object seen?" + objectSeen.getBoolean(false));
         if(objectSeen.getBoolean(false)){ //false if not found
             System.out.println("Heading Entry: " + headingEntry.getDouble(404) + 
             "\nDistance Entry: " + distanceEntry.getDouble(404) + 
@@ -42,7 +49,6 @@ public class Vision extends Subsystem {
     }
 
     protected void initDefaultCommand(){
-        ntinst = NetworkTableInstance.getDefault();
-        ntinst.startServer(); //starts vision server
+        //starts vision server
     }
 }

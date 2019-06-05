@@ -13,9 +13,13 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Watchdog;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.commands.drivetrain.MoveDrivetrainY;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -52,8 +56,11 @@ public class DriveTrain extends Subsystem {
 	//Declaring Drive
 	private DifferentialDrive drive;
 	private DoubleSolenoid gearShift;
+	private Timer time;
+	private double startTime;
 
-
+	
+	private Button slowDriveTrain;
 
 	
 	//Old. Only use if new doesn't work
@@ -94,14 +101,10 @@ public class DriveTrain extends Subsystem {
 		drive.setSafetyEnabled(false);
 		//Constructing Solenoid
 		
-    	//gearShift = new DoubleSolenoid(RobotMap.SOLE_GEARSHIFT_HIGH, RobotMap.SOLE_GEARSHIFT_LOW);
+    	gearShift = new DoubleSolenoid(RobotMap.SOLE_GEARSHIFT_HIGH, RobotMap.SOLE_GEARSHIFT_LOW);
 
-		//Use to get encoder
-		//encoder = motorTest.getEncoder();
-		//Old. Only use if other drive system does't work
-    	//drive = new DifferentialDrive(motorLeft, motorLeft);
-		//drive2 = new DifferentialDrive(motorRight, motorRight);
-	
+	slowDriveTrain = RobotMap.APPROACH_OBJECTIVE_BUTTON;
+	time = new Timer();
     }
 
 	@Override
@@ -142,14 +145,42 @@ public class DriveTrain extends Subsystem {
 	public void slideDrive(){
 		
 		//First param is ALWAYS getY. Wheels will seem to spin opposite directions if X is first
-		drive.arcadeDrive(expDriveEquation(-jStick_A.getY(),.2),expDriveEquation(jStick_A.getZ(),.6));
-	
-		//motorMiddle.setIdleMode(IdleMode.kCoast);
+		//Slow down if button is pressed
+		if(!slowDriveTrain.get()) {
+
+		drive.arcadeDrive(expDriveEquation(-jStick_A.getY(),.3),(.75*expDriveEquation(jStick_A.getZ(),.4)));
+		}
+			//Move at normal speed
+		else {
+			drive.arcadeDrive((expDriveEquation(-jStick_A.getY(),.3))/2,((.75*expDriveEquation(jStick_A.getZ(),.4)))/2) ;
+		}
 	//Setting the middle wheel to the x axis of the second joystick. Allows the slide drive
 	//	motorMiddle.set(expDriveEquation(jStick_A.getX(),.65)); //Slows down middle wheel movement
-	motorMiddle.set(jStick_A.getX());
+	motorMiddle.set(.8*expDriveEquation(jStick_A.getX(), .6));
 	
 	  }
+
+	  public void MoveDriveTimer(double timeAmount, double velocity) {
+	
+		time.start();
+		double timeElapsed = time.get();
+
+		
+		while((timeElapsed < timeAmount))  {
+		//	if(motorFLeft.getOutputCurrent() < 28 || motorFRight.getOutputCurrent() < 28) {
+			set4Wheel(velocity, (.75*expDriveEquation(jStick_A.getZ(),.4)));	
+		
+			System.out.println(timeElapsed);
+			timeElapsed = time.get();
+			motorMiddle.set(.8*expDriveEquation(jStick_A.getX(), .6));
+			System.out.println("Time: " + time.get()+ "Amp: " + motorFLeft.getOutputCurrent());
+			//}
+		}
+		time.stop();
+		time.reset();
+	}
+
+	  
 	public void set4Wheel(double velocity, double rotation){
 		drive.arcadeDrive(velocity, rotation);
 	}

@@ -17,11 +17,11 @@ import frc.robot.RobotMap;
 public class IntakeIn extends Command {
 
   private BallIntake bi;
-  private DigitalInput ls;
+  //private DigitalInput ls;
   public IntakeIn() {
    
     bi = Robot.intake;
-    ls = new DigitalInput(RobotMap.INTAKE_LIMIT_ID);
+    //ls = new DigitalInput(RobotMap.INTAKE_LIMIT_ID);
     requires(bi);
   }
 

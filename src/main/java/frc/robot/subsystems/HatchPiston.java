@@ -6,7 +6,6 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-/**
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,20 +13,18 @@ import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 /**
  * Used to drop the center wheel for slide drive.
- 
-
- @Deprecated
-public class WheelDropper extends Subsystem {
+ */
+public class HatchPiston extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   // Somebody once told me
 
   //Declaring Solenoid
-  private DoubleSolenoid dropper;
+  private DoubleSolenoid piston;
 
-  public WheelDropper() {
+  public HatchPiston() {
     //Constructing Solenoid
-    dropper = new DoubleSolenoid(RobotMap.WHEELDROP_PCM_ID_UP, RobotMap.WHEELDROP_PCM_ID_DOWN);
+    piston = new DoubleSolenoid(RobotMap.WHEELDROP_PCM_ID_UP, RobotMap.WHEELDROP_PCM_ID_DOWN);
   //  dropper.set(DoubleSolenoid.Value.kForward);
   }
 
@@ -38,21 +35,22 @@ public class WheelDropper extends Subsystem {
   }
 
 //Wheel is initally up so forward puts it down in place
-  public void down(){
-    dropper.set(DoubleSolenoid.Value.kForward);
+  public void out(){
+    piston.set(DoubleSolenoid.Value.kForward);
     RobotMap.WHEEL_DROPPED = true;
+  //  System.out.println(piston.get());
   }
 //Wheel is initally up so reverse puts it back in place
-  public void up(){
+  public void in(){
 
-    dropper.set(DoubleSolenoid.Value.kReverse);
+    piston.set(DoubleSolenoid.Value.kReverse);
     RobotMap.WHEEL_DROPPED = false;
+   // System.out.println(piston.get());
   }
 
   public void stop(){
-    dropper.set(DoubleSolenoid.Value.kOff);
+    piston.set(DoubleSolenoid.Value.kOff);
 
   }
 
 }
-*/

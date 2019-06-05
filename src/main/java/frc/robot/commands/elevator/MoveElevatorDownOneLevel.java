@@ -48,8 +48,8 @@ public class MoveElevatorDownOneLevel extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    move = new MoveElevatorRotations(heightOfTarget - currentRelativePos);
-    move.start();
+    //move = new MoveElevatorRotations(heightOfTarget - currentRelativePos);
+    //move.start();
   }
 
 
