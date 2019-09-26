@@ -32,7 +32,10 @@ public class LifterArm extends Subsystem {
 		angler = new WPI_TalonSRX(RobotMap.ANGLER_ID);
 		startingPos = RobotMap.ARM_STARTING_POSITION;
 		hasNotMoved = true;
-
+		groundSwitch = new DigitalInput(0);
+		angleSwitch = new DigitalInput(1);
+		topSwitch = new DigitalInput(2);
+		
 		angler.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		angler.setSelectedSensorPosition(RobotMap.ARM_STARTING_POSITION, 0, 0);
 
