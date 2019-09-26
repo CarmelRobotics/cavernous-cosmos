@@ -6,5 +6,4 @@ If you're on the team and going to contribute, you should be able to create your
 ## Formatting
 We use the [google style guide for code formatting](https://google.github.io/styleguide/javaguide.html)
 ## Version
-``Pre-Competition``
-has merged ``Robert`` ``Aristotle`` ``Theo`` and ``Harrison``
+``master`` is up to date
