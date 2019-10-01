@@ -146,9 +146,6 @@ public class LifterArm extends Subsystem {
 		angler.setSelectedSensorPosition(pos, 0, 0);
 	}
 
-public Boolean getLimitSwitchValue(DigitalInput limitSwitch) {
-return limitSwitch.get();
-}
 public Boolean getGroundSwitch() {
   return groundSwitch.get();
 }
