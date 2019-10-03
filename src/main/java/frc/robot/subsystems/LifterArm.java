@@ -18,8 +18,8 @@ public class LifterArm extends Subsystem {
 	private boolean hasNotMoved;
 
   //Limit Switches
-  	private DigitalInput angleSwitch;
-  	private DigitalInput topSwitch;
+  	private DigitalInput angleLimit;
+  	private DigitalInput topLimit; //
   //Position Tellers
   	public Boolean atBottom;
   	public Boolean atAngle;
@@ -36,7 +36,7 @@ public class LifterArm extends Subsystem {
 		angler.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		angler.setSelectedSensorPosition(RobotMap.ARM_STARTING_POSITION, 0, 0);
 
-		angleSwitch = new DigitalInput(1);
+		angleLimit = new DigitalInput(1);
 
 	}
 
@@ -145,10 +145,10 @@ public class LifterArm extends Subsystem {
 		angler.setSelectedSensorPosition(pos, 0, 0);
 	}
 
-public Boolean getAngleSwitch() {
-  return angleSwitch.get();
+public Boolean getAngleLimit() {
+  return angleLimit.get();
 }
-public Boolean getTopSwitch() {
-  return topSwitch.get();
+public Boolean getTopLimit() {
+  return topLimit.get();
 }
 }
