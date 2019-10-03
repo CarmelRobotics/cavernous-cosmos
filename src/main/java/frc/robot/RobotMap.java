@@ -97,6 +97,8 @@ public class RobotMap {
 
   /* Limit Switches */
     public static final int ELEV_BOTTOM_LIMIT = 0;
+    public static final int ARM_ANGLE_LIMIT = 1;
+    public static final int ARM_TOP_LIMIT = 2; // Not plugged in on robot 10/3/2019
     
   /* Pneumatic Control IDs */
     public static final int WHEELDROP_PCM_ID_UP = 2;
