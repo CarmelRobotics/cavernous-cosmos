@@ -36,6 +36,8 @@ public class LifterArm extends Subsystem {
 		angler.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		angler.setSelectedSensorPosition(RobotMap.ARM_STARTING_POSITION, 0, 0);
 
+		angleSwitch = new DigitalInput(1);
+
 	}
 
 	@Override
