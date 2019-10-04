@@ -36,7 +36,8 @@ public class LifterArm extends Subsystem {
 		angler.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		angler.setSelectedSensorPosition(RobotMap.ARM_STARTING_POSITION, 0, 0);
 
-		angleLimit = new DigitalInput(1);
+		angleLimit = new DigitalInput(RobotMap.ARM_ANGLE_LIMIT);
+		topLimit = new DigitalInput(RobotMap.ARM_TOP_LIMIT);
 
 	}
 
