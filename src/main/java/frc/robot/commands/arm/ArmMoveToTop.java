@@ -37,7 +37,7 @@ public class ArmMoveToTop extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return arm.getTopSwitch();
+    return arm.getTopLimit();
   }
 
   // Called once after isFinished returns true
