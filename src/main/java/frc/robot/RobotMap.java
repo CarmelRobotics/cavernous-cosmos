@@ -98,7 +98,7 @@ public class RobotMap {
   /* Limit Switches */
     public static final int ELEV_BOTTOM_LIMIT = 0;
     public static final int ARM_ANGLE_LIMIT = 1;
-    public static final int ARM_TOP_LIMIT = 2; // Not plugged in on robot 10/3/2019
+    public static final int INTAKE_STOP_LIMIT = 2; 
     
   /* Pneumatic Control IDs */
     public static final int WHEELDROP_PCM_ID_UP = 2;
@@ -114,22 +114,6 @@ public class RobotMap {
     public static final double ARM_POSITION_0 = 0; // 0 degrees on arm gear
     public static final double ARM_POSITION_1 = 548; // 20 degrees on arm gear
     public static final double ARM_POSITION_2 = 1508; // 55 degrees on arm gear
-
-  /* Arm DIO */
-    public static final int POSITION_90_LIMIT_ID = 0;
-    public static final int POSITION_0_LIMIT_ID = 0;
-
-
-   
-
-  /* Ball Intake DIO */
-  public static final int INTAKE_LIMIT_ID = 0;
-
-  /*  Elevator DIO */
-  public static final int POSITION_1_LIMIT_ID = 0;
-  public static final int POSITION_2_LIMIT_ID = 0;
-  
-  
 
   /* Joystick Button */
     //Drive Train
