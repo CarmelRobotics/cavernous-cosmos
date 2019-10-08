@@ -132,8 +132,6 @@ public class Robot extends TimedRobot {
     if(USE_PI_VISION)
       vision.VisionPeriodic();
     //System.out.println(RobotMap.PISTON_OUT);
-    System.out.println("TOP" + arm.getTopLimit());
-    System.out.println("ANGLE" + arm.getAngleLimit());
   }
 
   @Override
