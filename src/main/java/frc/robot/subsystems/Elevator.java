@@ -59,8 +59,9 @@ public class Elevator extends Subsystem {
 
     //hello moto
     public void setMotorSpeed(double speed) {
-        if(!bottomLimit.get())
+        if(!bottomLimit.get()){
             speed = Math.max(speed, 0);
+        }
         extend.set(speed);
     }
 

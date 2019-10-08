@@ -10,7 +10,6 @@ package frc.robot.commands.arm;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.LifterArm;
-
 public class ArmMoveToAngle extends Command {
 
   private LifterArm arm;
@@ -34,20 +33,14 @@ public class ArmMoveToAngle extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(arm.getTopLimit() == true) {
     arm.moveMotorForward();
-    }
-
-    else {
-      arm.moveMotorReverse();
-    }
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return arm.getAngleLimit();
+    return true;
   }
 
   // Called once after isFinished returns true
