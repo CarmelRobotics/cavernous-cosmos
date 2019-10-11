@@ -22,12 +22,12 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
   private VictorSP intakeScOne;
   private VictorSP intakeScTwo;
-
+  private DigitalInput stopLimit;
 
   public BallIntake(){
     intakeScOne = new VictorSP(RobotMap.PWM_ROLLER_INNER);
     intakeScTwo = new VictorSP(RobotMap.PWM_ROLLER_OUTER);
-  
+    stopLimit = new DigitalInput(RobotMap.INTAKE_STOP_LIMIT);
 
   }
 
@@ -36,11 +36,15 @@ public class BallIntake extends Subsystem {
   }
 
   public void intakeIn(){
-    
-    intakeScOne.set(-1);
-    intakeScTwo.set(-.3);
-    //System.out.println("Top speed: "  + intakeScOne.get());
-    
+    if(stopLimit.get()){ // if the limit is pressed it won't intake
+      System.out.println("Intaking!");
+      intakeScOne.set(-1);
+      intakeScTwo.set(-.3);
+    }
+    else{
+      System.out.println("Limit Switch Pressed, Stopping!");
+      intakeOff();
+    }
   }
 
   public void intakeOff(){
@@ -53,6 +57,10 @@ public class BallIntake extends Subsystem {
     intakeScOne.set(1);
     intakeScTwo.set(1);
     
+  }
+  
+  public boolean getStopLimit(){
+    return stopLimit.get();
   }
 
 }

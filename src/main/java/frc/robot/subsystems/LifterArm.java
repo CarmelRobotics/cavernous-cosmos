@@ -16,11 +16,6 @@ public class LifterArm extends Subsystem {
 	private int startingPos;
 	private double currentPos;
 	private boolean hasNotMoved;
-
-  //Limit Switches
-  	private DigitalInput groundSwitch;
-  	private DigitalInput angleSwitch;
-  	private DigitalInput topSwitch;
   //Position Tellers
   	public Boolean atBottom;
   	public Boolean atAngle;
@@ -32,7 +27,8 @@ public class LifterArm extends Subsystem {
 		angler = new WPI_TalonSRX(RobotMap.ANGLER_ID);
 		startingPos = RobotMap.ARM_STARTING_POSITION;
 		hasNotMoved = true;
-
+		
+		
 		angler.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		angler.setSelectedSensorPosition(RobotMap.ARM_STARTING_POSITION, 0, 0);
 
@@ -142,17 +138,4 @@ public class LifterArm extends Subsystem {
 	public void setAnglerPosition(int pos) {
 		angler.setSelectedSensorPosition(pos, 0, 0);
 	}
-
-public Boolean getLimitSwitchValue(DigitalInput limitSwitch) {
-return limitSwitch.get();
-}
-public Boolean getGroundSwitch() {
-  return groundSwitch.get();
-}
-public Boolean getAngleSwitch() {
-  return angleSwitch.get();
-}
-public Boolean getTopSwitch() {
-  return topSwitch.get();
-}
 }

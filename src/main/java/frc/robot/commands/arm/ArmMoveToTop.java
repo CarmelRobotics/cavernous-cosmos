@@ -10,7 +10,6 @@ package frc.robot.commands.arm;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.LifterArm;
-
 public class ArmMoveToTop extends Command {
   private LifterArm arm;
 
@@ -37,7 +36,7 @@ public class ArmMoveToTop extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return arm.getTopSwitch();
+    return true;
   }
 
   // Called once after isFinished returns true

@@ -59,8 +59,9 @@ public class Elevator extends Subsystem {
 
     //hello moto
     public void setMotorSpeed(double speed) {
-        if(!bottomLimit.get())
+        if(!bottomLimit.get()){
             speed = Math.max(speed, 0);
+        }
         extend.set(speed);
     }
 
@@ -98,8 +99,8 @@ public class Elevator extends Subsystem {
         return inches/RobotMap.IN_CONVERT; //insert conversion math here
       }
 
-    public DigitalInput getBottomLimit() {
-        return bottomLimit;
+    public Boolean getBottomLimit() {
+        return bottomLimit.get();
     }
 
     @Override
