@@ -99,8 +99,8 @@ public class Elevator extends Subsystem {
         return inches/RobotMap.IN_CONVERT; //insert conversion math here
       }
 
-    public DigitalInput getBottomLimit() {
-        return bottomLimit;
+    public Boolean getBottomLimit() {
+        return bottomLimit.get();
     }
 
     @Override
