@@ -38,8 +38,8 @@ public class BallIntake extends Subsystem {
   public void intakeIn(){
     if(stopLimit.get()){ // if the limit is pressed it won't intake
       System.out.println("Intaking!");
-      intakeScOne.set(-1);
-      intakeScTwo.set(-.3);
+      intakeScOne.set(1);
+      intakeScTwo.set(.3);
     }
     else{
       System.out.println("Limit Switch Pressed, Stopping!");
@@ -54,8 +54,8 @@ public class BallIntake extends Subsystem {
   }
   
   public void intakeOut(){
-    intakeScOne.set(1);
-    intakeScTwo.set(1);
+    intakeScOne.set(-1);
+    intakeScTwo.set(-1);
     
   }
   
