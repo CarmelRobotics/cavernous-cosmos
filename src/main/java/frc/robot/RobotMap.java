@@ -51,8 +51,8 @@ public class RobotMap {
 
   /* Guitar Buttons */
  
-  public static final int BUTTON_ID_INTAKEIN_POVBUTTON_DEGREES = 4; //Top Button
-  public static final int BUTTON_ID_INTAKEOUT_POVBUTTON_DEGREES = 3; //Bottom Button
+  public static final int BUTTON_ID_INTAKEIN_POVBUTTON_DEGREES = 3; //Top Button
+  public static final int BUTTON_ID_INTAKEOUT_POVBUTTON_DEGREES = 4; //Bottom Button
     public static final int BUTTON_ID_ELEV_UP_BUTTON = 9;
     public static final int BUTTON_ID_ELEV_DOWN_BUTTON = 8;
   public static final int BUTTON_ID_CHANGE_ARM_ANGLE_0 = 5;
